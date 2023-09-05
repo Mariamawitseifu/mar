@@ -94,23 +94,24 @@ export default function Navbar() {
   }
   return (
     <>
-      <div className="relative mt-1">
+  <div className="relative mt-1">
         <header className="text-dro_black body-font relative z-20">
-          <div className="mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <div className="flex title-font font-medium items-center mb- md:mb-0">
-              <div className=" flex flex-row px-10 py-3 ml-auto">
+          <div className="mx-auto display flex flex-wrap flex-col md:flex-row items-center">
+          <div className=" flex flex-row px-8 py-1">
                <Link href="/home" >
-                  <Image className="" src={Droga} height={110} width={100} alt="droga logo" />
+                  <Image className="" src={Droga} height={90} width={80} alt="droga logo" />
               </Link> 
               <h1 className=" ml-3 font-medium text-3xl">Droga <h className=" font-semibold">Portal </h> </h1>
-
+              </div>
+            <div className="flex title-font font-medium items-center ml-auto md:mb-0">
+              
               
 
             <nav className="md:ml-auto flex flex-wrap w-full bg-dro_white px-10 items-center text-base justify-center">
               <div className="flex flex-row justify-between">
               <Popup trigger={<button className="font-semibold px-3 text-lg">Quick Links</button>} 
               position="bottom"
-              className="backdrop:blur-lg">
+              className="backdrop-blur-lg opacity-50 fixed inset-0  bg-background/80 bg-dro_white bg-opacity-75">
   <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
   <thead>
     <tr className="">
@@ -218,7 +219,6 @@ export default function Navbar() {
     </div>
             </nav>
             </div>
-            </div>
            </div>
         </header>
       
@@ -226,7 +226,7 @@ export default function Navbar() {
         <div className=" w-full md:w-1/2">
           <h1 className="relative text-2xl py-10 font-extrabold">Welcome to Droga</h1>
           <p className="relative text-align:justify text-sm md:text-lg lg:text-xl font-n">Droga Pharma Pvt. Ltd. Co was established in April 2015 by a group of healthcare professionals, who have rich business experience in the pharmaceutical, Research, Manufacturing sector. We are working in the pharmaceuticals import, wholesale and retail business, targeting the public as well as the private health sector of Ethiopia.</p>
-          <button className=" babsolute font-bold mb-10 text- mt-4">See More</button>
+          <button className="absolute font-bold mb-10 text- mt-4">See More</button>
         </div>
        </div> 
       </div>
