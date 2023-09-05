@@ -66,6 +66,7 @@ export default function Navbar() {
   function Popupview() {
     const [isOpen, setIsOpen] = useState(false);
     const popupRef = useRef(null);
+    const popupRef1 = useRef1(null);
   
     useEffect(() => {
       const handleOutsideClick = (event) => {
@@ -94,7 +95,7 @@ export default function Navbar() {
   }
   return (
     <>
-  <div className="relative mt-1">
+  <div className="relative mt-1 ">
         <header className="text-dro_black body-font relative z-20">
           <div className="mx-auto display flex flex-wrap flex-col md:flex-row items-center">
           <div className=" flex flex-row px-8 py-1">
@@ -108,11 +109,18 @@ export default function Navbar() {
               
 
             <nav className="md:ml-auto flex flex-wrap w-full bg-dro_white px-10 items-center text-base justify-center">
+              
+            {/* <div className="relative">  */}
               <div className="flex flex-row justify-between">
               <Popup trigger={<button className="font-semibold px-3 text-lg">Quick Links</button>} 
               position="bottom"
-              className="backdrop-blur-lg opacity-50 fixed inset-0  bg-background/80 bg-dro_white bg-opacity-75">
+              className="fixed inset-0  bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+  <div className="fixed inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
+              <div className="flex items-center justify-center">
+                
+              
   <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
+
   <thead>
     <tr className="">
       <th className="border text-left px-6 py-4">No.</th>
@@ -140,9 +148,55 @@ export default function Navbar() {
       <td className="border px-8 py-4">erp.odoo.com</td>
       <td className="border px-8 py-4">https//:drogapharma.com</td>
     </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+
   </tbody>
 </table>
+</div>
+</div>
 </Popup>
+{/* </div> */}
 <div>
   <button className=" font-semibold" onClick={handleClickM}>
   Blog
@@ -226,8 +280,9 @@ export default function Navbar() {
         <div className=" w-full md:w-1/2">
           <h1 className="relative text-2xl py-10 font-extrabold">Welcome to Droga</h1>
           <p className="relative text-align:justify text-sm md:text-lg lg:text-xl font-n">Droga Pharma Pvt. Ltd. Co was established in April 2015 by a group of healthcare professionals, who have rich business experience in the pharmaceutical, Research, Manufacturing sector. We are working in the pharmaceuticals import, wholesale and retail business, targeting the public as well as the private health sector of Ethiopia.</p>
-          <button className="absolute font-bold mb-10 text- mt-4">See More</button>
+          <button className=" font-bold mb-10 text- mt-4">See More</button>
         </div>
+        
        </div> 
       </div>
       
