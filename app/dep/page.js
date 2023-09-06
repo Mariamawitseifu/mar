@@ -1,4 +1,3 @@
-
 "use client"
 import Link from "next/link";
 import Droga from "public/image/Droga.jpg";
@@ -6,18 +5,33 @@ import Image from "next/image";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useClient } from 'react';
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie"
 
 
 export default function dep() {
-  const [id, setId] = useState('');
+  const [username, setUsername]= useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter()
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/register/', {
-        id,
+      const response = await axios.post('http://127.0.0.1:8000/api-auth/login/', {
+        username,
         password,
       });
+
+      console.log(response.data);
+
+      if (response.status ===200) {
+
+        Cookies.set("user", JSON.stringify(response.data.user))
+
+        router.push("/home")
+        
+      } else {
+        
+      }
       // Handle the response
     } catch (error) {
       // Handle any errors
@@ -26,6 +40,7 @@ export default function dep() {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-96 h-4/5 overflow-hidden shadow-2xl bg-white border border-black">
+        
         <div className="flex flex-row items-center justify-center mt-10">
           <Image
             src={Droga}
@@ -49,9 +64,9 @@ export default function dep() {
           <div className="px-20 pt-3 pb-1">
             <input
               type="text"
-              id="id"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="border border-black bg-white scale-x-125 scale-y-125"
               placeholder=""
             />

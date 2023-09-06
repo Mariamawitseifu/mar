@@ -13,11 +13,13 @@ import Popup from "reactjs-popup";
 import { useState, useEffect ,useRef} from "react";
 import { useMediaQuery } from 'react-responsive';
 import Groupcards from "./Groupcards.js";
+import Cookies from "js-cookie"
 
 
 export default function Navbar() {
 
   // const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null)
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -26,6 +28,12 @@ export default function Navbar() {
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+
+
+
+  
+  // console.log(typeof(user));
   
 
   useEffect(() => {
@@ -48,6 +56,9 @@ export default function Navbar() {
   const popupRef = useRef(null);
 
   useEffect(() => {
+
+    setUser(JSON.parse(Cookies.get("user")))
+
     const handleOutsideClick = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -102,7 +113,7 @@ export default function Navbar() {
                <Link href="/home" >
                   <Image className="" src={Droga} height={90} width={80} alt="droga logo" />
               </Link> 
-              <h1 className=" ml-3 font-medium text-3xl">Droga <h className=" font-semibold">Portal </h> </h1>
+              <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold">Portal </h> </h1>
               </div>
             <div className="flex title-font font-medium items-center ml-auto md:mb-0">
               
@@ -125,8 +136,8 @@ export default function Navbar() {
     <tr className="">
       <th className="border text-left px-6 py-4">No.</th>
       <th className="border text-left px-6 py-4">Name</th>
-      <th className="border text-left px-6 py-4">Internal Link</th>
-      <th className="border text-left px-6 py-4">External Link</th>
+      <th className="border text-left px-6 py-4">Internal Network</th>
+      <th className="border text-left px-6 py-4">External Network</th>
     </tr>
   </thead>
   <tbody>
@@ -242,7 +253,9 @@ export default function Navbar() {
           <div className="rounded-full border-dro_black bg-dro_yellow h-10 w-10 flex items-center justify-center ">
             <span className="text-center">C</span>
           </div>
-          <h3 className="text-lg mt-3 font-bold">Charlie Chocolate</h3>
+          <h3 className="text-lg mt-3 font-bold">
+            {user && user.username}
+            </h3>
           <h3 className=" text-xs mb-3">Charlieisdo@gmail.com</h3>
           <div className=" flex flex-col">
           <div className=" flex flex-row items-center justify-center border-t-2 border-dro_black w-full">
