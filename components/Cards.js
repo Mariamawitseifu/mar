@@ -9,39 +9,48 @@ export default function Cards() {
   return (
     <>
     <div className="flex flex-row">
-      <div className="  w-full object-cover flex flex-col">
+      <div className=" relative w-full object-cover flex flex-col">
         <Image
           src="/image/henok.jpg"
           alt="cards"
           width={100}
           height={80}
         />
-        <p className="absolute  bg-dro_yello w-full px-1 py-16 bottom z-10">Group CEO</p>
+        <p className="absolute bg-dro_gray bg-opacity-70 px-4 py-2 bottom-0 left-0 w-full">Group CEO</p>
       </div>
 
-      <div className=" w-full object-cover flex flex-col">
+          <div className=" relative w-full object-cover flex flex-col">
+      <div className="relative">
         <Image
-        src={Droga}
+          src={Droga}
           alt="droga pharma"
           width={110}
           height={110}
         />
-        <p className="absolute bg- w-full px- py-16 bottom z-10">Droga Pharma</p>
+        <p className="absolute bg-dro_gray g-opacity-70 px-4 py-2 bottom-0 left-0 w-full">
+          Droga Pharma
+        </p>
       </div>
+    </div>
 
-      <div className=" w-full object-cover flex flex-col">
-        <Image
+
+      <div className=" relative w-full object-cover flex flex-col"> 
+      <div className="relative">
+          <Image
         src={ema}
           alt="ema pharma"
           width={120}
           height={120}
         />
-        <p className="absolute bg-dro_yello w-full px-1 py-14 bottom z-10">EMA Ethiopia</p>
+        <p className="absolute bg-dro_gray bg-opacity-20 px-4 py-2 bottom-0 left-0 w-full">EMA Ethiopia</p>
       </div>
 
+      </div>
+      
 
       <div className="relative w-full object-cover">
-  <Image
+        <div className="relative">
+        <Image
     src={trust}
     alt="trust pharma"
     width={125}
@@ -50,18 +59,22 @@ export default function Cards() {
   <p className="absolute inset-0 mt-4 flex items-end justify-end text-white bg-dro_ray bg-opacity-50 p-4">
     Trust ethio pharma
   </p>
-</div>
+</div>  
+        </div>
+  
 
 <div className="relative w-full">
-  <Image src={pyshio} alt="physio" width={130} height={140} className="" />
-  <div className="absolute inset-0 flex items-end justify-center">
-    <p className="bg-dro_gray bg-opacity-50 text-white font-semibold p-2">Droga pyshiotherapy</p>
+  <div>
+      <Image src={pyshio} alt="physio" width={130} height={140} className="" />
+    <div className="absolute inset-0 flex items-end justify-center">
+      <p className="bg-dro_gray bg-opacity-50 text-white font-semibold p-2">Droga pyshiotherapy</p>
+    </div>
   </div>
-</div>
-
-
+  </div>
+  
       <div className="relative w-full object-cover">
-        <Image
+        <div className="relative">
+           <Image
         src={Droga}
           alt="chain"
           width={110}
@@ -69,10 +82,13 @@ export default function Cards() {
         />
         <p className="absolute inset-0 flex items-end justify-center text-white bg-dro_ray bg-opacity-50">Droga Chain Pharmacy</p>
       </div>
+        </div>
+       
 
 
       <div className="relative w-full object-cover">
-        <Image
+        <div className="relative">
+          <Image
         src={somaliland}
           alt="somali"
           width={120}
@@ -80,9 +96,12 @@ export default function Cards() {
         />
         <p className="absolute inset-0 mt-5 flex items-end justify-end text-white bg-dro_ray bg-opacity-50 p-4">Droga Somaliland</p>
       </div>
+        </div>
+        
 
       <div className=" w-full object-cover flex flex-col">
-        <Image
+        <div className="relative">
+          <Image
         src={Droga}
           alt="droga rwanda"
           width={110}
@@ -90,6 +109,8 @@ export default function Cards() {
         />
         <p className="absolute mb-2 bg- w-full px- py-16 bottom z-10">Droga Rwanda</p>
       </div>
+        </div>
+        
       </div>
     </>
   );
