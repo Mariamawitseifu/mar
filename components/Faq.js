@@ -8,10 +8,10 @@ export default function faq(){
        <h1 className=" px-12 text-2xl font-semibold relative mb-12" > Announcements and Blogs</h1> 
      </div>
   
-<div className=" ml-24 sm:ml-8 lg:ml-32 mr-24 sm:mr-4 lg:mr-32 bg-dro_yellow rounded shadow-lg ">
+<div className=" ml-24 sm:ml-8 lg:ml-3 mr-24 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg ">
 
 <div className=" flex lg:flex-row sm:flex-row justify-end">
-  <div className="flex flex-col justify-center px-14">
+  <div className="flex flex-col justify-center px-24">
     <div className="font-bold sm:mt-3 text-xl sm:text-lg ">DROGA RESEARCH GRANT</div>
     <div className="text-md sm:text-sm font-medium"> 12,AUG,2023</div>
     <div className="sm:mb-3">

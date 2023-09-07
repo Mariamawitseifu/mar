@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Droga from "/public/image/Droga.jpg";
 import somaliland from "/public/image/somaliland.jpg";
-import pyshio from "/public/image/pyshio.jpg";
+import physio from "/public/image/physio.jpg"; 
 import ema from "/public/image/ema.jpg";
 import trust from "/public/image/trust.jpg";
+import chain from "/public/image/chain.jpg";
 
 export default function Cards() {
   return (
@@ -13,21 +14,21 @@ export default function Cards() {
         <Image
           src="/image/henok.jpg"
           alt="cards"
-          width={100}
+          width={115}
           height={80}
         />
-        <p className="absolute bg-dro_gray bg-opacity-70 px-4 py-2 bottom-0 left-0 w-full">Group CEO</p>
+        <p className="absolute bg-dro_gray bg-opacity-60 py-4 transition duration-300 ease-in-out hover:scale-110 font-medium px-3 bottom-0 left-0 w-50">Group CEO</p>
       </div>
 
           <div className=" relative w-full object-cover flex flex-col">
-      <div className="relative">
+      <div className="relative transition duration-300 ease-in-out hover:scale-110">
         <Image
           src={Droga}
           alt="droga pharma"
-          width={110}
-          height={110}
+          width={140}
+          height={130}
         />
-        <p className="absolute bg-dro_gray bg-opacity-60 px-4 py-2 bottom-0 left-0 w-full">
+        <p className="absolute bg-dro_gray bg-opacity-70 font-medium py-3 px-3 bottom-0 left-0 w-50">
           Droga Pharma
         </p>
       </div>
@@ -39,12 +40,11 @@ export default function Cards() {
           <Image
         src={ema}
           alt="ema pharma"
-          width={120}
-          height={120}
+          width={150}
+          height={165}
         />
-        <p className="absolute bg-dro_gray bg-opacity-20 px-4 py-2 bottom-0 left-0 w-full">EMA Ethiopia</p>
+        <p className="absolute bg-dro_gray bg-opacity-70 font-medium px-4 py-3 bottom-0 left-0 w-60">EMA Ethiopia</p>
       </div>
-
       </div>
       
 
@@ -53,21 +53,21 @@ export default function Cards() {
         <Image
     src={trust}
     alt="trust pharma"
-    width={125}
-    height={130}
+    width={150}
+    height={150}
   />
-  <p className="absolute inset-0 mt-4 flex items-end justify-end text-white bg-dro_ray bg-opacity-50 p-4">
-    Trust ethio pharma
+  <p className="absolute bg-dro_gray bg-opacity-60 px-2 font-medium py- bottom-0 left-0 w-40">
+    Trust Ethiopharma
   </p>
 </div>  
         </div>
   
 
 <div className="relative w-full">
-  <div>
-      <Image src={pyshio} alt="physio" width={130} height={140} className="" />
+  <div className="relative">
+      <Image src={physio} alt="physio" width={130} height={150} className="" />
     <div className="absolute inset-0 flex items-end justify-center">
-      <p className="bg-dro_gray bg-opacity-50 text-white font-semibold p-2">Droga pyshiotherapy</p>
+      <p className="absolute bg-dro_gray bg-opacity-60 font-medium px-3 bottom-0 left-0 w-40">Droga pyshiotherapy</p>
     </div>
   </div>
   </div>
@@ -75,12 +75,12 @@ export default function Cards() {
       <div className="relative w-full object-cover">
         <div className="relative">
            <Image
-        src={Droga}
+        src={chain}
           alt="chain"
-          width={110}
+          width={120}
           height={110}
         />
-        <p className="absolute inset-0 flex items-end justify-center text-white bg-dro_ray bg-opacity-50">Droga Chain Pharmacy</p>
+        <p className="absolute bg-dro_gray bg-opacity-60 px-3 font-medium bottom-0 left-0 w-40">Droga Chain Pharmacy</p>
       </div>
         </div>
        
@@ -91,25 +91,27 @@ export default function Cards() {
           <Image
         src={somaliland}
           alt="somali"
-          width={120}
-          height={120}
+          width={140}
+          height={140}
         />
-        <p className="absolute inset-0 mt-5 flex items-end justify-end text-white bg-dro_ray bg-opacity-50 p-4">Droga Somaliland</p>
+        <p className="absolute bg-dro_gray bg-opacity-60 font-medium px-4 bottom-0 left-0 w-40">Droga Somaliland</p>
       </div>
         </div>
         
 
-      <div className=" w-full object-cover flex flex-col">
-        <div className="relative">
-          <Image
-        src={Droga}
+        <div className=" relative w-full object-cover flex flex-col">
+      <div className="relative">
+        <Image
+          src={Droga}
           alt="droga rwanda"
-          width={110}
-          height={110}
+          width={120}
+          height={122}
         />
-        <p className="absolute mb-2 bg- w-full px- py-16 bottom z-10">Droga Rwanda</p>
+        <p className="absolute bg-dro_gray bg-opacity-70 font-medium py-2 bottom-0 left-0 w-60">
+          Droga Rwanda
+        </p>
       </div>
-        </div>
+    </div>
         
       </div>
     </>

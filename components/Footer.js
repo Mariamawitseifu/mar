@@ -55,12 +55,12 @@ export default function Footer(){
  <button className=" mt-3 font-semibold">Our Services</button>
  </Link>
  <Link href=" /Faqaccord"> 
- <button className=" mt-3 font-semibold">Faqs</button>
+ <button className=" mt-3 font-semibold">FAQS</button>
  </Link>
  </div>
  <div className=" px-14 font-bold">
 <p className="text-xl">
-    Faqs
+    FAQS
 </p>
             </div>
             <div className=" px-14 font-bold">

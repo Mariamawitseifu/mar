@@ -27,7 +27,7 @@ return(<div>
     </div>
 
 {/* <div className="relative"><Units/></div> */}
-<div className="mt-5 py-10 px-10">
+<div className=" py-40 px-5">
   <Cards/>
 </div>
 
