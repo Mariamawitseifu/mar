@@ -27,7 +27,7 @@ export default function Cards() {
           width={110}
           height={110}
         />
-        <p className="absolute bg-dro_gray g-opacity-70 px-4 py-2 bottom-0 left-0 w-full">
+        <p className="absolute bg-dro_gray bg-opacity-60 px-4 py-2 bottom-0 left-0 w-full">
           Droga Pharma
         </p>
       </div>
