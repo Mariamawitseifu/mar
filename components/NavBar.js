@@ -85,7 +85,7 @@ export default function Navbar() {
  const al= uuu.split(" ");
  const t=al[1][0];
 
- console.log(t);
+//  console.log(t);
 
  
 
@@ -144,11 +144,11 @@ export default function Navbar() {
               
               
 
-            <nav className="md:ml-auto flex flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
+            <nav className="md:ml-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
               
             {/* <div className="relative">  */}
-              <div className="flex flex-row justify-">
-              <Popup trigger={<button className="font-semibold px-3 text-lg">Quick Links</button>} 
+              <div className="flex flex-row">
+              <Popup trigger={<button className="font-semibold text-lg">Quick Links</button>} 
               position="bottom"
               className="fixed inset-0  bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
   <div className="fixed inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
@@ -233,7 +233,12 @@ export default function Navbar() {
 </div>
 </Popup>
 {/* </div> */}
-<div>
+
+
+
+
+             </div>
+             <div>
   <button className="font-semibold text-lg" onClick={handleClickM}>
   Blog
 </button>
@@ -246,12 +251,9 @@ export default function Navbar() {
         </div>
       )
       }
-    </div>
-
-
-             </div>
+</div>
              <div>
-             <button className="px-3 font-semibold text-lg">Portal User Guide</button>  
+             <button className="font-semibold text-lg">Portal User Guide</button>  
              </div>
              <ul>
               <li style={{ position: "relative" }}>

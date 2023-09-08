@@ -27,11 +27,11 @@ return(<div>
     </div>
 
 {/* <div className="relative"><Units/></div> */}
-<div className=" py-40 px-5">
+<div className=" py-52 px-5">
   <Cards/>
 </div>
 
-<div className="py-16">
+<div className=" py-24">
   <Faq/>
   {/* <FAQAccordion/> */}
 </div>
