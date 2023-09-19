@@ -2,9 +2,6 @@
 import Image from "next/image";
 import Link from 'next/link';
 import Droga from "/public/image/Droga.jpg";
-import land from "/public/image/land.png";
-import Quick from "../app/quick/page.js";
-import Blogs from "@/app/blogs/Blogs.js";
 import Notification from './notification.js';
 import lock from "/public/image/lock.png"
 import log from "/public/image/log.png"
@@ -13,12 +10,17 @@ import Popup from "reactjs-popup";
 import { useState, useEffect ,useRef} from "react";
 import { useMediaQuery } from 'react-responsive';
 import Groupcards from "./Groupcards.js";
+import Cookies from "js-cookie"
 
 
 export default function Navbar() {
+  
+
 
   // const [isOpen, setIsOpen] = useState(false);
-
+  const [user, setUser] = useState(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -26,6 +28,12 @@ export default function Navbar() {
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+
+
+
+  
+  // console.log(typeof(user));
   
 
   useEffect(() => {
@@ -43,11 +51,12 @@ export default function Navbar() {
     };
   }, []);
 
-
-  const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
 
   useEffect(() => {
+
+    setUser(JSON.parse(Cookies.get("user")))
+
     const handleOutsideClick = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -60,12 +69,33 @@ export default function Navbar() {
     };
   }, []);
 
+  const uu = "berttt alemmu"
+  // uu.toUpperCase()
+
+
+  const uuw = uu.split(" ")
+  const a = uuw[0][0].toUpperCase()
+  const ab = uuw[0]
+ const ac =  ab.slice(1)
+ const ad = a+ac
+
+ const uuu="Hello World";
+ const al= uuu.split(" ");
+ const t=al[1][0];
+
+//  console.log(t);
+
+ 
+
+  // console.log(uuw[0][0], uuw[1][0])
+
 
 
 
   function Popupview() {
     const [isOpen, setIsOpen] = useState(false);
     const popupRef = useRef(null);
+    const popupRef1 = useRef1(null);
   
     useEffect(() => {
       const handleOutsideClick = (event) => {
@@ -83,6 +113,7 @@ export default function Navbar() {
   }
     const handleClickM = () => {
       setIsOpen(!isOpen);
+      setIsBlurred(!isBlurred);
     };
   
   function Buttons({ children }) {
@@ -92,32 +123,45 @@ export default function Navbar() {
       </button>
     );
   }
+
+  
+
+
+
   return (
     <>
-      <div className="relative mt-1">
+  <div className="relative bg-dro_yellow mt-1 ">
         <header className="text-dro_black body-font relative z-20">
-          <div className="mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <div className="flex title-font font-medium items-center mb- md:mb-0">
-              <div className=" flex flex-row px-10 py-3 ml-auto">
+          <div className="mx-auto display flex flex-wrap flex-col md:flex-row items-center">
+          <div className=" flex flex-row px-8 py-1">
                <Link href="/home" >
-                  <Image className="" src={Droga} height={110} width={100} alt="droga logo" />
+                  <Image className="" src={Droga} height={90} width={80} alt="droga logo" />
               </Link> 
-              <h1 className=" ml-3 font-medium text-3xl">Droga <h className=" font-semibold">Portal </h> </h1>
-
+              <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold">Portal </h> </h1>
+              </div>
+            <div className="flex title-font font-medium items-center ml-auto md:mb-0">
+              
               
 
-            <nav className="md:ml-auto flex flex-wrap w-full bg-dro_white px-10 items-center text-base justify-center">
-              <div className="flex flex-row justify-between">
-              <Popup trigger={<button className="font-semibold px-3 text-lg">Quick Links</button>} 
+            <nav className="md:ml-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
+              
+            {/* <div className="relative">  */}
+              <div className="flex flex-row">
+              <Popup trigger={<button className="font-semibold text-lg">Quick Links</button>} 
               position="bottom"
-              className="backdrop:blur-lg">
+              className="fixed inset-0  bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+  <div className="fixed inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
+              <div className="flex items-center justify-center">
+                
+              
   <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
+
   <thead>
     <tr className="">
       <th className="border text-left px-6 py-4">No.</th>
       <th className="border text-left px-6 py-4">Name</th>
-      <th className="border text-left px-6 py-4">Internal Link</th>
-      <th className="border text-left px-6 py-4">External Link</th>
+      <th className="border text-left px-6 py-4">Internal Network</th>
+      <th className="border text-left px-6 py-4">External Network</th>
     </tr>
   </thead>
   <tbody>
@@ -139,32 +183,81 @@ export default function Navbar() {
       <td className="border px-8 py-4">erp.odoo.com</td>
       <td className="border px-8 py-4">https//:drogapharma.com</td>
     </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+    <tr>
+      <td className="border px-8 py-4">3</td>
+      <td className="border px-8 py-4">Odoo</td>
+      <td className="border px-8 py-4">erp.odoo.com</td>
+      <td className="border px-8 py-4">https//:drogapharma.com</td>
+    </tr>
+
   </tbody>
 </table>
+</div>
+</div>
 </Popup>
-<div>
-  <button className=" font-semibold" onClick={handleClickM}>
+{/* </div> */}
+
+             </div>
+             <div>
+  <button className="font-semibold text-lg" onClick={handleClickM}>
   Blog
 </button>
       {isOpen &&
        (
-        <div className="absolute w-80 h-1/2 bottom-10 p-4" ref={popupRef}>
+        <div className="absolute w-80 h-1/2 bottom-10 p-4 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-3xl" ref={popupRef}>
           <div className="max-w-md w-full bg-dro_yellow shadow-lg p-4">
             <h2 className="text-lg font-bold mb-1">DROGA SUPPORT</h2>
           </div>
         </div>
+      
       )
       }
-    </div>
-
-
-             </div>
+      {/* {isBlurred && <div className="fixed inset-0 bg-black bg-opacity-50 z-50"></div>} */}
+</div>
              <div>
-             <button className="px-3 font-semibold text-lg">Portal User Guide</button>  
+             <button className="font-semibold text-lg">Portal User Guide</button>  
              </div>
+             <ul>
               <li style={{ position: "relative" }}>
                 <Notification />
               </li>
+              </ul>
               <div className="grid md:grid-cols-2" />
               <div className="">
                 <input
@@ -178,16 +271,18 @@ export default function Navbar() {
       <div>
       <Popup
         trigger={
-        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_yellow">C</button>
+        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].normalize()}</button>
         }
         position="bottom right"
       >
        
     <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
-          <div className="rounded-full border-dro_black bg-dro_yellow h-10 w-10 flex items-center justify-center ">
-            <span className="text-center">C</span>
+          <div className="rounded-full border-dro_black bg-dro_black h-10 w-10 flex items-center justify-center ">
+            <span className="text-center"> {user && user.username[0].normalize()}</span>
           </div>
-          <h3 className="text-lg mt-3 font-bold">Charlie Chocolate</h3>
+          {/* <h3 className="text-lg mt-3 font-bold"> 
+            {user && user.username}
+            </h3> */}
           <h3 className=" text-xs mb-3">Charlieisdo@gmail.com</h3>
           <div className=" flex flex-col">
           <div className=" flex flex-row items-center justify-center border-t-2 border-dro_black w-full">
@@ -218,17 +313,17 @@ export default function Navbar() {
     </div>
             </nav>
             </div>
-            </div>
            </div>
         </header>
       
-      <div className="flex items-center px-10 bg-my-bg-image bg-dro_yellow bg-cover relative z-10">
+      {/* <div className="flex items-center px-10 bg-my-bg-image bg-dro_yellow bg-cover relative z-10">
         <div className=" w-full md:w-1/2">
           <h1 className="relative text-2xl py-10 font-extrabold">Welcome to Droga</h1>
           <p className="relative text-align:justify text-sm md:text-lg lg:text-xl font-n">Droga Pharma Pvt. Ltd. Co was established in April 2015 by a group of healthcare professionals, who have rich business experience in the pharmaceutical, Research, Manufacturing sector. We are working in the pharmaceuticals import, wholesale and retail business, targeting the public as well as the private health sector of Ethiopia.</p>
-          <button className=" babsolute font-bold mb-10 text- mt-4">See More</button>
+          <button className=" font-bold mb-10 text- mt-4">See More</button>
         </div>
-       </div> 
+        
+       </div>  */}
       </div>
       
     </>

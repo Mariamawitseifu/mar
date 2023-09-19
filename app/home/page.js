@@ -8,6 +8,7 @@ import FAQAccordion from '/components/FAQAccordion';
 import Footer from "@/components/Footer";
 import Welcome from "@/components/welcome";
 import { useClient } from 'react';
+import Cards from "@/components/cards";
 
 
 
@@ -26,23 +27,19 @@ return(<div>
     </div>
 
 {/* <div className="relative"><Units/></div> */}
-
-
-
-
-
-
-<div className="py-16">
-  <Faq/>
-  {/* <FAQAccordion/> */}
+<div className=" py-52 px-5">
+  <Cards/>
 </div>
-<div>
+
+<div className="">
+  <Faq/>
+</div>
+<div className="mt-4">
   <Footer/>
 </div>
 <div>
   <Endfooter/>
 </div>
-
 </div>
 )
 }
