@@ -6,46 +6,53 @@ import ema from "/public/image/ema.jpg";
 import trust from "/public/image/trust.jpg";
 import chain from "/public/image/chain.jpg";
 import chainpharma from "/public/image/chainpharma.jpg";
+import Link from "next/link";
+import Socalmedia from "@/app/blogs/page.js";
+
 
 export default function Cards() {
   return (
     <>
     <div className="flex flex-row space-x-6">
+      <Link href="/blogs">
     <button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/henok.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-4 font-medium px-3 bottom-0 left-0 w-full">Group CEO</p>
 </button>
+</Link>
 
-<div className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+<Link href="/blogs">
+<button className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/Droga.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-80 py-4 font-medium px-3 bottom-0 left-0 w-full">Droga Pharma</p>
-</div>
+</button>
+</Link>
 
-<div className=" relative max-w-xs rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+<button className=" relative max-w-xs rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="h-full w-full" src="/image/ema.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-70 py-4 font-medium px-3 bottom-0 left-0 w-full">Ema Ethiopia</p>
-</div>
+</button>
 
-<div className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+<button className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/trust.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-4 font-medium px-3 bottom-0 left-0 w-full">Trust Ethiopharma</p>
-</div>
-<div className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+</button>
+<button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/physio.jpg" width={160} height={160} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-1 font-medium px-3 bottom-0 left-0 w-full">Droga pyshiotherapy</p>
-</div>
-<div className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+</button>
+<button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/chainpharma.jpg" width={160} height={160} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-1 font-medium px-3 bottom-0 left-0 w-full">Droga Chain Pharmacy</p>
-</div>
-<div className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+</button>
+<button className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/somaliland.jpg" width={160} height={160} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-4 font-medium px-3 bottom-0 left-0 w-full">Droga Somaliland</p>
-</div>
-<div className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
+</button>
+<button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
   <Image className="w-full h-full" src="/image/Droga.jpg" width={160} height={160} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-80 py-4 font-medium px-3 bottom-0 left-0 w-full">Droga Rwanda</p>
-</div>
+</button>
       {/* <div className=" relative w-full max-w-sm object-cover flex flex-col">
         <div className="relative transition duration-300 ease-in-out hover:scale-110">
            <Image

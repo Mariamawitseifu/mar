@@ -31,17 +31,15 @@ return(<div>
   <Cards/>
 </div>
 
-<div className=" py-24">
+<div className="">
   <Faq/>
-  {/* <FAQAccordion/> */}
 </div>
-<div>
+<div className="mt-4">
   <Footer/>
 </div>
 <div>
   <Endfooter/>
 </div>
-
 </div>
 )
 }

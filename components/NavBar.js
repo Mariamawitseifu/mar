@@ -2,9 +2,6 @@
 import Image from "next/image";
 import Link from 'next/link';
 import Droga from "/public/image/Droga.jpg";
-import land from "/public/image/land.png";
-import Quick from "../app/quick/page.js";
-import Blogs from "@/app/blogs/Blogs.js";
 import Notification from './notification.js';
 import lock from "/public/image/lock.png"
 import log from "/public/image/log.png"
@@ -17,10 +14,13 @@ import Cookies from "js-cookie"
 
 
 export default function Navbar() {
+  
+
 
   // const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null)
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(false);
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
   };
@@ -51,8 +51,6 @@ export default function Navbar() {
     };
   }, []);
 
-
-  const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
 
   useEffect(() => {
@@ -115,6 +113,7 @@ export default function Navbar() {
   }
     const handleClickM = () => {
       setIsOpen(!isOpen);
+      setIsBlurred(!isBlurred);
     };
   
   function Buttons({ children }) {
@@ -234,9 +233,6 @@ export default function Navbar() {
 </Popup>
 {/* </div> */}
 
-
-
-
              </div>
              <div>
   <button className="font-semibold text-lg" onClick={handleClickM}>
@@ -244,13 +240,15 @@ export default function Navbar() {
 </button>
       {isOpen &&
        (
-        <div className="absolute w-80 h-1/2 bottom-10 p-4" ref={popupRef}>
+        <div className="absolute w-80 h-1/2 bottom-10 p-4 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-3xl" ref={popupRef}>
           <div className="max-w-md w-full bg-dro_yellow shadow-lg p-4">
             <h2 className="text-lg font-bold mb-1">DROGA SUPPORT</h2>
           </div>
         </div>
+      
       )
       }
+      {/* {isBlurred && <div className="fixed inset-0 bg-black bg-opacity-50 z-50"></div>} */}
 </div>
              <div>
              <button className="font-semibold text-lg">Portal User Guide</button>  
