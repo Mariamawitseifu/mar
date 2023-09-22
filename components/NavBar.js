@@ -11,6 +11,7 @@ import { useState, useEffect ,useRef} from "react";
 import { useMediaQuery } from 'react-responsive';
 import Groupcards from "./Groupcards.js";
 import Cookies from "js-cookie"
+import blur from "/components/blur.css";
 
 
 export default function Navbar() {
@@ -20,6 +21,8 @@ export default function Navbar() {
   // const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
+  const cardRef = useRef(null);
+  const blurRef = useRef(null);
   const [isBlurred, setIsBlurred] = useState(false);
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -34,8 +37,33 @@ export default function Navbar() {
 
   
   // console.log(typeof(user));
-  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
 
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (blurRef.current && !blurRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 640px)");
     setIsSmallScreen(mediaQuery.matches);
@@ -55,7 +83,11 @@ export default function Navbar() {
 
   useEffect(() => {
 
-    setUser(JSON.parse(Cookies.get("user")))
+    const user = Cookies.get("user");
+if (user !== undefined) {
+  setUser(JSON.parse(user));
+}
+
 
     const handleOutsideClick = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -113,7 +145,7 @@ export default function Navbar() {
   }
     const handleClickM = () => {
       setIsOpen(!isOpen);
-      setIsBlurred(!isBlurred);
+      // setIsBlurred(!isBlurred);
     };
   
   function Buttons({ children }) {
@@ -150,10 +182,9 @@ export default function Navbar() {
               <Popup trigger={<button className="font-semibold text-lg">Quick Links</button>} 
               position="bottom"
               className="fixed inset-0  bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-  <div className="fixed inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
-              <div className="flex items-center justify-center">
+  <div className="fixed top-1/2 inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
+              <div ref={blurRef}  className="flex items-center justify-center">
                 
-              
   <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
 
   <thead>
@@ -240,12 +271,25 @@ export default function Navbar() {
 </button>
       {isOpen &&
        (
-        <div className="absolute w-80 h-1/2 bottom-10 p-4 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-3xl" ref={popupRef}>
-          <div className="max-w-md w-full bg-dro_yellow shadow-lg p-4">
-            <h2 className="text-lg font-bold mb-1">DROGA SUPPORT</h2>
-          </div>
+        
+        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter" ref={popupRef}>
+          <div ref={cardRef}  className="h-96 w-1/2 bg-dro_yellow shadow-lg">
+            <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog Here</h2>
+            <div class="w-96">
+        <div class="relative px-10 py-3 h-52 w-full">
+          <input
+            class="h-full w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+            type="text"
+            placeholder="Write Your Blog Here"
+          />
         </div>
       
+      <div className=" px-28">
+        <button className=" flex justify items-center px-10 w-32 h-10 bg-dro_green text-white ">POST</button>
+      </div>
+          </div>
+        </div>
+      </div>
       )
       }
       {/* {isBlurred && <div className="fixed inset-0 bg-black bg-opacity-50 z-50"></div>} */}
