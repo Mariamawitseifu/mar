@@ -8,11 +8,11 @@ import iwechat from "public/image/iwechat.png"
 import ilinkedin from "public/image/ilinkedin.png"
 import Link from 'next/link';
 
-export default function chain(){
+export default function emaethiopia(){
 return<>
 <div>
 <h1 className=" font-semibold text-4xl px-9 py-20 bg-dro_yellow">
-   Droga Chain Pharmacy
+   Ema Ethiopia
 </h1>
 </div>
 <div className=" py-20 grid grid-cols-3 bg-dro_green">

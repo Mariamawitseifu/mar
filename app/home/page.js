@@ -6,9 +6,9 @@ import Faq from "/components/Faq"
 import Endfooter from "/components/Endfooter"
 import FAQAccordion from '/components/FAQAccordion';
 import Footer from "@/components/Footer";
-import Welcome from "@/components/welcome";
+import Welcome from "@/components/Welcome";
 import { useClient } from 'react';
-import Cards from "@/components/cards";
+import Cards from "@/components/Cards";
 
 
 
@@ -17,12 +17,7 @@ return(<div>
     <div className="mt-1 ">
       <Navbar />
     <div className="flex flex-row absolute top-0 right-0 h-full w-full">
-    {/* <Image
-      className="absolute max-w-full h-auto sm:bg-right object-cover "
-      src={land}
-      layout="fill"
-    />  */}
-    {/* <Welcome/> */}
+   
            </div> 
     </div>
 
