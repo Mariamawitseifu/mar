@@ -12,6 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import Groupcards from "./Groupcards.js";
 import Cookies from "js-cookie"
 import blur from "/components/blur.css";
+import Welcome from "./Welcome.js";
 
 
 export default function Navbar() {
@@ -32,11 +33,6 @@ export default function Navbar() {
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-
-
-
-  
-  // console.log(typeof(user));
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
@@ -102,9 +98,6 @@ if (user !== undefined) {
   }, []);
 
   const uu = "berttt alemmu"
-  // uu.toUpperCase()
-
-
   const uuw = uu.split(" ")
   const a = uuw[0][0].toUpperCase()
   const ab = uuw[0]
@@ -115,19 +108,10 @@ if (user !== undefined) {
  const al= uuu.split(" ");
  const t=al[1][0];
 
-//  console.log(t);
-
- 
-
-  // console.log(uuw[0][0], uuw[1][0])
-
-
-
 
   function Popupview() {
     const [isOpen, setIsOpen] = useState(false);
     const popupRef = useRef(null);
-    const popupRef1 = useRef1(null);
   
     useEffect(() => {
       const handleOutsideClick = (event) => {
@@ -145,7 +129,6 @@ if (user !== undefined) {
   }
     const handleClickM = () => {
       setIsOpen(!isOpen);
-      // setIsBlurred(!isBlurred);
     };
   
   function Buttons({ children }) {
@@ -172,99 +155,10 @@ if (user !== undefined) {
               <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold">Portal </h> </h1>
               </div>
             <div className="flex title-font font-medium items-center ml-auto md:mb-0">
-              
-              
-
             <nav className="md:ml-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
-              
-            {/* <div className="relative">  */}
-              <div className="flex flex-row">
-              <Popup trigger={<button className="font-semibold text-lg">Quick Links</button>} 
-              position="bottom"
-              className="fixed inset-0  bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
-  <div className="fixed top-1/2 inset-0 bg-background/80 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm">
-              <div ref={blurRef}  className="flex items-center justify-center">
-                
-  <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
-
-  <thead>
-    <tr className="">
-      <th className="border text-left px-6 py-4">No.</th>
-      <th className="border text-left px-6 py-4">Name</th>
-      <th className="border text-left px-6 py-4">Internal Network</th>
-      <th className="border text-left px-6 py-4">External Network</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td className="border px-8 py-4 h-3">1</td>
-      <td className="border px-8 py-4 h-3">PMS</td>
-      <td className="border px-8 py-4 h-3">www.pms.com</td>
-      <td className="border px-8 py-4 h-3">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">2</td>
-      <td className="border px-8 py-4">DMS</td>
-      <td className="border px-8 py-4">www.dms.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-    <tr>
-      <td className="border px-8 py-4">3</td>
-      <td className="border px-8 py-4">Odoo</td>
-      <td className="border px-8 py-4">erp.odoo.com</td>
-      <td className="border px-8 py-4">https//:drogapharma.com</td>
-    </tr>
-
-  </tbody>
-</table>
-</div>
-</div>
-</Popup>
-{/* </div> */}
-
-             </div>
+              <div>
+              <Welcome/>
+              </div>
              <div>
   <button className="font-semibold text-lg" onClick={handleClickM}>
   Blog
@@ -275,16 +169,14 @@ if (user !== undefined) {
         <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter" ref={popupRef}>
           <div ref={cardRef}  className="h-96 w-1/2 bg-dro_yellow shadow-lg">
             <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog Here</h2>
-            <div class="w-96">
         <div class="relative px-10 py-3 h-52 w-full">
           <input
             class="h-full w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
             type="text"
             placeholder="Write Your Blog Here"
           />
-        </div>
       
-      <div className=" px-28">
+      <div className=" flex justify-center items-center py-8">
         <button className=" flex justify items-center px-10 w-32 h-10 bg-dro_green text-white ">POST</button>
       </div>
           </div>

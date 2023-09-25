@@ -7,7 +7,7 @@ import Units from "/components/Units";
 import Faq from "/components/Faq"
 import FAQAccordion from '/components/FAQAccordion';
 import Footer from "@/components/Footer";
-import Welcome from "@/components/welcome";
+import Welcome from "@/components/Welcome";
 import { useClient } from 'react';
 
 

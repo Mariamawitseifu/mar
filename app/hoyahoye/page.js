@@ -1,17 +1,8 @@
-import Popupview from "@/components/Popupview"
-import Groupcards from "@/components/Groupcards"
-
-export default function Hoyahoo(){
+import Welcome from "/components/Welcome"
+export default function hoyahoo(){
 return(
-    <>
-    {/* <Groupcards/> */}
-      <Popupview/>
-      <div>
-
-      </div>
-    </>
-  
+<>
+<Welcome/>
+</>
 )
-
-
 }
