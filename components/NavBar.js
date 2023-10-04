@@ -83,6 +83,9 @@ export default function Navbar() {
 if (user !== undefined) {
   setUser(JSON.parse(user));
 }
+// if ( user !== undefined){
+//   Cookies.get('email')
+// } 
 
 
     const handleOutsideClick = (event) => {
@@ -95,6 +98,7 @@ if (user !== undefined) {
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
+    console.log(user) 
   }, []);
 
   const uu = "berttt alemmu"
@@ -184,7 +188,6 @@ if (user !== undefined) {
       </div>
       )
       }
-      {/* {isBlurred && <div className="fixed inset-0 bg-black bg-opacity-50 z-50"></div>} */}
 </div>
              <div>
              <button className="font-semibold text-lg">Portal User Guide</button>  
@@ -216,10 +219,11 @@ if (user !== undefined) {
           <div className="rounded-full border-dro_black bg-dro_black h-10 w-10 flex items-center justify-center ">
             <span className="text-center"> {user && user.username[0].normalize()}</span>
           </div>
-          {/* <h3 className="text-lg mt-3 font-bold"> 
+          <h3 className="text-lg mt-3 font-bold"> 
             {user && user.username}
-            </h3> */}
-          <h3 className=" text-xs mb-3">Charlieisdo@gmail.com</h3>
+            </h3>
+          {/* <h3 className=" text-xs mb-3">{user && user.email}</h3> */}
+          <h3 className="text-xs mb-3">{user && user.email}</h3>
           <div className=" flex flex-col">
           <div className=" flex flex-row items-center justify-center border-t-2 border-dro_black w-full">
             <Image src={dashboard} height={20} width={20} />
@@ -251,15 +255,6 @@ if (user !== undefined) {
             </div>
            </div>
         </header>
-      
-      {/* <div className="flex items-center px-10 bg-my-bg-image bg-dro_yellow bg-cover relative z-10">
-        <div className=" w-full md:w-1/2">
-          <h1 className="relative text-2xl py-10 font-extrabold">Welcome to Droga</h1>
-          <p className="relative text-align:justify text-sm md:text-lg lg:text-xl font-n">Droga Pharma Pvt. Ltd. Co was established in April 2015 by a group of healthcare professionals, who have rich business experience in the pharmaceutical, Research, Manufacturing sector. We are working in the pharmaceuticals import, wholesale and retail business, targeting the public as well as the private health sector of Ethiopia.</p>
-          <button className=" font-bold mb-10 text- mt-4">See More</button>
-        </div>
-        
-       </div>  */}
       </div>
       
     </>

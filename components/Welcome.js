@@ -1,40 +1,64 @@
 "use client"
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Popup from "reactjs-popup";
-import quick from "/components/quick.css";
+import blur from "/components/blur.css";
+import Cookies from "js-cookie";
 
 export default function Welcome() {
+  const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const popupRef = useRef(null);
-  // const quickRef = useRef();
+  const blurRef = useRef(null);
+  const cardRef = useRef(null);
+  const [isBlurred, setIsBlurred] = useState(false);
 
-  const handleClickQ = () => {
+  const handleToggle = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const handleClickM = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleOutsideClick = (event) => {
+    if (cardRef.current && !cardRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  const popupRef = useRef(null);
+
   useEffect(() => {
-    const handleClick = (e) => {
-      if (popupRef.current && !popupRef.current.contains(e.target)) {
-        setIsOpen(false)
-        // Close the popup here
+    const user = Cookies.get("user");
+    if (user !== undefined) {
+      setUser(JSON.parse(user));
+    }
+
+    const handleOutsideClick = (event) => {
+      if (blurRef.current && event.target === blurRef.current) {
+        setIsOpen(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClick);
-
+    document.addEventListener("click", handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
   return (
-    <div ref={popupRef} className="flex flex-row">
-      <div>
-        <button className="font-semibold text-lg" onClick={handleClickQ}>
-          Quick Links
-        </button>
-        {isOpen && (
-          <div  className="fixed top-1/8 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close">
+    <div>
+      <button className="font-semibold text-lg" onClick={handleClickM}>
+        Quick Links
+      </button>
+      {isOpen && (
+        <div
+          className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter"
+          ref={blurRef}
+        >
+          <div
+            ref={cardRef}
+            className="fixed top-1/8 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close"
+          >
             <div className="flex items-center justify-center h-full">
               <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
                 <thead>
@@ -109,9 +133,12 @@ export default function Welcome() {
                 </tbody>
               </table>
             </div>
+            <button className="absolute top-4 right-4" onClick={handleToggle}>
+              Close
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
