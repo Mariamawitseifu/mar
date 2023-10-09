@@ -15,6 +15,9 @@ import deskphone from "public/image/deskphone.png"
 import phone from "public/image/phone.png"
 import telegram from "public/image/telegram.png"
 import www from "public/image/www.png"
+import Navbar from "@/components/NavBar"
+import Type from "@/components/Type"
+import 'tailwindcss/tailwind.css'
 
 export default function trustethio(){
    const router = useRouter();
@@ -25,16 +28,24 @@ export default function trustethio(){
  
 return<>
 <div>
-<h1 className=" font-semibold text-4xl px-9 py-20 bg-dro_yellow">
+      <div>
+   <Navbar/>         
+      </div>
+
+{/* <h1 className="animate-bounc  font-semibold text-4xl px-9 py-16 bg-dro_white">
    Trust Ethiopharma
-</h1>
+</h1> */}
+<Type/>
 </div>
-<div className="py-10 bg-dro_gree px-4 grid grid-cols grid-rows-2 gap-3">
+ <div className=" flex flex-row">
+ <div className="w-1/2 py-10 px-4 gap-3">
    <div className="flex items-center">
-     <div className=" flex flex-row">
+   
+     <div className=" flex flex-row"> 
+     
       <div>
        <Image src={www} height={50} width={50}>
-</Image> 
+</Image>
 <h1 className="">
 Website
 </h1>     
@@ -73,14 +84,7 @@ Facebook
 </div>
 </div> 
    </div>
-{/* <div>
-   <Image src={igmail} height={50} width={50}>
-</Image>
-</div>
 <div>
- <Image src={instagram} height={50} width={50}>
-</Image>  
-</div> */}
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
@@ -95,6 +99,10 @@ LinkedIn
 </div>
 </div> 
    </div>
+   </div>
+   </div>
+   <div className="w-1/2 py-10 px-4 gap-3">
+
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
@@ -149,12 +157,12 @@ Phone No
 <div className=" py-4">
  <a className=" px-6 underline"> +25196969654</a>  
 </div>
+</div>
 </div> 
    </div>
-
-</div>
+   </div>
 <div>
-<button className=" font-semibold text-2xl py-6 px-8"onClick={handleClickG}> Picture Gallery
+<button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
 </div>
 </>

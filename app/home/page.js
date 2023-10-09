@@ -14,7 +14,7 @@ import Cards from "@/components/Cards";
 
 export default function Home (){ 
 return(<div>
-    <div className="mt-1 ">
+    <div className="">
       <Navbar />
     <div className="flex flex-row absolute top-0 right-0 h-full w-full">
    
