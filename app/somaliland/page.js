@@ -32,7 +32,7 @@ return<>
 </Image>  */}
 <Image src={ilinkedin} height={50} width={50}>
 </Image> 
-</div>z
+</div>
 </div>
 
 

@@ -12,7 +12,7 @@ export default function ema(){
 return<>
 <div>
 <h1 className=" font-semibold text-4xl px-9 py-20 bg-dro_yellow">
-    EMA ETHIOPIA
+ EMA ETHIOPIA
 </h1>
 </div>
 <div className=" py-20 grid grid-cols-3 bg-dro_green">

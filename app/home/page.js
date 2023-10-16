@@ -1,7 +1,6 @@
 import Image from "next/image";
 import land from '/public/image/land.png';
 import Navbar from "/components/NavBar";
-import Units from "/components/Units";
 import Faq from "/components/Faq"
 import Endfooter from "/components/Endfooter"
 import FAQAccordion from '/components/FAQAccordion';

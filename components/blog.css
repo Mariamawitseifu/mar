@@ -1,0 +1,7 @@
+.blog {
+    height: 400px; /* Increase the height to a fixed value */
+    min-height: 300px; /* Set a minimum height */
+    display: table; /* Allow the div to adjust its height based on content */
+    overflow: auto; /* Add a scrollbar if needed */
+  }
+  

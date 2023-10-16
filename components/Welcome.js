@@ -28,10 +28,22 @@ export default function Welcome() {
   const popupRef = useRef(null);
 
   useEffect(() => {
+    // const user = Cookies.get("user");
+    // if (user !== undefined) {
+    //   setUser(JSON.parse(user));
+    // }
+
     const user = Cookies.get("user");
+    // console.log("User value:", user);
     if (user !== undefined) {
-      setUser(JSON.parse(user));
+      try {
+        setUser(JSON.parse(user));
+      } catch (error) {
+        // Handle the case where the value is not valid JSON
+        console.error("Invalid JSON:", error);
+      }
     }
+
 
     const handleOutsideClick = (event) => {
       if (blurRef.current && event.target === blurRef.current) {
@@ -52,7 +64,7 @@ export default function Welcome() {
       </button>
       {isOpen && (
         <div
-          className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter"
+          className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-20"
           ref={blurRef}
         >
           <div
@@ -60,8 +72,13 @@ export default function Welcome() {
             className="fixed top-1/8 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close"
           >
             <div className="flex items-center justify-center h-full">
+              <button className="absolute right-1/3 top-16 bg-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
+              X
+            </button>
               <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
+                
                 <thead>
+                
                   <tr className="">
                     <th className="border text-left px-6 py-4">No.</th>
                     <th className="border text-left px-6 py-4">Name</th>
@@ -76,6 +93,13 @@ export default function Welcome() {
                     <td className="border px-8 py-4 h-3">www.pms.com</td>
                     <td className="border px-8 py-4 h-3">https//:drogapharma.com</td>
                   </tr>
+                  <tr>
+                    <td className="border px-8 py-4 h-3">1</td>
+                    <td className="border px-8 py-4 h-3">PMS</td>
+                    <td className="border px-8 py-4 h-3">www.pms.com</td>
+                    <td className="border px-8 py-4 h-3">https//:drogapharma.com</td>
+                  </tr>
+                  
                   <tr>
                     <td className="border px-8 py-4">2</td>
                     <td className="border px-8 py-4">DMS</td>
@@ -133,9 +157,6 @@ export default function Welcome() {
                 </tbody>
               </table>
             </div>
-            <button className="absolute top-4 right-4" onClick={handleToggle}>
-              Close
-            </button>
           </div>
         </div>
       )}
