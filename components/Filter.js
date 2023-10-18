@@ -45,15 +45,18 @@ function SearchPage() {
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search..."
-        />
-        <button type="submit">Search</button>
-      </form>
+  <form className="flex flex-col md:flex-row" onSubmit={handleSearch}>
+  <input
+    type="text"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    placeholder="Search..."
+    className="md:mr-2"
+  />
+  <button type="submit" class="bg-dro_re hover:bg-dro_green text-dro_white font-bold py-2 px-2 md:py-2 md:px-2 lg:py-4 lg:px-4">
+    {/* Search */}
+  </button>
+</form>
 
       <div>
         {results.map((result) => (

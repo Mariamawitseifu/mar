@@ -198,7 +198,7 @@ if (user !== undefined) {
           Droga Group <span className="font-semibold animate-pulse">Portal</span>
         </h1>
       </div>
-      <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
+           <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
         <nav className="md:mx-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
           <div>
             <Welcome/>
@@ -213,6 +213,8 @@ if (user !== undefined) {
             </li>
           </ul>
           <SearchPage/>
+
+
               {/* <div className="">
                 <input
                   type="text"
@@ -320,6 +322,7 @@ if (user !== undefined) {
           </div>
     </div>
       </Popup>
+    </div>
     </div>
             </nav>
             </div>
