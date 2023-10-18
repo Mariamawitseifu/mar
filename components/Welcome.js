@@ -176,3 +176,19 @@ Blog
     )
     }
 </div> */}
+     {/* <div className="">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  onKeyDown={handleKeyDown}
+                  className=" w-14 sm:w-32 h-5 sm:h-10 placeholder:text-dro_black  border border-dro_black text-dro_black text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Search"
+                />
+              </div> */}
+                  {/* <div className="flex flex-row mr-24 ml-3 items-center justify-center">
+          <Image src={log} height={20} width={20}/>
+          <button className="hover:bg-dro_gray font-medium py-2 px-4">
+            Log Out
+          </button>
+          </div> */}

@@ -71,9 +71,9 @@ export default function Cards() {
 
   return (
     <>
-    <div className="flex flex-row space-x-6">
-      
-    <button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110"onClick={handleClick}>
+<div className="flex flex-row space-x-6">
+  
+  <button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110"onClick={handleClick}>
   <Image className="w-full h-full" src="/image/henok.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-60 py-4 font-medium px-3 bottom-0 left-0 w-full">Group CEO</p>
 </button>

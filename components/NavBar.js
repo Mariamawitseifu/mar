@@ -184,105 +184,113 @@ if (user !== undefined) {
     setSelectedImage(URL.createObjectURL(file));
   }; 
 
-  
   return (
     <>
-<div className="relative bg-dro_yellow px-2 py-2 md:px-1">
-  <header className="text-dro_black body-font relative z-20">
-    <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
-      <div className="flex flex-row px-4 md:px-8 py-1">
-        <Link href="/home">
-          <Image className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20" src={Droga} alt="droga logo" />
-        </Link> 
-        <h1 className="px-3 font-medium text-2xl md:text-3xl lg:text-4xl">
-          Droga Group <span className="font-semibold animate-pulse">Portal</span>
-        </h1>
-      </div>
-           <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
-        <nav className="md:mx-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
-          <div>
-            <Welcome/>
-          </div>
-          <Blogs/>
-          <div>
-            <button className="font-semibold text-lg">Portal User Guide</button>  
-          </div>
-          <ul>
-            <li style={{ position: "relative" }}>
-              <Notification />
-            </li>
-          </ul>
-          <SearchPage/>
-
-
-              {/* <div className="">
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  onKeyDown={handleKeyDown}
-                  className=" w-14 sm:w-32 h-5 sm:h-10 placeholder:text-dro_black  border border-dro_black text-dro_black text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Search"
+      <div className="relative bg-dro_yellow px-2 py-2 md:px-1">
+        <header className="text-dro_black body-font relative z-20">
+          <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
+            <div className="flex flex-row px-4 md:px-8 py-1">
+              <Link href="/home">
+                <Image
+                  className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20"
+                  src={Droga}
+                  alt="droga logo"
                 />
-              </div> */}
-      <div>
-      <Popup
-        trigger={
-        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].toUpperCase()}</button>
-        }
-        position="bottom right"
-      >
-       
-    <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
-          <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
-            <span className="text-center"> {user && user.username[0].toUpperCase()}</span>
-          </div>
-          <h3 className="text-lg mt-3 font-bold"> 
-            {user && user.username.toUpperCase()}
-            </h3>
-          <h3 className="text-xs mb-3">{user && user.email}</h3>
-          <div className=" flex flex-col">
-          <div>
+              </Link>
+              <h1 className="px-3 font-medium text-2xl md:text-3xl lg:text-4xl">
+                Droga Group{" "}
+                <span className="font-semibold animate-pulse">Portal</span>
+              </h1>
+            </div>
+            <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
+              <nav className="md:mx-auto flex flex-row md:space-x-8 space-x-3 lg:space-x-12 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
+                <div className="flex items-start justify-start">
+                <Welcome />
+                </div>
+                <div>
+                <Blogs />  
+                </div>
+                <div>
+                  <button className="font-semibold text-lg">
+                    Portal User Guide
+                  </button>
+                </div>
+                <ul className="">
+                  <li style={{ position: "relative" }}>
+                    <Notification />
+                  </li>
+                </ul>
+                <div>
+                <SearchPage />  
+                </div>
+                
 
-          </div>
-          <div className="flex flex-row items-center justify-center">
-          <Image src={lock} height={20} width={20}/>
-           <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleClickP}>
-            Change Password
-          </button> 
-          {isOpeen &&
-       (
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"ref={popRef}>
-  <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
-    <div className="flex flex-col justify-center items-center h-full">
-      <h2 className="text-2xl font-bold mb-4">Change Password</h2>
-      <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
-            <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
-              X
-            </button>
-        <input
-          className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
-          type="password"
-          placeholder="Old Password"
-        />
-        <div className="relative">
-          <input
-            className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
-            type="password"
-            placeholder="New Password"
-          />
-          <svg
-            className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                <div className=" order-1">
+                  <Popup
+                    trigger={
+                      <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">
+                        {user && user.username[0].toUpperCase()}
+                      </button>
+                    }
+                    position="bottom right"
+                  >
+                    <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
+                      <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center">
+                        <span className="text-center">
+                          {user && user.username[0].toUpperCase()}
+                        </span>
+                      </div>
+                      <h3 className="text-lg mt-3 font-bold">
+                        {user && user.username.toUpperCase()}
+                      </h3>
+                      <h3 className="text-xs mb-3">{user && user.email}</h3>
+                      <div className="flex flex-col">
+                        <div></div>
+                        <div className="flex flex-row items-center justify-center">
+                          <Image src={lock} height={20} width={20} />
+                          <button
+                            className="hover:bg-dro_gray font-medium py-2 px-4"
+                            onClick={handleClickP}
+                          >
+                            Change Password
+                          </button>
+                          {isOpeen && (
+                            <div
+                              className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"
+                              ref={popRef}
+                            >
+                              <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
+                                <div className="flex flex-col justify-center items-center h-full">
+                                  <h2 className="text-2xl font-bold mb-4">
+                                    Change Password
+                                  </h2>
+                                  <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
+                                    <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
+                                      X
+                                    </button>
+                                    <input
+                                    className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+                                    type="password"
+                                    placeholder="Old Password"
+                                  />
+                                  <div className="relative">
+                                    <input
+                                      className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
+                                      type="password"
+                                      placeholder="New Password"
+                                    />
+                                    <svg
+                                      className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
             />
             <path
               strokeLinecap="round"
@@ -301,13 +309,7 @@ if (user !== undefined) {
        )}     
           </div>
           
-          {/* <div className="flex flex-row mr-24 ml-3 items-center justify-center">
-          <Image src={log} height={20} width={20}/>
-          <button className="hover:bg-dro_gray font-medium py-2 px-4">
-            Log Out
-          </button>
-          </div> */}
-
+      
 <div className="flex flex-row mr-24 ml-3 items-center justify-center">
   <Image src={log} height={20} width={20} />
   <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleLogout}>
@@ -323,7 +325,6 @@ if (user !== undefined) {
     </div>
       </Popup>
     </div>
-    </div>
             </nav>
             </div>
            </div>
@@ -333,3 +334,5 @@ if (user !== undefined) {
     </>
   )
 }
+
+     
