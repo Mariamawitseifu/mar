@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
    const Notification = () => {
      return (
         <div class=" inline-flex">
-  <div class="absolute bottom-auto left-auto top-7 right-10 -translate-y-1/2 translate-x-1/2  z-10 inline-block  rotate-0 skew-x-0 skew-y-0 rounded-full bg-dro_red p-1.5 text-xs"></div>
+  <div class="absolute bottom-auto left-auto top-7 right-10 -translate-y-1/2 translate-x-1/2 inline-block  rotate-0 skew-x-0 skew-y-0 rounded-full bg-dro_red p-1.5 text-xs"></div>
   <div class="flex items-center justify-center rounded-lg px-8 py-6 text-center text-white dark:text-gray-200">
    <Popup trigger={
 <button>

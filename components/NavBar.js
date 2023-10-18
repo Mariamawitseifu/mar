@@ -13,6 +13,9 @@ import Groupcards from "./Groupcards.js";
 import Cookies from "js-cookie"
 import blur from "/components/blur.css";
 import Welcome from "./Welcome.js";
+import { FiUpload } from 'react-icons/fi';
+import axios from "axios";
+import { SearchPage } from "./Filter.js";
 
 
 export default function Navbar() {
@@ -22,13 +25,34 @@ export default function Navbar() {
   // const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpeen, setIsOpeen] = useState(false);
+  const [isOpen1, setIsOpen1] = useState(false);
   const cardRef = useRef(null);
   const blurRef = useRef(null);
+  const passRef = useRef(null);
   const [isBlurred, setIsBlurred] = useState(false);
-  const handleToggle = () => {
-    setIsOpen((prevState) => !prevState);
-  };
 
+  // const [searchTerm, setSearchTerm] = useState('');
+  
+  // const handleSearch = (e) => {
+  //   const searchTerm = e.target.value;
+  //   setSearchssTerm(searchTerm);
+  // };
+
+
+  // const handleKeyDown = (e) => {
+  //   if (e.key === 'Enter') {
+  //     // Perform search or filter operation here
+  //     console.log('Performing search for:', searchTerm);
+  //     // You can call a search/filter function or perform any other action here
+      
+  //     // For example, you can clear the search term after hitting Enter
+  //     setSearchTerm('');
+  //   }
+  // };
+  const handleToggle = () => {
+    setIsOpen1((prevState) => !prevState);
+  };
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -36,6 +60,36 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (passRef.current && !passRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popRef.current && !popRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -60,6 +114,51 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  // const handleLogout = async () => {
+  //   try {
+  //     await axios.post("http://127.0.0.1:8000/api/logout/");
+  //     // Perform any additional actions after successful logout (e.g., redirect)
+  //   } catch (error) {
+  //     // Handle error
+  //     console.error("Logout error:", error);
+  //   }
+  // };
+
+  // const handleLogout = async () => {
+  //   try {
+  //     const token = localStorage.getItem("token"); // Retrieve the authentication token from storage
+  //     await axios.post("http://127.0.0.1:8000/api/logout/", null, {
+  //       headers: {
+  //         Authorization: `Token ${token}`, // Include the token in the Authorization header
+  //       },
+  //     });
+  //     // Perform any additional actions after successful logout (e.g., redirect)
+  //   } catch (error) {
+  //     // Handle error
+  //     console.error("Logout error:", error);
+  //   }
+  // };
+
+
+
+
+
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token"); // Retrieve the authentication token from local storage
+      await axios.post("http://127.0.0.1:8000/api/logout/", null, {
+        headers: {
+          Authorization: `Token ${token}`, // Include the token in the Authorization header
+        },
+      });
+      // Perform any additional actions after successful logout
+      localStorage.removeItem("token"); // Clear the token from local storage
+    } catch (error) {
+      // Handle error
+      console.error("Logout error:", error);
+    }
+  };
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 640px)");
     setIsSmallScreen(mediaQuery.matches);
@@ -76,13 +175,28 @@ export default function Navbar() {
   }, []);
 
   const popupRef = useRef(null);
-
+  const popRef = useRef(null);
   useEffect(() => {
 
-    const user = Cookies.get("user");
+//     const user = Cookies.get("user");
+// if (user !== undefined) {
+//   setUser(JSON.parse(user));
+// }
+
+const user = Cookies.get("user");
+console.log("User value:", user);
 if (user !== undefined) {
-  setUser(JSON.parse(user));
+  try {
+    setUser(JSON.parse(user));
+  } catch (error) {
+    // Handle the case where the value is not valid JSON
+    console.error("Invalid JSON:", error);
+  }
 }
+
+
+
+
 // if ( user !== undefined){
 //   Cookies.get('email')
 // } 
@@ -134,6 +248,11 @@ if (user !== undefined) {
     const handleClickM = () => {
       setIsOpen(!isOpen);
     };
+    
+    const handleClickP = () => {
+      setIsOpeen(!isOpeen);
+    };
+    
   
   function Buttons({ children }) {
     return (
@@ -143,7 +262,62 @@ if (user !== undefined) {
     );
   }
 
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(URL.createObjectURL(file));
+  }; 
+
+// handel blog post
+
+  // const handlePostBlog = async () => {
+  //   try {
+  //     const title = document.getElementById('title').value;
+  //     const body = document.getElementById('body').value;
   
+  //     const response = await axios.post('http://localhost:8000/api/api/blog/', {
+  //       title: title,
+  //       body: body,
+  //     });
+  
+  //     console.log(response.data); // Handle the response data
+  //   } catch (error) {
+  //     console.error(error); // Handle the error
+  //   }
+  // };
+
+
+  const BlogPost = () => {
+    const [post, setPost] = useState(null);
+  
+    useEffect(() => {
+      axios.get('http://localhost:8000/api/api/blog/')
+        .then(response => setPost(response.data))
+        .catch(error => console.error(error));
+    }, []);
+  
+    const handlePostButtonClick = () => {
+      // Create the new post data
+      const newPost = {
+        title: 'New Post Title',
+        body: 'New Post Body'
+      };
+  
+      // Send the POST request to the server
+      axios.post('http://localhost:8000/api/api/blog/', newPost)
+        .then(response => {
+          console.log('Post created successfully!');
+          // Optionally, you can update the post data in the state
+          setPost(response.data);
+        })
+        .catch(error => console.error(error));
+    };
+  
+    if (!post) {
+      return <div>Loading...</div>;
+    }}
 
 
 
@@ -156,7 +330,7 @@ if (user !== undefined) {
                <Link href="/home" >
                   <Image className="" src={Droga} height={90} width={80} alt="droga logo" />
               </Link> 
-              <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold">Portal </h> </h1>
+              <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold animate-pulse">Portal </h> </h1>
               </div>
             <div className="flex title-font font-medium items-center ml-auto md:mb-0">
             <nav className="md:ml-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
@@ -164,89 +338,188 @@ if (user !== undefined) {
               <Welcome/>
               </div>
              <div>
-  <button className="font-semibold text-lg" onClick={handleClickM}>
+  <button  className="font-semibold text-lg" onClick={handleClickM}>
   Blog
 </button>
       {isOpen &&
        (
         
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter" ref={popupRef}>
-          <div ref={cardRef}  className="h-96 w-1/2 bg-dro_yellow shadow-lg">
-            <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog Here</h2>
-        <div class="relative px-10 py-3 h-52 w-full">
-          <input
-            class="h-full w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
-            type="text"
-            placeholder="Write Your Blog Here"
-          />
-      
-      <div className=" flex justify-center items-center py-8">
-        <button className=" flex justify items-center px-10 w-32 h-10 bg-dro_green text-white ">POST</button>
-      </div>
+        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-10" ref={popupRef}>
+        <div ref={cardRef} className="h-1/2 w-1/2 bg-dro_yellow shadow-lg">
+          <div className="flex flex-row justify-between">
+            <h2 className="text-2xl px-10 py-6 font-bold animate-bounce">Blog Here</h2>
+            <div className="relative">
+  <div className="card py-6 px-16">
+    <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2">
+      Choose Image
+      <input
+        id="image-upload"
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="hidden"
+      />
+    </label>
+    {selectedImage && (
+      <img
+        className="absolute top-2 right-2"
+        src={selectedImage}
+        alt="Selected"
+        style={{ maxWidth:'40px' }}
+      />
+    )}
+            </div>
+            </div>
+          </div>
+          <div>
+            <div className="px-10 py-3 h-52 w-full">
+              <div className="px-10 h-11 w-full">
+                <textarea
+                  id="title"
+                  className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
+                  type="text"
+                  placeholder="Title"
+                />
+              </div>
+              <div className="px-10 h-52 w-full">
+                <textarea
+                  id="content"
+                  className=" h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
+                  placeholder="Write Your Blog Here"
+                ></textarea>
+                <div className="flex justify-center items-center">
+                  <button className="flex justify-center items-center px-10 w-32 h-10 bg-dro_green text-white"  onClick={handlePostBlog}>
+                    POST
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      
       )
       }
 </div>
+             
              <div>
              <button className="font-semibold text-lg">Portal User Guide</button>  
              </div>
              <ul>
-              <li style={{ position: "relative" }}>
+              <div className="relative">
+              
+                     <li style={{ position: "relative" }}>
                 <Notification />
               </li>
+              </div>
+         
               </ul>
               <div className="grid md:grid-cols-2" />
-              <div className="">
+              <SearchPage/>
+              {/* <div className="">
                 <input
                   type="text"
-                  id="first_name"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                  onKeyDown={handleKeyDown}
                   className=" w-14 sm:w-32 h-5 sm:h-10 placeholder:text-dro_black  border border-dro_black text-dro_black text-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Search"
-                  required
                 />
-              </div>
+              </div> */}
       <div>
       <Popup
         trigger={
-        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].normalize()}</button>
+        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].toUpperCase()}</button>
         }
         position="bottom right"
       >
        
     <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
-          <div className="rounded-full border-dro_black bg-dro_black h-10 w-10 flex items-center justify-center ">
-            <span className="text-center"> {user && user.username[0].normalize()}</span>
+          <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
+            <span className="text-center"> {user && user.username[0].toUpperCase()}</span>
           </div>
           <h3 className="text-lg mt-3 font-bold"> 
-            {user && user.username}
+            {user && user.username.toUpperCase()}
             </h3>
-          {/* <h3 className=" text-xs mb-3">{user && user.email}</h3> */}
           <h3 className="text-xs mb-3">{user && user.email}</h3>
           <div className=" flex flex-col">
-          <div className=" flex flex-row items-center justify-center border-t-2 border-dro_black w-full">
-            <Image src={dashboard} height={20} width={20} />
-           <button className="hover:bg-dro_gray font-medium mt-3 py-2 px-4">
-           Go to Dashboard
-          </button> 
-          </div>
           <div>
 
           </div>
           <div className="flex flex-row items-center justify-center">
           <Image src={lock} height={20} width={20}/>
-           <button className="hover:bg-dro_gray font-medium py-2 px-4">
+           <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleClickP}>
             Change Password
           </button> 
+          {isOpeen &&
+       (
+        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"ref={popRef}>
+  <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
+    <div className="flex flex-col justify-center items-center h-full">
+      <h2 className="text-2xl font-bold mb-4">Change Password</h2>
+      <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
+            <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
+              X
+            </button>
+        <input
+          className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+          type="password"
+          placeholder="Old Password"
+        />
+        <div className="relative">
+          <input
+            className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
+            type="password"
+            placeholder="New Password"
+          />
+          <svg
+            className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+            />
+          </svg>
+        </div>
+        <button className="flex justify-center items-center px-10 w-32 h-10 bg-dro_green text-white">Enter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+       )}     
           </div>
           
-          <div className="flex flex-row mr-24 ml-3 items-center justify-center">
+          {/* <div className="flex flex-row mr-24 ml-3 items-center justify-center">
           <Image src={log} height={20} width={20}/>
           <button className="hover:bg-dro_gray font-medium py-2 px-4">
             Log Out
           </button>
-          </div>
+          </div> */}
+
+<div className="flex flex-row mr-24 ml-3 items-center justify-center">
+  <Image src={log} height={20} width={20} />
+  <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleLogout}>
+    Log Out
+  </button>
+</div>
+
+
+
+
+
           </div>
     </div>
       </Popup>

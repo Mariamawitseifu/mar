@@ -7,10 +7,20 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend:{
-      fontFamily:{
-        newulet:['Newulet','sans-serif'],
-      },  
+    extend: {
+      fontFamily: {
+        newulet: ['Newulet', 'sans-serif'],
+      },
+      animation: {
+        typewriter: 'typewriter 2s steps(11) forwards',
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: '100%',
+          },
+        },
+      },
     },
     
     colors: {

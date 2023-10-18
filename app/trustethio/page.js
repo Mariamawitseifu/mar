@@ -15,6 +15,10 @@ import deskphone from "public/image/deskphone.png"
 import phone from "public/image/phone.png"
 import telegram from "public/image/telegram.png"
 import www from "public/image/www.png"
+import Navbar from "@/components/NavBar"
+import Type from "@/components/Type"
+import 'tailwindcss/tailwind.css'
+import { useState, useEffect ,useRef} from "react";
 
 export default function trustethio(){
    const router = useRouter();
@@ -22,29 +26,70 @@ export default function trustethio(){
    const handleClickG = () => {
      router.push('/gallery');
    };
+   const [typewriterText, setTypewriterText] = useState('');
+
+   useEffect(() =>{
+     const text = 'Trust Ethiopharma';
+     let i = 0;
+     let interval = null;
+     let isForward = true;
  
+     const startTyping = () => {
+       interval = setInterval(() => {
+         if (isForward) {
+           setTypewriterText(prevText => prevText + text[i]);
+           i++;
+         } else {
+           setTypewriterText(prevText => prevText.slice(0, -1));
+           i--;
+         }
+ 
+         if (isForward && i === text.length) {
+           isForward = false;
+         } else if (!isForward && i === 0) {
+           isForward = true;
+         }
+       }, 100);
+     };
+ 
+     startTyping();
+ 
+     return () => {
+       clearInterval(interval);
+     };
+   }, []);
 return<>
 <div>
-<h1 className=" font-semibold text-4xl px-9 py-20 bg-dro_yellow">
+      <div>
+   <Navbar/>         
+      </div>
+
+{/* <h1 className="animate-bounc  font-semibold text-4xl px-9 py-16 bg-dro_white">
    Trust Ethiopharma
-</h1>
+</h1> */}
+<div className=" py-12 px-52">
+<div className="bg-gray-200">
+      <h1 className="text-4xl font-bold animate-typewriter">
+      <span className="typewriter">{typewriterText}</span>
+      </h1>
+    </div>
 </div>
-<div className="py-10 bg-dro_gree px-4 grid grid-cols grid-rows-2 gap-3">
+
+</div>
+<div className=" flex flex-wrap gap-60 px-40">
+      <div  className=" flex flex-row gap-3">
+      <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
-     <div className=" flex flex-row">
+     <div className=" flex flex-row"> 
       <div>
        <Image src={www} height={50} width={50}>
-</Image> 
+</Image>
 <h1 className="">
 Website
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> www.trustethiopharma.com</a>  
-</div>
 </div> 
    </div>
-
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
@@ -54,9 +99,6 @@ Website
 Twitter
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> www.trustethiopharma.com</a>  
-</div>
 </div> 
    </div>
    <div className="flex items-center">
@@ -68,19 +110,10 @@ Twitter
 Facebook
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> www.trustethiopharma.com</a>  
-</div>
+
 </div> 
    </div>
-{/* <div>
-   <Image src={igmail} height={50} width={50}>
-</Image>
-</div>
 <div>
- <Image src={instagram} height={50} width={50}>
-</Image>  
-</div> */}
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
@@ -90,11 +123,29 @@ Facebook
 LinkedIn
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> www.trustethiopharma.com</a>  
-</div>
+
 </div> 
    </div>
+   </div>
+   </div>
+   <div className="px-">
+   <div className="  py-14">
+ <a className="underline"> www.desk</a>  
+</div>
+   <div className="">
+ <a className="underline"> www.trustethiopharma.com</a>  
+</div>
+   <div className=" py-12">
+ <a className="underline"> www.trustethiopharma.com</a>  
+</div>
+   <div className=" py-4">
+ <a className="underline"> www.trustethiopharma.com</a>  
+</div>
+   </div>       
+      </div>
+
+<div  className=" flex flex-row px-5 gap-3">
+       <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
@@ -104,9 +155,7 @@ LinkedIn
 DeskPhone
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> www.trustethiopharma.com</a>  
-</div>
+
 </div> 
    </div>
    <div className="flex items-center">
@@ -118,9 +167,7 @@ DeskPhone
 Telegram
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline">https:\\telegram\Ethiopharma</a>  
-</div>
+
 </div> 
    </div>
    <div className="flex items-center">
@@ -132,9 +179,7 @@ Telegram
 Whatsapp
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline">https:whatsapp\trustethiopharma</a>  
-</div>
+
 </div> 
    </div>
    <div className="flex items-center">
@@ -146,15 +191,29 @@ Whatsapp
 Phone No
 </h1>     
       </div>
-<div className=" py-4">
- <a className=" px-6 underline"> +25196969654</a>  
+
 </div>
 </div> 
    </div>
-
+   <div className="px-">
+   <div className=" py-14">
+ <a className="underline"> www.lo.com</a>  
 </div>
+<div className=" py-2">
+ <a className="underline">https:\\telegram\Ethiopharma</a>  
+</div>
+<div className=" py-12">
+ <a className="underline">https:whatsapp\trustethiopharma</a>  
+</div>
+<div className=" py-">
+ <a className="underline"> +25196969654</a>  
+</div>
+   </div>  
+</div>
+
+   </div>
 <div>
-<button className=" font-semibold text-2xl py-6 px-8"onClick={handleClickG}> Picture Gallery
+<button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
 </div>
 </>

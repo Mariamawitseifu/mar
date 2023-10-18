@@ -26,10 +26,6 @@ return<>
 </Image>
 <Image src={instagram} height={50} width={50}>
 </Image>
-{/* <Image src={itelegram} height={50} width={50}>
-</Image> */}
-{/* <Image src={iwechat} height={50} width={50}>
-</Image>  */}
 <Image src={ilinkedin} height={50} width={50}>
 </Image> 
 </div>
