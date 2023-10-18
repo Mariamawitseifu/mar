@@ -16,13 +16,10 @@ import Welcome from "./Welcome.js";
 import { FiUpload } from 'react-icons/fi';
 import axios from "axios";
 import { SearchPage } from "./Filter.js";
+import Blogs from "@/app/blogsandblogs/page.js";
 
 
 export default function Navbar() {
-  
-
-
-  // const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
@@ -32,24 +29,6 @@ export default function Navbar() {
   const passRef = useRef(null);
   const [isBlurred, setIsBlurred] = useState(false);
 
-  // const [searchTerm, setSearchTerm] = useState('');
-  
-  // const handleSearch = (e) => {
-  //   const searchTerm = e.target.value;
-  //   setSearchssTerm(searchTerm);
-  // };
-
-
-  // const handleKeyDown = (e) => {
-  //   if (e.key === 'Enter') {
-  //     // Perform search or filter operation here
-  //     console.log('Performing search for:', searchTerm);
-  //     // You can call a search/filter function or perform any other action here
-      
-  //     // For example, you can clear the search term after hitting Enter
-  //     setSearchTerm('');
-  //   }
-  // };
   const handleToggle = () => {
     setIsOpen1((prevState) => !prevState);
   };
@@ -115,35 +94,6 @@ export default function Navbar() {
     };
   }, []);
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await axios.post("http://127.0.0.1:8000/api/logout/");
-  //     // Perform any additional actions after successful logout (e.g., redirect)
-  //   } catch (error) {
-  //     // Handle error
-  //     console.error("Logout error:", error);
-  //   }
-  // };
-
-  // const handleLogout = async () => {
-  //   try {
-  //     const token = localStorage.getItem("token"); // Retrieve the authentication token from storage
-  //     await axios.post("http://127.0.0.1:8000/api/logout/", null, {
-  //       headers: {
-  //         Authorization: `Token ${token}`, // Include the token in the Authorization header
-  //       },
-  //     });
-  //     // Perform any additional actions after successful logout (e.g., redirect)
-  //   } catch (error) {
-  //     // Handle error
-  //     console.error("Logout error:", error);
-  //   }
-  // };
-
-
-
-
-
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token"); // Retrieve the authentication token from local storage
@@ -178,11 +128,6 @@ export default function Navbar() {
   const popRef = useRef(null);
   useEffect(() => {
 
-//     const user = Cookies.get("user");
-// if (user !== undefined) {
-//   setUser(JSON.parse(user));
-// }
-
 const user = Cookies.get("user");
 console.log("User value:", user);
 if (user !== undefined) {
@@ -193,14 +138,6 @@ if (user !== undefined) {
     console.error("Invalid JSON:", error);
   }
 }
-
-
-
-
-// if ( user !== undefined){
-//   Cookies.get('email')
-// } 
-
 
     const handleOutsideClick = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -226,29 +163,6 @@ if (user !== undefined) {
  const al= uuu.split(" ");
  const t=al[1][0];
 
-
-  function Popupview() {
-    const [isOpen, setIsOpen] = useState(false);
-    const popupRef = useRef(null);
-  
-    useEffect(() => {
-      const handleOutsideClick = (event) => {
-        if (popupRef.current && !popupRef.current.contains(event.target)) {
-          setIsOpen(false);
-        }
-      };
-  
-      document.addEventListener('mousedown', handleOutsideClick);
-  
-      return () => {
-        document.removeEventListener('mousedown', handleOutsideClick);
-      };
-    }, []);
-  }
-    const handleClickM = () => {
-      setIsOpen(!isOpen);
-    };
-    
     const handleClickP = () => {
       setIsOpeen(!isOpeen);
     };
@@ -270,152 +184,35 @@ if (user !== undefined) {
     setSelectedImage(URL.createObjectURL(file));
   }; 
 
-// handel blog post
-
-  // const handlePostBlog = async () => {
-  //   try {
-  //     const title = document.getElementById('title').value;
-  //     const body = document.getElementById('body').value;
   
-  //     const response = await axios.post('http://localhost:8000/api/api/blog/', {
-  //       title: title,
-  //       body: body,
-  //     });
-  
-  //     console.log(response.data); // Handle the response data
-  //   } catch (error) {
-  //     console.error(error); // Handle the error
-  //   }
-  // };
-
-
-  const BlogPost = () => {
-    const [post, setPost] = useState(null);
-  
-    useEffect(() => {
-      axios.get('http://localhost:8000/api/api/blog/')
-        .then(response => setPost(response.data))
-        .catch(error => console.error(error));
-    }, []);
-  
-    const handlePostButtonClick = () => {
-      // Create the new post data
-      const newPost = {
-        title: 'New Post Title',
-        body: 'New Post Body'
-      };
-  
-      // Send the POST request to the server
-      axios.post('http://localhost:8000/api/api/blog/', newPost)
-        .then(response => {
-          console.log('Post created successfully!');
-          // Optionally, you can update the post data in the state
-          setPost(response.data);
-        })
-        .catch(error => console.error(error));
-    };
-  
-    if (!post) {
-      return <div>Loading...</div>;
-    }}
-
-
-
   return (
     <>
-  <div className="relative bg-dro_yellow mt-1 ">
-        <header className="text-dro_black body-font relative z-20">
-          <div className="mx-auto display flex flex-wrap flex-col md:flex-row items-center">
-          <div className=" flex flex-row px-8 py-1">
-               <Link href="/home" >
-                  <Image className="" src={Droga} height={90} width={80} alt="droga logo" />
-              </Link> 
-              <h1 className=" ml-3 font-medium text-3xl">Droga Group <h className=" font-semibold animate-pulse">Portal </h> </h1>
-              </div>
-            <div className="flex title-font font-medium items-center ml-auto md:mb-0">
-            <nav className="md:ml-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-16 px-10 items-center text-base justify-center">
-              <div>
-              <Welcome/>
-              </div>
-             <div>
-  <button  className="font-semibold text-lg" onClick={handleClickM}>
-  Blog
-</button>
-      {isOpen &&
-       (
-        
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-10" ref={popupRef}>
-        <div ref={cardRef} className="h-1/2 w-1/2 bg-dro_yellow shadow-lg">
-          <div className="flex flex-row justify-between">
-            <h2 className="text-2xl px-10 py-6 font-bold animate-bounce">Blog Here</h2>
-            <div className="relative">
-  <div className="card py-6 px-16">
-    <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2">
-      Choose Image
-      <input
-        id="image-upload"
-        type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
-        className="hidden"
-      />
-    </label>
-    {selectedImage && (
-      <img
-        className="absolute top-2 right-2"
-        src={selectedImage}
-        alt="Selected"
-        style={{ maxWidth:'40px' }}
-      />
-    )}
-            </div>
-            </div>
-          </div>
-          <div>
-            <div className="px-10 py-3 h-52 w-full">
-              <div className="px-10 h-11 w-full">
-                <textarea
-                  id="title"
-                  className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
-                  type="text"
-                  placeholder="Title"
-                />
-              </div>
-              <div className="px-10 h-52 w-full">
-                <textarea
-                  id="content"
-                  className=" h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
-                  placeholder="Write Your Blog Here"
-                ></textarea>
-                <div className="flex justify-center items-center">
-                  <button className="flex justify-center items-center px-10 w-32 h-10 bg-dro_green text-white"  onClick={handlePostBlog}>
-                    POST
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div className="relative bg-dro_yellow px-2 py-2 md:px-1">
+  <header className="text-dro_black body-font relative z-20">
+    <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
+      <div className="flex flex-row px-4 md:px-8 py-1">
+        <Link href="/home">
+          <Image className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20" src={Droga} alt="droga logo" />
+        </Link> 
+        <h1 className="px-3 font-medium text-2xl md:text-3xl lg:text-4xl">
+          Droga Group <span className="font-semibold animate-pulse">Portal</span>
+        </h1>
       </div>
-      
-      )
-      }
-</div>
-             
-             <div>
-             <button className="font-semibold text-lg">Portal User Guide</button>  
-             </div>
-             <ul>
-              <div className="relative">
-              
-                     <li style={{ position: "relative" }}>
-                <Notification />
-              </li>
-              </div>
-         
-              </ul>
-              <div className="grid md:grid-cols-2" />
-              <SearchPage/>
+      <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
+        <nav className="md:mx-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
+          <div>
+            <Welcome/>
+          </div>
+          <Blogs/>
+          <div>
+            <button className="font-semibold text-lg">Portal User Guide</button>  
+          </div>
+          <ul>
+            <li style={{ position: "relative" }}>
+              <Notification />
+            </li>
+          </ul>
+          <SearchPage/>
               {/* <div className="">
                 <input
                   type="text"
