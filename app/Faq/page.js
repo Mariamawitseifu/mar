@@ -1,4 +1,4 @@
-<div className="mb-12 py-7 px-10 ml-auto mr-auto max-w-5xl bg-dro_yellow rounded overflow-hidden shadow-lg">
+{/* <div className="mb-12 py-7 px-10 ml-auto mr-auto max-w-5xl bg-dro_yellow rounded overflow-hidden shadow-lg">
 </div>
 import Image from "next/image";
 import land from '/public/image/land.png';
@@ -8,12 +8,13 @@ import Faq from "/components/Faq"
 import FAQAccordion from '/components/FAQAccordion';
 import Footer from "@/components/Footer";
 import Welcome from "@/components/Welcome";
-import { useClient } from 'react';
+import { useClient } from 'react'; */}
+import Faq from "@/components/Faq"
 
 
-export default function Home (){ 
+export default function Faqq (){ 
 return(<>
-<div className="relative">
+{/* <div className="relative">
     <div className="mt-1">
       <Navbar />
     <div className="flex flex-row absolute top-0 right-0 h-full w-full">
@@ -32,7 +33,8 @@ return(<>
   <FAQAccordion/>
 </div>
 
-<Footer/>
+<Footer/> */}
+<Faq/>
 </>
 )
 }

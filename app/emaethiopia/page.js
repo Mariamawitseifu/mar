@@ -20,58 +20,48 @@ import Type from "@/components/Type"
 import 'tailwindcss/tailwind.css'
 import { useState, useEffect ,useRef} from "react";
 
-export default function trustethio(){
-   const router = useRouter();
 
-   const handleClickG = () => {
-     router.push('/gallery');
-   };
-   const [typewriterText, setTypewriterText] = useState('');
+export default function TrustEthio() {
+  const [typewriterText, setTypewriterText] = useState("");
+  const text = "EMA Ethiopia";
 
-   useEffect(() =>{
-     const text = 'EMA Ethiopia';
-     let i = 0;
-     let interval = null;
-     let isForward = true;
- 
-     const startTyping = () => {
-       interval = setInterval(() => {
-         if (isForward) {
-           setTypewriterText(prevText => prevText + text[i]);
-           i++;
-         } else {
-           setTypewriterText(prevText => prevText.slice(0, -1));
-           i--;
-         }
- 
-         if (isForward && i === text.length) {
-           isForward = false;
-         } else if (!isForward && i === 0) {
-           isForward = true;
-         }
-       }, 100);
-     };
- 
-     startTyping();
- 
-     return () => {
-       clearInterval(interval);
-     };
-   }, []);
-return<>
-<div>
+  useEffect(() => {
+    let i = 0;
+
+    const interval = setInterval(() => {
+      console.log("i:", i);
+      console.log("typewriterText:", typewriterText);
+
+      if (i < text.length) {
+        setTypewriterText(prevText => prevText + text[i]);
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  const handleClickG = () => {
+    router.push("/gallery");
+  };
+
+  return (
+    <>
       <div>
-   <Navbar/>         
+        <div>
+          <Navbar />
+        </div>
+        <div className="py-12 px-52">
+          <div className="bg-gray-200">
+            <h1 className="text-4xl font-bold">
+              <span className="animate-typewriter">{typewriterText}</span>
+            </h1>
+          </div>
+        </div>
       </div>
-      <div className=" py-12 px-52">
-      <div className="bg-gray-200">
-      <h1 className="text-4xl font-bold animate-typewriter">
-      <span className="typewriter">{typewriterText}</span>
-      </h1>
-    </div>
-</div>
-
-</div>
 <div className=" flex flex-wrap gap-60 px-40">
       <div  className=" flex flex-row gap-3">
       <div className="w-1/2 py-10 px-4">
@@ -213,5 +203,5 @@ Phone No
 </button>
 </div>
 </>
-
-}
+  )
+};

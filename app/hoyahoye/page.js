@@ -1,8 +1,9 @@
-import Welcome from "/components/Welcome"
+
+import BlogPost from "@/components/BlogPost"
 export default function hoyahoo(){
 return(
 <>
-<Welcome/>
+<BlogPost/>
 </>
 )
 }

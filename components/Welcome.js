@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
 import Popup from "reactjs-popup";
-import blur from "/components/blur.css";
 import Cookies from "js-cookie";
 
 export default function Welcome() {
@@ -44,7 +43,6 @@ export default function Welcome() {
       }
     }
 
-
     const handleOutsideClick = (event) => {
       if (blurRef.current && event.target === blurRef.current) {
         setIsOpen(false);
@@ -69,91 +67,43 @@ export default function Welcome() {
         >
           <div
             ref={cardRef}
-            className="fixed top-1/8 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close"
+            className="fixed top-1/4 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close"
           >
             <div className="flex items-center justify-center h-full">
-              <button className="absolute right-1/3 top-16 bg-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
-              X
-            </button>
               <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
-                
                 <thead>
-                
-                  <tr className="">
+                  <tr>
                     <th className="border text-left px-6 py-4">No.</th>
                     <th className="border text-left px-6 py-4">Name</th>
                     <th className="border text-left px-6 py-4">Internal Network</th>
                     <th className="border text-left px-6 py-4">External Network</th>
+                    <th className="border text-left px-6 py-4">
+                      Actions{" "}
+                      <button
+                        className="ml-2 bg-dro_white px-2 py-1"
+                        onClick={handleToggle}
+                      >
+                        X
+                      </button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border px-8 py-4 h-3">1</td>
-                    <td className="border px-8 py-4 h-3">PMS</td>
-                    <td className="border px-8 py-4 h-3">www.pms.com</td>
-                    <td className="border px-8 py-4 h-3">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4 h-3">1</td>
-                    <td className="border px-8 py-4 h-3">PMS</td>
-                    <td className="border px-8 py-4 h-3">www.pms.com</td>
-                    <td className="border px-8 py-4 h-3">https//:drogapharma.com</td>
-                  </tr>
-                  
-                  <tr>
-                    <td className="border px-8 py-4">2</td>
-                    <td className="border px-8 py-4">DMS</td>
-                    <td className="border px-8 py-4">www.dms.com</td>
+                    <td className="border px-8 py-4">1</td>
+                    <td className="border px-8 py-4">PMS</td>
+                    <td className="border px-8 py-4">www.pms.com</td>
                     <td className="border px-8 py-4">https//:drogapharma.com</td>
+                    <td className="border px-8 py-4">
+                      <div>
+                        <button className="mb-2">Delete</button>
+                      </div>
+                      <div>
+                        <button>Edit</button>
+                      </div>
+                    </td>
                   </tr>
-                  <tr>
-                    <td className="border px-8 py-4">3</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">4</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">5</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">6</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">7</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">8</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">9</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
-                  <tr>
-                    <td className="border px-8 py-4">10</td>
-                    <td className="border px-8 py-4">Odoo</td>
-                    <td className="border px-8 py-4">erp.odoo.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                  </tr>
+                  {/* Rest of the table rows */}
                 </tbody>
               </table>
             </div>
@@ -162,4 +112,67 @@ export default function Welcome() {
       )}
     </div>
   );
-}
+}             {/* <div>
+<button  className="font-semibold text-lg" onClick={handleClickM}>
+Blog
+</button>
+    {isOpen &&
+     (
+      
+      <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-10" ref={popupRef}>
+      <div ref={cardRef} className="h-1/2 w-1/2 bg-dro_yellow shadow-lg">
+        <div className="flex flex-row justify-between">
+          <h2 className="text-2xl px-10 py-6 font-bold animate-bounce">Blog Here</h2>
+          <div className="relative">
+<div className="card py-6 px-16">
+  <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2">
+    Choose Image
+    <input
+      id="image-upload"
+      type="file"
+      accept="image/*"
+      onChange={handleImageUpload}
+      className="hidden"
+    />
+  </label>
+  {selectedImage && (
+    <img
+      className="absolute top-2 right-2"
+      src={selectedImage}
+      alt="Selected"
+      style={{ maxWidth:'40px' }}
+    />
+  )}
+          </div>
+          </div>
+        </div>
+        <div>
+          <div className="px-10 py-3 h-52 w-full">
+            <div className="px-10 h-11 w-full">
+              <textarea
+                id="title"
+                className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
+                type="text"
+                placeholder="Title"
+              />
+            </div>
+            <div className="px-10 h-52 w-full">
+              <textarea
+                id="content"
+                className=" h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
+                placeholder="Write Your Blog Here"
+              ></textarea>
+              <div className="flex justify-center items-center">
+                <button className="flex justify-center items-center px-10 w-32 h-10 bg-dro_green text-white"  onClick={handlePostBlog}>
+                  POST
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    )
+    }
+</div> */}

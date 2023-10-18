@@ -1,5 +1,6 @@
 import BlogPost from "@/components/BlogPost"
-export default function Blog(){
+
+export default function asfasdfaskfjhasfdkjlhasfh(){
 return<>
 
 <BlogPost/>
