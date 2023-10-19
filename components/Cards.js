@@ -71,7 +71,7 @@ export default function Cards() {
 
   return (
     <>
-<div className="flex flex-row space-x-6">
+<div className="grid grid-cols-1 md:grid-cols-8 gap-y-8 gap-x-4">
   
   <button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110"onClick={handleClick}>
   <Image className="w-full h-full" src="/image/henok.jpg" width={160} height={150} alt="Sunset in the mountains"/>
@@ -83,7 +83,7 @@ export default function Cards() {
   <p className="absolute bg-dro_gray bg-opacity-80 py-4 font-medium px-3 bottom-0 left-0 w-full">Droga Pharma</p>
 </button>
 
-<button className=" relative max-w-xs rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110" onClick={handleClick3}>
+<button className=" relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110" onClick={handleClick3}>
 
   <Image className="h-full w-full" src="/image/ema.jpg" width={160} height={150} alt="Sunset in the mountains"/>
   <p className="absolute bg-dro_gray bg-opacity-70 py-4 font-medium px-3 bottom-0 left-0 w-full">Ema Ethiopia</p>

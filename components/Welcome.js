@@ -7,8 +7,7 @@ export default function Welcome() {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const blurRef = useRef(null);
-  const cardRef = useRef(null);
-  const [isBlurred, setIsBlurred] = useState(false);
+  // const cardRef = useRef(null);
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -18,27 +17,22 @@ export default function Welcome() {
     setIsOpen(!isOpen);
   };
 
-  const handleOutsideClick = (event) => {
-    if (cardRef.current && !cardRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
+  // const handleOutsideClick = (event) => {
+  //   if (cardRef.current && !cardRef.current.contains(event.target)) {
+  //     setIsOpen(false);
+  //   }
+  // };
 
   const popupRef = useRef(null);
 
   useEffect(() => {
-    // const user = Cookies.get("user");
-    // if (user !== undefined) {
-    //   setUser(JSON.parse(user));
-    // }
 
     const user = Cookies.get("user");
-    // console.log("User value:", user);
+    
     if (user !== undefined) {
       try {
         setUser(JSON.parse(user));
       } catch (error) {
-        // Handle the case where the value is not valid JSON
         console.error("Invalid JSON:", error);
       }
     }
@@ -61,54 +55,197 @@ export default function Welcome() {
         Quick Links
       </button>
       {isOpen && (
-        <div
-          className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-20"
-          ref={blurRef}
-        >
-          <div
-            ref={cardRef}
-            className="fixed top-1/4 inset-0 bg-background/80 blur-background bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-75 backdrop-filter backdrop-blur-sm data-click-close"
-          >
-            <div className="flex items-center justify-center h-full">
-              <table className="shadow-lg border-collapse border-spacing-0 bg-dro_white">
-                <thead>
-                  <tr>
-                    <th className="border text-left px-6 py-4">No.</th>
-                    <th className="border text-left px-6 py-4">Name</th>
-                    <th className="border text-left px-6 py-4">Internal Network</th>
-                    <th className="border text-left px-6 py-4">External Network</th>
-                    <th className="border text-left px-6 py-4">
-                      Actions{" "}
-                      <button
-                        className="ml-2 bg-dro_white px-2 py-1"
-                        onClick={handleToggle}
-                      >
-                        X
-                      </button>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border px-8 py-4">1</td>
-                    <td className="border px-8 py-4">PMS</td>
-                    <td className="border px-8 py-4">www.pms.com</td>
-                    <td className="border px-8 py-4">https//:drogapharma.com</td>
-                    <td className="border px-8 py-4">
-                      <div>
-                        <button className="mb-2">Delete</button>
-                      </div>
-                      <div>
-                        <button>Edit</button>
-                      </div>
-                    </td>
-                  </tr>
-                  {/* Rest of the table rows */}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+       
+        
+   <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-20" ref={blurRef}>
+  
+  {/* <div className="fixed top-0 left-0 right-0 bottom-0 bg-dro_white bg-opacity-75 backdrop-filter backdrop-blur-md" onClick={handleToggle}></div> */}
+ 
+  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-full w-11/12 md:max-w-3xl md:w-auto">
+    
+    <div className="bg-dro_white shadow-lg rounded-lg  h-screen w-screen ">
+
+<div className="p-8 h-full">
+
+
+      <div className="h-full overflow-x-auto overflow-y-auto">
+        <table className="border-collapse border-spacing-0">
+          <thead className="sticky top-0 bg-dro_white border" >
+            <tr >
+              <th className="border text-left px-4 py-3 md:px-6 md:py-4">No.</th>
+              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Name</th>
+              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Internal Network</th>
+              <th className="border text-left px-4 py-3 md:px-6 md:py-4">External Network</th>
+              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
+              <td className="border px-4 py-3 md:px-6 md:py-4">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            {/* Rest of the table rows */}
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+
+    </div>
+    
+  </div>
+</div>
+
       )}
     </div>
   );

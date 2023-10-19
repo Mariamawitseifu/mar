@@ -17,8 +17,13 @@ import telegram from "public/image/telegram.png"
 import www from "public/image/www.png"
 import Navbar from "@/components/NavBar"
 import Type from "@/components/Type"
-import 'tailwindcss/tailwind.css'
-import { useState, useEffect ,useRef} from "react";
+// import 'tailwindcss/tailwinds.css'
+// import Typewriter from 'typewriter-effect'
+import Typewriter from 'typewriter-effect';
+
+// import { useState, useEffect ,useRef} from "react";
+// import { useTypewriter,Cursor} from 'react-simple-typewriter';
+
 
 export default function drogarwanda(){
    const router = useRouter();
@@ -26,38 +31,46 @@ export default function drogarwanda(){
    const handleClickG = () => {
      router.push('/gallery');
    };
-   const [typewriterText, setTypewriterText] = useState('');
 
-   useEffect(() =>{
-     const text = 'Droga Rwanda';
-     let i = 0;
-     let interval = null;
-     let isForward = true;
+// const {text} = useTypewriter({
+// words: ['Droga','Rwanda'],
+// loop:{},
+// typeSpeed:120,
+// deleteSpeed:80, 
+
+//    });
+  //  const [typewriterText, setTypewriterText] = useState('');
+
+  //  useEffect(() =>{
+  //    const text = 'Droga Rwanda';
+  //    let i = 0;
+  //    let interval = null;
+  //    let isForward = true;
  
-     const startTyping = () => {
-       interval = setInterval(() => {
-         if (isForward) {
-           setTypewriterText(prevText => prevText + text[i]);
-           i++;
-         } else {
-           setTypewriterText(prevText => prevText.slice(0, -1));
-           i--;
-         }
+  //    const startTyping = () => {
+  //      interval = setInterval(() => {
+  //        if (isForward) {
+  //          setTypewriterText(prevText => prevText + text[i]);
+  //          i++;
+  //        } else {
+  //          setTypewriterText(prevText => prevText.slice(0, -1));
+  //          i--;
+  //        }
  
-         if (isForward && i === text.length) {
-           isForward = false;
-         } else if (!isForward && i === 0) {
-           isForward = true;
-         }
-       }, 100);
-     };
+  //        if (isForward && i === text.length) {
+  //          isForward = false;
+  //        } else if (!isForward && i === 0) {
+  //          isForward = true;
+  //        }
+  //      }, 100);
+  //    };
  
-     startTyping();
+  //    startTyping();
  
-     return () => {
-       clearInterval(interval);
-     };
-   }, []);
+  //    return () => {
+  //      clearInterval(interval);
+  //    };
+  //  }, []);
 
 return<>
 <div>
@@ -65,11 +78,16 @@ return<>
    <Navbar/>         
       </div>
       <div className=" py-10 px-1 md:py-12 md:px-52">
-<div className="bg-gray-200">
-      <h1 className="text-4xl font-bold animate-typewriter">
-      <span className="typewriter">{typewriterText}</span>
-      </h1>
-    </div>
+      <div className="">
+<div className="">
+  <Typewriter
+    sequence={[
+      { strings: ['droga', 'rwanda'], autoStart: true, loop: true }
+    ]}
+  />
+</div>
+</div>
+
 </div>
 </div>
 <div className="flex flex-wrap md:gap-60 gap-6 md:px-40 px-4">

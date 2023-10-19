@@ -78,80 +78,82 @@ export default function Blogs({ title, body }) {
   }, [post]);
 
   return (
+<div>
+  <button className="font-semibold text-lg" onClick={handleClickM}>
+    Blog
+  </button>
+  {isOpen && (
+    <div className="fixed inset-0 grid place-items-center p-16 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-10" ref={popupRef}>
+ <div ref={cardRef} className="md:w-full w-2/3 lg:w-2/3 bg-dro_yellow shadow-lg flex flex-col justify-between">
     <div>
-      <button className="font-semibold text-lg" onClick={handleClickM}>
-        Blog12
-      </button>
-      {isOpen && (
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter z-10" ref={popupRef}>
-          <div ref={cardRef} className="h-1/2 w-1/2 bg-dro_yellow shadow-lg">
-            <div className="flex flex-row justify-between">
-              <h2 className="text-2xl px-10 py-6 font-bold animate-bounce">Blog Here</h2>
-              <div className="relative">
-                <div className="card py-6 px-16">
-                  <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2">
-                    Choose Image
-                    <input
-                      id="image-upload"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="hidden"
-                    />
-                  </label>
-                  {selectedImage && (
-                    <img
-                      className="absolute top-2 right-2"
-                      src={selectedImage}
-                      alt="Selected"
-                      style={{ maxWidth: '40px' }}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className="px-10 py-3 h-52 w-full">
-                <div className="px-10 h-11 w-full">
-                  <textarea
-                    id="title"
-                    className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
-                    type="text"
-                    placeholder="Title"
-                    name="title"
-                    value={newPostData.title}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="px-10 h-52 w-full">
-                  <textarea
-                    id="content"
-                    className=" h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
-                    placeholder="Write Your Blog Here"
-                    name="body"
-                    value={newPostData.body}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="flex justify-end px-10">
-                <button
-                  className="bg-dro_green text-dro_white px-6 py-2 mt-4"
-                  onClick={handlePostButtonClick}
-                >
-                  Post
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className='flex flex-col'>
-          <h1 className='bg-dro_yellow p-5 ml-5'>{post.title}</h1>
-
-         <div>{post.body}
-</div>
+      <div className="flex flex-col md:flex-row justify-between">
+        <h2 className="text-2xl px-10 py-6 font-bold">Blog Here</h2>
+        <div className="relative">
+          <div className="card py-6 px-16">
+            <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2 md:px-4 md:py-1">
+              Choose Image
+              <input
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+            </label>
+            {selectedImage && (
+              <img
+                className="absolute top-2 right-2"
+                src={selectedImage}
+                alt="Selected"
+                style={{ maxWidth: '40px' }}
+              />
+            )}
           </div>
         </div>
-      )}
+      </div>
+      <div>
+        <div className="px-10 py-3 md:h-52 w-full">
+          <div className="px-10 h-11 w-full">
+            <textarea
+              id="title"
+              className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
+              type="text"
+              placeholder="Title"
+              name="title"
+              value={newPostData.title}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="px-10 h-52 w-full">
+            <textarea
+              id="content"
+              className="h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
+              placeholder="Write Your Blog Here"
+              name="body"
+              value={newPostData.body}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div>
+      </div>
     </div>
+    <div className="grid place-items-center mt-16 pb-12 sm:flex-col md:flex-row lg:flex-row lg:pb-10">
+  <button
+        className="bg-dro_green text-dro_white p-4 px-6 py-2"
+        onClick={handlePostButtonClick}
+      >
+        Post
+      </button>
+    </div>
+    
+  </div>
+  <div className="flex flex-col mt-4 md:mt-0 md:w-1/2 lg:w-2/3">
+    <h1 className="p-5 ml-5">{post.title}</h1>
+    <div className="px-5 md:px-10">{post.body}</div>
+  </div>
+</div>
+  )}
+</div>
+
   );
 }

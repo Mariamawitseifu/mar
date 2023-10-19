@@ -21,34 +21,35 @@ import Blogs from "@/app/blogsandblogs/page.js";
 
 export default function Navbar() {
   const [user, setUser] = useState(null)
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
-  const [isOpen1, setIsOpen1] = useState(false);
-  const cardRef = useRef(null);
-  const blurRef = useRef(null);
+  const [isOpened, setIsOpened]=useState(false);
+  // const [isOpen1, setIsOpen1] = useState(false);
+  // const cardRef = useRef(null);
+  // const blurRef = useRef(null);
   const passRef = useRef(null);
-  const [isBlurred, setIsBlurred] = useState(false);
+  // const [isBlurred, setIsBlurred] = useState(false);
 
   const handleToggle = () => {
-    setIsOpen1((prevState) => !prevState);
+    setIsOpened((prevState) => !prevState);
   };
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (cardRef.current && !cardRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (cardRef.current && !cardRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
 
   useEffect(() => {
@@ -80,19 +81,19 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (blurRef.current && !blurRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (blurRef.current && !blurRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
   const handleLogout = async () => {
     try {
