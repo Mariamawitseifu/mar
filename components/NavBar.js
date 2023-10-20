@@ -17,38 +17,43 @@ import { FiUpload } from 'react-icons/fi';
 import axios from "axios";
 import { SearchPage } from "./Filter.js";
 import Blogs from "@/app/blogsandblogs/page.js";
+import Userpass from "./Userpass.js";
+import Passwordchange from "@/app/Passwordchange/page.js";
+// import Link from 'next/link';
+import Userguide from "@/app/userguide/page.js";
 
 
 export default function Navbar() {
   const [user, setUser] = useState(null)
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
-  const [isOpen1, setIsOpen1] = useState(false);
-  const cardRef = useRef(null);
-  const blurRef = useRef(null);
+  const [isOpened, setIsOpened]=useState(false);
+  // const [isOpen1, setIsOpen1] = useState(false);
+  // const cardRef = useRef(null);
+  // const blurRef = useRef(null);
   const passRef = useRef(null);
-  const [isBlurred, setIsBlurred] = useState(false);
+  // const [isBlurred, setIsBlurred] = useState(false);
 
   const handleToggle = () => {
-    setIsOpen1((prevState) => !prevState);
+    setIsOpened((prevState) => !prevState);
   };
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (cardRef.current && !cardRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (cardRef.current && !cardRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
 
   useEffect(() => {
@@ -80,19 +85,19 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (blurRef.current && !blurRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (blurRef.current && !blurRef.current.contains(event.target)) {
+  //       setIsOpen(false);
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
+  //   document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
   const handleLogout = async () => {
     try {
@@ -184,7 +189,6 @@ if (user !== undefined) {
     setSelectedImage(URL.createObjectURL(file));
   }; 
 
-  
   return (
     <>
 <div className="relative bg-dro_yellow px-2 py-2 md:px-1">
@@ -204,9 +208,10 @@ if (user !== undefined) {
             <Welcome/>
           </div>
           <Blogs/>
-          <div>
-            <button className="font-semibold text-lg">Portal User Guide</button>  
-          </div>
+          <Link legacyBehavior href="/userguide">
+            <a className="font-semibold text-lg">Portal User Guide</a>
+          </Link>
+
           <ul>
             <li style={{ position: "relative" }}>
               <Notification />
@@ -233,56 +238,128 @@ if (user !== undefined) {
        
     <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
           <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
-            <span className="text-center"> {user && user.username[0].toUpperCase()}</span>
+            <span className="text-center">{user && user.username.toUpperCase()}</span>
           </div>
           <h3 className="text-lg mt-3 font-bold"> 
             {user && user.username.toUpperCase()}
             </h3>
           <h3 className="text-xs mb-3">{user && user.email}</h3>
-          <div className=" flex flex-col">
-          <div>
-
-          </div>
-          <div className="flex flex-row items-center justify-center">
+          
+                      <div className="flex flex-col">
+                      
+                      <div className="flex flex-row items-center justify-center">
+  
           <Image src={lock} height={20} width={20}/>
            <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleClickP}>
-            Change Password
+           <Link legacyBehavior href="/Passwordchange">
+  <a> Change Password</a>
+</Link>
           </button> 
-          {isOpeen &&
+          {/* {isOpeen &&
        (
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"ref={popRef}>
-  <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
-    <div className="flex flex-col justify-center items-center h-full">
-      <h2 className="text-2xl font-bold mb-4">Change Password</h2>
-      <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
-            <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
-              X
-            </button>
-        <input
-          className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
-          type="password"
-          placeholder="Old Password"
-        />
-        <div className="relative">
-          <input
-            className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
-            type="password"
-            placeholder="New Password"
-          />
-          <svg
-            className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+//         <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"ref={popRef}>
+//   <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
+//     <div className="flex flex-col justify-center items-center h-full">
+//       <h2 className="text-2xl font-bold mb-4">Change Password</h2>
+//       <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
+//             <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
+//               X
+//             </button>
+//         <input
+//           className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+//           type="password"
+//           placeholder="Old Password"
+//         />
+//         <div className="relative">
+//           <input
+//             className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
+//             type="password"
+//             placeholder="New Password"
+//           />
+//           <svg
+//             className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
+//             xmlns="http://www.w3.org/2000/svg"
+//             fill="none"
+//             viewBox="0 0 24 24"
+//             stroke="currentColor"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+//             />
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+//             />
+//           </svg>
+//         </div>
+//         <button className="flex justify-center items-center px-10 w-32 h-10 bg-dro_green text-white">Enter</button>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+<div>
+
+
+  </div>
+
+       )}   */}
+       
+       
+
+       
+          </div>
+                        {/* <div className="flex flex-row items-center justify-center">
+                          <Image src={lock} height={20} width={20} />
+                          <button
+                            className="hover:bg-dro_gray font-medium py-2 px-4"
+                            onClick={handleClickP}
+                          >
+                            Change Password
+                          </button>
+                          {isOpeen && (
+                            <div
+                              className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter"
+                              ref={popRef}
+                            >
+                              <div className="h-96 w-1/ bg-dro_yellow shadow-lg">
+                                <div className="flex flex-col justify-center items-center h-full">
+                                  <h2 className="text-2xl font-bold mb-4">
+                                    Change Password
+                                  </h2>
+                                  <div className="relative px-10 py-3 h-52 w-full space-y-4 flex flex-col justify-center items-center">
+                                    <button className=" absolute right-1/3 top-14 bg-dro_red  text-dro_white px-4 flex justify-start items-start" onClick={handleToggle}>
+                                      X
+                                    </button>
+                                    <input
+                                    className="w-full h-14 rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+                                    type="password"
+                                    placeholder="Old Password"
+                                  />
+                                  <div className="relative">
+                                    <input
+                                      className="h-14 w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500 pr-10"
+                                      type="password"
+                                      placeholder="New Password"
+                                    />
+                                    <svg
+                                      className="absolute right-3 top-3 h-6 w-6 text-gray-400 cursor-pointer"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
             />
-            <path
+  `          <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
@@ -298,31 +375,21 @@ if (user !== undefined) {
 
        )}     
           </div>
-          
-          {/* <div className="flex flex-row mr-24 ml-3 items-center justify-center">
-          <Image src={log} height={20} width={20}/>
-          <button className="hover:bg-dro_gray font-medium py-2 px-4">
-            Log Out
-          </button>
-          </div> */}
-
+           */}
+      
 <div className="flex flex-row mr-24 ml-3 items-center justify-center">
   <Image src={log} height={20} width={20} />
   <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleLogout}>
     Log Out
   </button>
-</div>
-
-
-
-
-
-          </div>
-    </div>
-      </Popup>
-    </div>
-            </nav>
+  {/* </Popup> */}
             </div>
+               </div>
+                 </div>
+                  </Popup>
+                </div>
+              </nav>
+             </div>
            </div>
         </header>
       </div>
@@ -330,3 +397,5 @@ if (user !== undefined) {
     </>
   )
 }
+
+     

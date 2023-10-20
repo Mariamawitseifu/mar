@@ -12,6 +12,7 @@ import dashboard from "/public/image/dashboard.png"
 import Popup from "reactjs-popup";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
+import passwordchange from "./passwordchange.js";
 
 function Buttons({ children }) {
   return (
@@ -128,10 +129,8 @@ export default function Navforall() {
 
           </div>
           <div className="flex flex-row items-center justify-center">
-          <Image src={lock} height={20} width={20}/>
-           <button className="hover:bg-dro_gray font-medium py-2 px-4">
-            Change Password
-          </button> 
+          <passwordchange/>
+
           </div>
           
           <div className="flex flex-row mr-24 ml-3 items-center justify-center">
