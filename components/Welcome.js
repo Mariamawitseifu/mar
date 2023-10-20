@@ -57,35 +57,35 @@ export default function Welcome() {
       {isOpen && (
        
         
-   <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-20" ref={blurRef}>
-  
-  {/* <div className="fixed top-0 left-0 right-0 bottom-0 bg-dro_white bg-opacity-75 backdrop-filter backdrop-blur-md" onClick={handleToggle}></div> */}
- 
-  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-full w-11/12 md:max-w-3xl md:w-auto">
-    
-    <div className="bg-dro_white shadow-lg rounded-lg  h-screen w-screen ">
-
-<div className="p-8 h-full">
-
-
+<div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-20" ref={blurRef}>
+<div className="fixed top-1/2 md:px-36 transform -translate-x-1/2 -translate-y-1/2 max-w-xs w-11/12 md:max-w-3xl md:w-auto"> 
+ <div className="bg-dro_white shadow-lg rounded-lg  h-screen w-screen ">
+    <div className="p-8 h-full">
       <div className="h-full overflow-x-auto overflow-y-auto">
         <table className="border-collapse border-spacing-0">
           <thead className="sticky top-0 bg-dro_white border" >
             <tr >
-              <th className="border text-left px-4 py-3 md:px-6 md:py-4">No.</th>
-              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Name</th>
-              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Internal Network</th>
-              <th className="border text-left px-4 py-3 md:px-6 md:py-4">External Network</th>
-              <th className="border text-left px-4 py-3 md:px-6 md:py-4">Actions</th>
+              <th className="border text-left px-3 py-3 md:px-6 md:py-1">No.</th>
+              <th className="border text-left px-3 py-3 md:px-6 md:py-1">Name</th>
+              <th className="border text-left px-3 py-3 md:px-6 md:py-1">Internal Network</th>
+              <th className="border text-left px-3 py-3 md:px-6 md:py-1">External Network</th>
+              <th className="border text-left px-3 py-3 md:px-6 md:py-1">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">1</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">PMS (Performance management system)</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <a href="https://pms.drogapharma.com/" target="_blank" rel="noopener noreferrer">
+                  https://pms.drogapharma.com/
+                </a>
+              </td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://pms.drogapharma.com/" target="_blank" rel="noopener noreferrer">
+                  https://pms.drogapharma.com/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -95,11 +95,17 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">2</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">ODOO ERP</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://drogaerp.odoo.com/web" target="_blank" rel="noopener noreferrer">
+              https://drogaerp.odoo.com/web
+                </a></td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://drogaerp.odoo.com/web" target="_blank" rel="noopener noreferrer">
+              https://drogaerp.odoo.com/web
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -109,11 +115,18 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">3</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Email (Droga Pharma)</td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1"> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://10.10.10.9/owa/" target="_blank" rel="noopener noreferrer">
+              https://10.10.10.9/owa/
+                </a></td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://10.10.10.9/owa/" target="_blank" rel="noopener noreferrer">
+              https://10.10.10.9/owa/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -123,11 +136,17 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">4</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"> Email (Ema Ethiopia)</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://10.10.10.9/owa/" target="_blank" rel="noopener noreferrer">
+              https://10.10.10.9/owa/
+                </a></td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href=" https://mail.drogapharma.com/owa/" target="_blank" rel="noopener noreferrer">
+              https://mail.drogapharma.com/owa/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -137,11 +156,17 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">5</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Property Management</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://10.10.10.10:8069/" target="_blank" rel="noopener noreferrer">
+              http://10.10.10.10:8069/
+                </a></td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://10.10.10.10:8069/" target="_blank" rel="noopener noreferrer">
+              http://10.10.10.10:8069/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -151,11 +176,17 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">6</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Attendance Management system</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://10.10.10.10:8073/" target="_blank" rel="noopener noreferrer">
+              http://10.10.10.10:8073/
+                </a></td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://10.10.10.10:8073/" target="_blank" rel="noopener noreferrer">
+              http://10.10.10.10:8073/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -165,11 +196,11 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">7</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Network/System monitoring</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -179,11 +210,14 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">8</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Droga webite</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://drogapharma.com/" target="_blank" rel="noopener noreferrer">
+              http://drogapharma.com/
+                </a></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -193,11 +227,15 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">9</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Ema Website</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://emaethiopia.com/" target="_blank" rel="noopener noreferrer">
+              https://emaethiopia.com/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://emaethiopia.com/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -207,11 +245,63 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">10</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Trust Website</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href=" https://trustethiopharma.com/" target="_blank" rel="noopener noreferrer">
+              https://trustethiopharma.com/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://trustethiopharma.com/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>   <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">11</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Droga Som website</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://drogapharma-som.com/" target="_blank" rel="noopener noreferrer">
+              https://drogapharma-som.com/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://drogapharma-som.com/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>   <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">12</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Risegmbh Website</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://risegmbh.de/" target="_blank" rel="noopener noreferrer">
+              https://risegmbh.de/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://risegmbh.de/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>   
+            <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">13</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Droga Physiotherapy</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">https://drogaphysiotherapy.com/</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -221,11 +311,95 @@ export default function Welcome() {
               </td>
             </tr>
             <tr>
-              <td className="border px-4 py-3 md:px-6 md:py-4">1</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">PMS</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">www.pms.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">https//:drogapharma.com</td>
-              <td className="border px-4 py-3 md:px-6 md:py-4">
+              <td className="border px-3 py-3 md:px-6 md:py-1">14</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Droga Pharmacy</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://drogapharmacy.com/" target="_blank" rel="noopener noreferrer">
+              https://drogapharmacy.com/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://drogapharmacy.com/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">15</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Odoo Staging</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">16</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">AD Audit</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">17</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">Droga SIEM</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://10.10.20.16:5601/" target="_blank" rel="noopener noreferrer">
+              https://10.10.20.16:5601/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://10.10.20.16:5601</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr> <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">18</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">DMS</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="https://dms.drogapharma.com/" target="_blank" rel="noopener noreferrer">
+              https://dms.drogapharma.com/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">https://dms.drogapharma.com</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+                <div>
+                  <button className="mb-2">Delete</button>
+                </div>
+                <div>
+                  <button>Edit</button>
+                </div>
+              </td>
+            </tr> <tr>
+              <td className="border px-3 py-3 md:px-6 md:py-1">19</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">CheckMK</td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
+              <a href="http://10.10.20.16/netsec/" target="_blank" rel="noopener noreferrer">
+              http://10.10.20.16/netsec/
+                </a></td>
+              {/* <td className="border px-3 py-3 md:px-6 md:py-1">http://10.10.20.16/netsec/</td> */}
+              <td className="border px-3 py-3 md:px-6 md:py-1"></td>
+              <td className="border px-3 py-3 md:px-6 md:py-1">
                 <div>
                   <button className="mb-2">Delete</button>
                 </div>
@@ -238,11 +412,8 @@ export default function Welcome() {
           </tbody>
         </table>
       </div>
-
       </div>
-
     </div>
-    
   </div>
 </div>
 
@@ -262,7 +433,7 @@ Blog
           <h2 className="text-2xl px-10 py-6 font-bold animate-bounce">Blog Here</h2>
           <div className="relative">
 <div className="card py-6 px-16">
-  <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2">
+  <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-1">
     Choose Image
     <input
       id="image-upload"
@@ -288,7 +459,7 @@ Blog
             <div className="px-10 h-11 w-full">
               <textarea
                 id="title"
-                className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
+                className="h-10 w-full border py-3 border-dro_gray px-3 text-md text-dro_black resize-none"
                 type="text"
                 placeholder="Title"
               />
@@ -296,7 +467,7 @@ Blog
             <div className="px-10 h-52 w-full">
               <textarea
                 id="content"
-                className=" h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
+                className=" h-full w-full border border-dro_gray px-3 text-md text-dro_black resize-none"
                 placeholder="Write Your Blog Here"
               ></textarea>
               <div className="flex justify-center items-center">
@@ -325,7 +496,7 @@ Blog
               </div> */}
                   {/* <div className="flex flex-row mr-24 ml-3 items-center justify-center">
           <Image src={log} height={20} width={20}/>
-          <button className="hover:bg-dro_gray font-medium py-2 px-4">
+          <button className="hover:bg-dro_gray font-medium py-1 px-3">
             Log Out
           </button>
           </div> */}
