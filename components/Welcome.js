@@ -2,12 +2,30 @@
 import { useState, useEffect, useRef } from "react";
 import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
+import { useHistory } from 'react-router-dom';
 
 export default function Welcome() {
   const [user, setUser] = useState(null);
+  // const[handleEdit,sethandleEdit]=useState();
   const [isOpen, setIsOpen] = useState(false);
   const blurRef = useRef(null);
   // const cardRef = useRef(null);
+
+    // const history = useHistory();
+  
+    const handleEdit = (id) => {
+      // Navigate to the edit page with the record ID as a URL parameter
+      history.push(`/edit/${id}`);
+    };
+  
+    const handleDelete = (id) => {
+      axios.delete(`http://localhost:8000/api/records/${id}/`)
+        .then(response => {
+          console.log('Record deleted successfully!');
+          // Perform any necessary UI updates after successful deletion
+        })
+        .catch(error => console.error(error));
+    };
 
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
@@ -58,7 +76,7 @@ export default function Welcome() {
        
         
 <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-20" ref={blurRef}>
-<div className="fixed top-1/2 md:px-36 transform -translate-x-1/2 -translate-y-1/2 max-w-xs w-11/12 md:max-w-3xl md:w-auto"> 
+<div className="fixed top-1/2 md: transform -translate-x-1/2 -translate-y-1/2 max-w-xs w-11/12 md:max-w-xl md:w-auto"> 
  <div className="bg-dro_white shadow-lg rounded-lg  h-screen w-screen ">
     <div className="p-8 h-full">
       <div className="h-full overflow-x-auto overflow-y-auto">
@@ -85,14 +103,14 @@ export default function Welcome() {
               <a href="https://pms.drogapharma.com/" target="_blank" rel="noopener noreferrer">
                   https://pms.drogapharma.com/
                 </a></td>
-              <td className="border px-3 py-3 md:px-6 md:py-1">
-                <div>
-                  <button className="mb-2">Delete</button>
-                </div>
-                <div>
-                  <button>Edit</button>
-                </div>
-              </td>
+                <td className="border px-3 py-3 md:px-6 md:py-1">
+  <div>
+    <button onClick={() => handleDelete(record.id)}>Delete</button>
+  </div>
+  <div>
+    <button onClick={() => handleEdit(record.id)}>Edit</button>
+  </div>
+</td>
             </tr>
             <tr>
               <td className="border px-3 py-3 md:px-6 md:py-1">2</td>

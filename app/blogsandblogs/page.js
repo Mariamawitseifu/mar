@@ -2,6 +2,9 @@
 import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import Faq from "@/components/Faq";
+
+
 export default function Blogs({ title, body }) {
   const cardRef = useRef(null);
   const popupRef = useRef(null);
@@ -9,7 +12,8 @@ export default function Blogs({ title, body }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [newPostData, setNewPostData] = useState({ title: '', body: '' });
   const [post, setPost] = useState({ title: '', body: '' });
-
+  const [posts,setPosts]=useState([]);
+  
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -47,23 +51,34 @@ export default function Blogs({ title, body }) {
 
 //   const history = useHistory();
 
-  const handlePostButtonClick = () => {
-    // Send the POST request to the server
-    axios.post('http://localhost:8000/api/api/blog/', newPostData)
-      .then(response => {
-        console.log(response.data.title);
-        console.log(response.data.body);
-        console.log('Post created successfully!');
-  
-        // Optionally, you can update the post data in the state with the response data
-        setPost(response.data);
-  
-        // Navigate to the "/home" route
-        // history.push("/home");
-        window.location.href = '/home';
-      })
-      .catch(error => console.error(error));
-  };
+const handlePostButtonClick = () => {
+  // Send the POST request to the server
+  axios.post('http://localhost:8000/api/api/blog/', newPostData)
+    .then(response => {
+      console.log(response.data.title);
+      console.log(response.data.body);
+      console.log('Post created successfully!');
+
+      // Create a new post object with the response data
+      const newPost = {
+        id: response.data.id,
+        title: response.data.title,
+        body: response.data.body,
+        image: response.data.image,
+      };
+
+      // Update the posts state by adding the new post
+      setPosts(prevPosts => [...prevPosts, newPost]);
+
+      // Reset the input fields
+      setNewPostData({ title: '', body: '' });
+
+      // Navigate to the "/home" route
+      // history.push("/home");
+      window.location.href = '/Faq';
+    })
+    .catch(error => console.error(error));
+};
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -112,6 +127,7 @@ export default function Blogs({ title, body }) {
         </div>
       </div>
       <div>
+        
         <div className="px-10 py-3 md:h-52 w-full">
           <div className="px-10 h-11 w-full">
             <textarea
@@ -124,6 +140,7 @@ export default function Blogs({ title, body }) {
               onChange={handleInputChange}
             />
           </div>
+
           <div className="px-10 h-52 w-full">
             <textarea
               id="content"
@@ -134,23 +151,28 @@ export default function Blogs({ title, body }) {
               onChange={handleInputChange}
             />
           </div>
+
         </div>
       </div>
     </div>
     <div className="grid place-items-center mt-16 pb-12 sm:flex-col md:flex-row lg:flex-row lg:pb-10">
-  <button
-        className="bg-dro_green text-dro_white p-4 px-6 py-2"
-        onClick={handlePostButtonClick}
-      >
-        Post
-      </button>
+    <button
+  className="bg-dro_green text-dro_white p-4 px-6 py-2"
+  onClick={handlePostButtonClick}
+>
+  Post
+</button>
     </div>
     
   </div>
   <div className="flex flex-col mt-4 md:mt-0 md:w-1/2 lg:w-2/3">
-    <h1 className="p-5 ml-5">{post.title}</h1>
-    <div className="px-5 md:px-10">{post.body}</div>
-  </div>
+  {posts.map(post => (
+    <div key={post.id}>
+      <h1 className="p-5 ml-5">{post.title}</h1>
+      <div className="px-5 md:px-10">{post.body}</div>
+    </div>
+  ))}
+</div>
 </div>
   )}
 </div>

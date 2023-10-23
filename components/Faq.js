@@ -3,18 +3,32 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import Navbar from "./NavBar";
-import blogs from "/app/blogsandblogs/page";
+import Blogs from "/app/blogsandblogs/page";
 export default function Faq() {
   const cover = ["land.png", "news.png"];
   const [currentImage, setCurrentImageIndex] = useState(0);
   const [post, setPost] = useState({ title: '', content: '' });
+  const [posts, setPosts] = useState([])
   const [isOpen, setIsOpen] = useState(false);
 
+
+  
+
   useEffect(() => {
-    axios.get('http://localhost:8000/api/api/blog/')
-      .then(response => setPost(response.data))
-      .catch(error => console.error(error));
+    
+    const tk = localStorage.getItem('token')
+    console.log(`This is the Token ${tk}`);
+  
+    axios.get('http://localhost:8000/api/blog/',
+    {
+      headers: {
+      Authorization: `token ${tk}`
+    }
+  }).then(response => setPosts(response.data))
+  .catch(error => console.error(error));
   }, []);
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +40,10 @@ export default function Faq() {
   const handleClick = () => {
     setIsOpen(true);
   };
+
+
+  console.log(`This is the ${posts}`);
+
 
   return (
     <div className="flex flex-col">
@@ -40,6 +58,8 @@ export default function Faq() {
           <div className="w-full h-72 relative">
             <div className="relative w-full h-full perspective-3d">
               <div className="relative w-full h-full transform transition-all duration-500 hover:scale-105 hover:opacity-50">
+                
+                
                 {cover.map((image, index) => (
                   <div
                     key={index}
@@ -53,16 +73,14 @@ export default function Faq() {
                       className="object-cover"
                     />
                   </div>
-             
+            
                 ))}
                      <div>
-                      test
-                    
+                      test        
                     </div>
               </div>
             </div>
-          </div>
-          
+          </div>       
           <div className="flex flex-col justify-center px-80">
             <div className="font-bold sm:mt-3 text-xl sm:text-lg">{post.title}</div>
             <div className="text-md sm:text-sm font-medium">12, AUG, 2023</div>
@@ -77,15 +95,15 @@ export default function Faq() {
               )}
             </div>
             {isOpen && (
-              <div className="mt-4">
-                <p>test this now123
-                {post.title}
-                </p>
-                <p>{post.body}</p>
-                {/* Additional content to display when "See More" is clicked */}
-                <p className="mt-4">Additional content here...</p>
-              </div>
-            )}
+  posts.map((post) => (
+    <div key={post.id} className="mt-4">
+      <p>test this now123 {post.title}</p>
+      <p>{post.body}</p>
+      {/* Additional content to display when "See More" is clicked */}
+      <p className="mt-4">Additional content here...</p>
+    </div>
+  ))
+)}
           </div>
         </div>
       </div>

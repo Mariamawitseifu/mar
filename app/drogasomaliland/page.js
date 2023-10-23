@@ -28,36 +28,39 @@ export default function drogasomaliland(){
    };
    const [typewriterText, setTypewriterText] = useState('');
 
-   useEffect(() =>{
-     const text = 'Droga Somaliland';
-     let i = 0;
-     let interval = null;
-     let isForward = true;
- 
-     const startTyping = () => {
-       interval = setInterval(() => {
-         if (isForward) {
-           setTypewriterText(prevText => prevText + text[i]);
-           i++;
-         } else {
-           setTypewriterText(prevText => prevText.slice(0, -1));
-           i--;
-         }
- 
-         if (isForward && i === text.length) {
-           isForward = false;
-         } else if (!isForward && i === 0) {
-           isForward = true;
-         }
-       }, 100);
-     };
- 
-     startTyping();
- 
-     return () => {
-       clearInterval(interval);
-     };
-   }, []);
+   useEffect(() => {
+    const text = 'Droga Somaliland';
+    let i = 0;
+    let interval = null;
+  
+    const startTyping = () => {
+      interval = setInterval(() => {
+        setTypewriterText(prevText => {
+          if (i < text.length) {
+            return text.slice(0, i + 1);
+          } else {
+            return prevText.slice(0, -1);
+          }
+        });
+  
+        i++;
+  
+        if (i > text.length * 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            i = 0;
+            startTyping(); // Restart the typewriter effect
+          }, 1000); // Delay before restarting the effect (1 second in this example)
+        }
+      }, 500);
+    };
+  
+    startTyping();
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 return<>
 <div>
       <div>

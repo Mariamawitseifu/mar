@@ -1,0 +1,13 @@
+.carousel-container {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  /* Add additional styling for your image buttons */
