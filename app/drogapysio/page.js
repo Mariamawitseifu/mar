@@ -19,6 +19,8 @@ import Navbar from "@/components/NavBar"
 import Type from "@/components/Type"
 import 'tailwindcss/tailwind.css'
 import { useState, useEffect ,useRef} from "react";
+import Footer from "@/components/Footer"
+import Endfooter from "@/components/Endfooter"
 
 export default function drogapysio(){
    const router = useRouter();
@@ -29,7 +31,7 @@ export default function drogapysio(){
    const [typewriterText, setTypewriterText] = useState('');
 
    useEffect(() => {
-    const text = 'Droga Pysiotheraphy';
+    const text = 'Droga Pyshiotherapy';
     let i = 0;
     let interval = null;
   
@@ -218,6 +220,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

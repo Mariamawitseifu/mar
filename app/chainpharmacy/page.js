@@ -18,6 +18,8 @@ import www from "public/image/www.png"
 import Navbar from "@/components/NavBar"
 import { useState, useEffect ,useRef} from "react";
 import 'tailwindcss/tailwind.css'
+import Footer from "@/components/Footer"
+import Endfooter from "@/components/Endfooter"
 
 export default function chainpharmacy(){
    const [typewriterText, setTypewriterText] = useState('');
@@ -213,6 +215,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

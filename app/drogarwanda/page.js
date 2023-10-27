@@ -17,6 +17,8 @@ import telegram from "public/image/telegram.png"
 import www from "public/image/www.png"
 import Navbar from "@/components/NavBar"
 import Type from "@/components/Type"
+import Footer from "@/components/Footer"
+import Endfooter from "@/components/Endfooter"
 // import 'tailwindcss/tailwinds.css'
 // import Typewriter from 'typewriter-effect'
 import Typewriter from 'typewriter-effect';
@@ -219,6 +221,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

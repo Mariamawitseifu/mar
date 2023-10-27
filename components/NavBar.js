@@ -15,7 +15,7 @@ import blur from "/components/blur.css";
 import Welcome from "./Welcome.js";
 import { FiUpload } from 'react-icons/fi';
 import axios from "axios";
-import { SearchPage } from "./Filter.js";
+import Filter from "./Filter.js";
 import Blogs from "@/app/blogsandblogs/page.js";
 import Userpass from "./Userpass.js";
 import Passwordchange from "@/app/Passwordchange/page.js";
@@ -23,7 +23,27 @@ import Passwordchange from "@/app/Passwordchange/page.js";
 import Userguide from "@/app/userguide/page.js";
 
 
+
 export default function Navbar() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [blogPostResults, setBlogPostResults] = useState([]);
+  const [recordResults, setRecordResults] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const response1 = await axios.get('/api/blogpost/search', {
+        params: { query: searchQuery },
+      });
+      setBlogPostResults(response1.data.results);
+
+      const response2 = await axios.get('/api/record/search', {
+        params: { query: searchQuery },
+      });
+      setRecordResults(response2.data.results);
+    } catch (error) {
+      console.error('Error searching:', error);
+    }}
   const [user, setUser] = useState(null)
   // const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
@@ -199,8 +219,23 @@ if (user !== undefined) {
     setSelectedImage(URL.createObjectURL(file));
   }; 
 
+  
+const fetchData = async () => {
+  try {
+    const response = await axios.get('/api/your-endpoint');
+    console.log(response.data); // Process the response data as needed
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
+const handleFetchData = () => {
+  fetchData();
+};
+
   return (
     <>
+    
 <div className="relative bg-dro_yellow px-2 py-2 md:px-1">
   <header className="text-dro_black body-font relative z-20">
     <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
@@ -227,7 +262,7 @@ if (user !== undefined) {
               <Notification />
             </li>
           </ul>
-          <SearchPage/>
+          <Filter/>
       <div>
       <Popup
         trigger={

@@ -19,6 +19,8 @@ import Navbar from "@/components/NavBar"
 import Type from "@/components/Type"
 import 'tailwindcss/tailwind.css'
 import { useState, useEffect ,useRef} from "react";
+import Endfooter from "@/components/Endfooter"
+import Footer from "@/components/Footer"
 
 export default function trustethio(){
    const router = useRouter();
@@ -218,6 +220,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

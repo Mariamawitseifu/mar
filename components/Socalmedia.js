@@ -19,6 +19,8 @@ import Navbar from "@/components/NavBar"
 import Type from "./Type"
 import 'tailwindcss/tailwind.css'
 import { useState, useEffect ,useRef} from "react";
+import Footer from "./Footer"
+import Endfooter from "./Endfooter"
 
 export default function Socalmedia(){
    const router = useRouter();
@@ -217,6 +219,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

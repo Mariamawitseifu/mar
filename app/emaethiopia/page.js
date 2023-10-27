@@ -19,6 +19,8 @@ import Navbar from "@/components/NavBar"
 import Type from "@/components/Type"
 import 'tailwindcss/tailwind.css'
 import { useState, useEffect ,useRef} from "react";
+import Footer from "@/components/Footer"
+import Endfooter from "@/components/Endfooter"
 
 
 export default function TrustEthio() {
@@ -215,6 +217,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
   )
