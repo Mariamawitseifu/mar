@@ -12,7 +12,7 @@ function Userpass() {
   const handleChange = (e) => {
     if (e.target.name === 'oldPassword') {
       setOldPassword(e.target.value);
-    } else if (e.target.sname === 'newPassword') {
+    } else if (e.target.name === 'newPassword') { // Corrected typo here
       setNewPassword(e.target.value);
     }
   };

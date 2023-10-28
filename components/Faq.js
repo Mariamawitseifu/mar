@@ -3,19 +3,15 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import Navbar from "./NavBar";
-import blogs from "/app/blogsandblogs/page";
+import Blogs from "/app/blogsandblogs/page";
+
 export default function Faq() {
   const cover = ["land.png", "news.png"];
   const [currentImage, setCurrentImageIndex] = useState(0);
   const [post, setPost] = useState({ title: '', content: '' });
+  const [posts, setPosts] = useState([])
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/api/blog/')
-      .then(response => setPost(response.data))
-      .catch(error => console.error(error));
-  }, []);
-
+  const [blogPost, setBlogPost] = useState(null);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex(prevIndex => (prevIndex + 1) % cover.length);
@@ -26,6 +22,30 @@ export default function Faq() {
   const handleClick = () => {
     setIsOpen(true);
   };
+
+
+  // console.log(`This is the ${posts}`);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/blog-posts/92/')
+      .then(response => response.json())
+      .then(data => setBlogPost(data))
+      .catch(error => console.log(error));
+
+  }, []);
+
+  if (!blogPost) {
+    return <div>Loading...</div>;
+  }
+
+  const { image, title, description } = blogPost || {};
+
+
+
+
+
+
+  
 
   return (
     <div className="flex flex-col">
@@ -40,7 +60,9 @@ export default function Faq() {
           <div className="w-full h-72 relative">
             <div className="relative w-full h-full perspective-3d">
               <div className="relative w-full h-full transform transition-all duration-500 hover:scale-105 hover:opacity-50">
-                {cover.map((image, index) => (
+                
+                
+                {/* {cover.map((image, index) => (
                   <div
                     key={index}
                     className={`image-container ${index === currentImage ? 'active' : ''}`}
@@ -53,19 +75,36 @@ export default function Faq() {
                       className="object-cover"
                     />
                   </div>
-             
-                ))}
-                     <div>
-                      test
-                    
-                    </div>
+            
+                ))} */}
+
+ <div>
+  <Image
+    src={`data:image/jpeg;base64,${image}`}
+    alt="Blog Post"
+    width={520} // Specify the desired width
+    height={20} // Specify the desired height
+  />
+  {/* <h2>{title}</h2>
+  <p>{description}</p> */}
+</div>
+
               </div>
             </div>
-          </div>
-          
+          </div>       
           <div className="flex flex-col justify-center px-80">
             <div className="font-bold sm:mt-3 text-xl sm:text-lg">{post.title}</div>
-            <div className="text-md sm:text-sm font-medium">12, AUG, 2023</div>
+            <div className="text-md sm:text-sm font-medium">  <h2>{title}</h2>
+      <p>{description}</p>
+            
+            {/* <div>
+      <img src={`data:image/jpeg;base64,${image}`} alt="Blog Post" />
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div> */}
+            
+            
+            </div>
             <div className="sm:mb-3">
               {!isOpen && (
                 <button
@@ -77,15 +116,15 @@ export default function Faq() {
               )}
             </div>
             {isOpen && (
-              <div className="mt-4">
-                <p>test this now123
-                {post.title}
-                </p>
-                <p>{post.body}</p>
-                {/* Additional content to display when "See More" is clicked */}
-                <p className="mt-4">Additional content here...</p>
-              </div>
-            )}
+  posts.map((post) => (
+    <div key={post.id} className="mt-4">
+      <p>test this now123 {post.title}</p>
+      <p>{post.body}</p>
+      {/* Additional content to display when "See More" is clicked */}
+      <p className="mt-4">Additional content here...</p>
+    </div>
+  ))
+)}
           </div>
         </div>
       </div>

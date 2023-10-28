@@ -1,73 +1,69 @@
-import { useState } from 'react';
+import { Component, useState } from 'react';
+import axios from 'axios';
+import filter from 'Components/filter.css'
 
-async function searchHandler(req, res) {
-  const { query } = req.query;
-
-  try {
-    const response = await fetch(`http://your-django-api/search/?query=${encodeURIComponent(query)}`);
-    if (response.ok) {
-      const data = await response.json();
-      res.status(200).json(data);
-    } else {
-      console.error('Error:', response.status);
-      res.status(500).json({ error: 'An error occurred' });
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'An error occurred' });
-  }
-}
-
-function SearchPage() {
+export default function Filter() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
-    if (query.trim() === '') {
-      setResults([]);
-      return;
-    }
-
     try {
-      const response = await fetch(`/your-app/search/?query=${encodeURIComponent(query)}`);
-      if (response.ok) {
-        const data = await response.json();
-        setResults(data.results);
-      } else {
-        console.error('Error:', response.status);
-      }
+      const response = await axios.get('http://127.0.0.1:8000/api/api/record/search/', {
+        params: {
+          query: query,
+        },
+      });
+      // Set the search results in the state
+      setResults(response.data.results);
     } catch (error) {
+      // Handle any errors here
       console.error('Error:', error);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
+
+  const handleResultClick = (id) => {
+    // Navigate to the location of the search result when clicked
+    const element = document.getElementById(`result-${id}`);
+    if (element) {
+      element.scrollIntoView();
     }
   };
 
   return (
     <div>
-  <form className="flex flex-col md:flex-row" onSubmit={handleSearch}>
-  <input
-    type="text"
-    value={query}
-    onChange={(e) => setQuery(e.target.value)}
-    placeholder="Search..."
-    className="md:mr-2"
-  />
-  <button type="submit" class="bg-dro_re hover:bg-dro_green text-dro_white font-bold py-2 px-2 md:py-2 md:px-2 lg:py-4 lg:px-4">
-    {/* Search */}
-  </button>
-</form>
-
       <div>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder="Search..."
+          className="py-2 px-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+      <div className="results-container">
         {results.map((result) => (
-          <div key={result.title}>
-            <h3>{result.title}</h3>
-            <p>{result.body}</p>
+          <div
+            key={result.id}
+            id={`result-${result.id}`}
+            onClick={() => handleResultClick(result.id)}
+            style={{ cursor: 'pointer' }}
+            className="result-item"
+          >
+            {/* Render the search result data */}
+            <p>{result.name}</p>
+            <p>{result.internal_links}</p>
+            <p>{result.external_links}</p>
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-export { searchHandler, SearchPage };

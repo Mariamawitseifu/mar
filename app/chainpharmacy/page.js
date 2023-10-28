@@ -18,40 +18,45 @@ import www from "public/image/www.png"
 import Navbar from "@/components/NavBar"
 import { useState, useEffect ,useRef} from "react";
 import 'tailwindcss/tailwind.css'
+import Footer from "@/components/Footer"
+import Endfooter from "@/components/Endfooter"
 
 export default function chainpharmacy(){
    const [typewriterText, setTypewriterText] = useState('');
 
-   useEffect(() =>{
-     const text = 'Droga Chain Pharmacy';
-     let i = 0;
-     let interval = null;
-     let isForward = true;
- 
-     const startTyping = () => {
-       interval = setInterval(() => {
-         if (isForward) {
-           setTypewriterText(prevText => prevText + text[i]);
-           i++;
-         } else {
-           setTypewriterText(prevText => prevText.slice(0, -1));
-           i--;
-         }
- 
-         if (isForward && i === text.length) {
-           isForward = false;
-         } else if (!isForward && i === 0) {
-           isForward = true;
-         }
-       }, 100);
-     };
- 
-     startTyping();
- 
-     return () => {
-       clearInterval(interval);
-     };
-   }, []);
+   useEffect(() => {
+    const text = 'Droga Chainpharmacy';
+    let i = 0;
+    let interval = null;
+  
+    const startTyping = () => {
+      interval = setInterval(() => {
+        setTypewriterText(prevText => {
+          if (i < text.length) {
+            return text.slice(0, i + 1);
+          } else {
+            return prevText.slice(0, -1);
+          }
+        });
+  
+        i++;
+  
+        if (i > text.length * 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            i = 0;
+            startTyping(); // Restart the typewriter effect
+          }, 1000); // Delay before restarting the effect (1 second in this example)
+        }
+      }, 500);
+    };
+  
+    startTyping();
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
    const router = useRouter();
 
    const handleClickG = () => {
@@ -210,6 +215,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 
