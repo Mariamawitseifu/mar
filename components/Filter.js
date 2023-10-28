@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { Component, useState } from 'react';
 import axios from 'axios';
+import filter from 'Components/filter.css'
 
 export default function Filter() {
   const [query, setQuery] = useState('');
