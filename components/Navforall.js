@@ -6,9 +6,9 @@ import land from "/public/image/land.png";
 import Quick from "../app/quick/page.js";
 import Blogs from "@/app/blogs/Blogs.js";
 import Notification from './notification.js';
-import lock from "/public/image/lock.png"
-import log from "/public/image/log.png"
-import dashboard from "/public/image/dashboard.png"
+import lock from "/public/image/lock.png";
+import log from "/public/image/log.png";
+import dashboard from "/public/image/dashboard.png";
 import Popup from "reactjs-popup";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from 'react-responsive';
@@ -46,7 +46,7 @@ export default function Navforall() {
             <a className="flex title-font font-medium items-center mb- md:mb-0">
               <div className="px-10 py-10 ml-auto">
                <Link href="/home" >
-                  <Image className="" src={Droga} height={120} width={120} alt="droga logo" />
+                  <img className="" src={Droga} height={120} width={120} alt="droga logo" />
               </Link> 
               </div>
             </a>
@@ -120,7 +120,7 @@ export default function Navforall() {
           <h3 className=" text-xs mb-3">Charlieisdo@gmail.com</h3>
           <div className=" flex flex-col">
           <div className=" flex flex-row items-center justify-center border-t-2 border-dro_black w-full">
-            <Image src={dashboard} height={20} width={20} />
+            <img src={dashboard} height={20} width={20} />
            <button className="hover:bg-dro_gray font-medium mt-3 py-2 px-4">
            Go to Dashboard
           </button> 
@@ -134,7 +134,7 @@ export default function Navforall() {
           </div>
           
           <div className="flex flex-row mr-24 ml-3 items-center justify-center">
-          <Image src={log} height={20} width={20}/>
+          <img src={log} height={20} width={20}/>
           <button className="hover:bg-dro_gray font-medium py-2 px-4">
             Log Out
           </button>

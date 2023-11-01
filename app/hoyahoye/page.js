@@ -1,5 +1,5 @@
 
-import BlogPost from "@/components/BlogPost"
+import BlogPost from "@/components/BlogPost";
 export default function hoyahoo(){
 return(
 <>

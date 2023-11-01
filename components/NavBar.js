@@ -1,31 +1,21 @@
 'use client';
-import Image from "next/image";
 import Link from 'next/link';
 import Droga from "/public/image/Droga.jpg";
 import Notification from './notification.js';
-import lock from "/public/image/lock.png"
-import log from "/public/image/log.png"
-import dashboard from "/public/image/dashboard.png"
+import lock from "/public/image/lock.png";
+import log from "/public/image/log.png";
 import Popup from "reactjs-popup";
 import { useState, useEffect ,useRef} from "react";
-import { useMediaQuery } from 'react-responsive';
-import Groupcards from "./Groupcards.js";
-import Cookies from "js-cookie"
-import blur from "/components/blur.css";
+import Cookies from "js-cookie";
 import Welcome from "./Welcome.js";
-import { FiUpload } from 'react-icons/fi';
 import axios from "axios";
 import Filter from "./Filter.js";
-import Blogs from "@/app/blogsandblogs/page.js";
-import Userpass from "./Userpass.js";
-import Passwordchange from "@/app/Passwordchange/page.js";
-// import Link from 'next/link';
-import Userguide from "@/app/userguide/page.js";
-
+// import Droga from "/public/image/Droga.jpg  ";
 
 
 export default function Navbar() {
 
+  const [modalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [blogPostResults, setBlogPostResults] = useState([]);
   const [recordResults, setRecordResults] = useState([]);
@@ -232,6 +222,9 @@ const fetchData = async () => {
 const handleFetchData = () => {
   fetchData();
 };
+const handlePost = () => {
+  // update state 
+}
 
   return (
     <>
@@ -241,7 +234,7 @@ const handleFetchData = () => {
     <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
       <div className="flex flex-row px-4 md:px-8 py-1">
         <Link href="/home">
-          <Image className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20" src={Droga} alt="droga logo" />
+          <img className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20" src= "/public/image/Droga.jpg" alt="droga logo" />
         </Link> 
         <h1 className="px-3 font-medium text-2xl md:text-3xl lg:text-4xl">
           Droga Group <span className="font-semibold animate-pulse">Portal</span>
@@ -252,7 +245,12 @@ const handleFetchData = () => {
           <div>
             <Welcome/>
           </div>
-          <Blogs/>
+          <>
+          <div>
+          {/* <Test onSubmit={handlePost} /> */}
+    </div>
+          </>
+          
           <Link legacyBehavior href="/userguide">
             <a className="font-semibold text-lg">Portal User Guide</a>
           </Link>
@@ -265,12 +263,11 @@ const handleFetchData = () => {
           <Filter/>
       <div>
       <Popup
-        trigger={
+        trigger={user ? (
         <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].toUpperCase()}</button>
-        }
+   ): null}
         position="bottom right"
       >
-       
     <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
           <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
             <span className="text-center">{user && user.username.toUpperCase()}</span>
@@ -284,7 +281,7 @@ const handleFetchData = () => {
                       
                       <div className="flex flex-row items-center justify-center">
   
-          <Image src={lock} height={20} width={20}/>
+          <img src={lock} height={20} width={20}/>
            <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleClickP}>
            <Link legacyBehavior href="/Passwordchange">
   <a> Change Password</a>
@@ -292,7 +289,7 @@ const handleFetchData = () => {
           </button> 
           </div>
 <div className="flex flex-row mr-24 ml-3 items-center justify-center">
-  <Image src={log} height={20} width={20} />
+  <img src={log} height={20} width={20} />
   <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleLogout}>
     Log Out
   </button>

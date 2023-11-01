@@ -1,11 +1,20 @@
-import Card from "components/Card1"
 
-export default function Blogs () {
+import BlogPost from "@/components/BlogPost";
 
-return 
+export default function testcard () {
 
-<Card/>
-
+return (
 
 
-}
+<>
+<BlogPost/>
+</>
+
+
+)
+
+
+
+
+
+};

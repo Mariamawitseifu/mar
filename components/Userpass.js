@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import Home from '@/app/home/page';
 import Link from 'next/link';
 
 function Userpass() {

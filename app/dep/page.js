@@ -1,12 +1,12 @@
 "use client"
 import Link from "next/link";
 import Droga from "public/image/Droga.jpg";
-import Image from "next/image";
+// import Image from "next/image";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useClient } from 'react';
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 
 export default function dep() {
@@ -67,7 +67,7 @@ export default function dep() {
       <div className="w-96 h-4/5 overflow-hidden shadow-xl bg-white">
         
         <div className="flex flex-row items-center justify-center mt-3">
-          <Image
+          <img
             src={Droga}
             width={110}
             height={110}
@@ -136,4 +136,4 @@ export default function dep() {
       </div>
     </div>
   );
-}
+} 

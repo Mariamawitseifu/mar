@@ -1,8 +1,4 @@
 'use client'
-import { useState } from "react";
-import Image from "next/image";
-// import { useRouter } from 'next/router';
-// useRouter
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -73,49 +69,49 @@ function Cards() {
         <Slider {...settings}>
         <div>
           <button className="button" onClick={handleClick}>
-            <Image className=" rounded-md image" src="/image/henok.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className=" rounded-md image" src="/image/henok.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Group CEO</p>
           </button>
         </div>
         <div>
           <button className=" rounded-md button" onClick={handleClick2}>
-            <Image className="image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Pharma</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick3}>
-            <Image className="rounded-md  image" src="/image/ema.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md  image" src="/image/ema.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Ema Ethiopia</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick4}>
-            <Image className="rounded-md  image" src="/image/trust.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md  image" src="/image/trust.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Trust Ethiopharma</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick5}>
-            <Image className="rounded-md image" src="/image/physio.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/physio.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga pyshiotherapy</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick1}>
-            <Image className="rounded-md image" src="/image/chainpharma.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/chainpharma.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Chain Pharmacy</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick6}>
-            <Image className="rounded-md image" src="/image/somaliland.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/somaliland.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Somaliland</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick7}>
-            <Image className="rounded-md image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Rwanda</p>
           </button>
         </div>

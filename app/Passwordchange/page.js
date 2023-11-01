@@ -1,4 +1,4 @@
-import Userpass from "@/components/Userpass"
+import Userpass from "@/components/Userpass";
 export default function(){
     return (
         <>

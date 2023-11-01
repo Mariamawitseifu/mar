@@ -1,17 +1,19 @@
-import Image from "next/image";
+// import Image from "next/image";
 import land from '/public/image/land.png';
 import Navbar from "/components/NavBar";
-import Faq from "/components/Faq"
-import Endfooter from "/components/Endfooter"
+// import Faq from "/components/Faq";
+import Endfooter from "/components/Endfooter";
 import FAQAccordion from '/components/FAQAccordion';
 import Footer from "@/components/Footer";
 import Welcome from "@/components/Welcome";
 import { useClient } from 'react';
+import Test from '../test/page.js';
+import Faq from "@/components/Faq";
 import Cards from "@/components/Cards";
 
 
 
-export default function Home (){ 
+export default function Home ({ title }){ 
 return(<div>
     <div className="">
       <Navbar />
@@ -26,7 +28,9 @@ return(<div>
 </div>
 
 <div className="">
-  <Faq/>
+<Test/>
+    
+    {/* {title && <Faq title={title} />}   */}
 </div>
 <div className="mt-4">
   <Footer/>

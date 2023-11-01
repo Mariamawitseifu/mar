@@ -1,7 +1,7 @@
 import Link from "next/link";
 import dro from "/public/image/Droga.jpg";
 import Home from "@/app/page";
-import Image from "next/image";
+// import Image from "next/image";
 import Droga from "/public/image/Droga.jpg";
 import Dro from "/public/image/Dro.png";
 import Groupcards from "./Groupcards";
@@ -18,7 +18,7 @@ export default function Footer(){
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
           <a href="/home" className="flex items-center">
-  <Image src={dro} width={50} height={30} alt="FlowBite Logo" />
+  <img src={dro} width={50} height={30} alt="FlowBite Logo" />
   <div className="flex flex-col items-center">
   <span className="self-center font-semibold whitespace-nowrap text-sm">DROGA GROUP</span>
   <span className="self-center text-xs font-semibold whitespace-nowrap dark:text-white">Serving the People!</span>
