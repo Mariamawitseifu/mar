@@ -1,24 +1,45 @@
 'use client'
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Navbar from "./NavBar";
-import blogs from "/app/blogsandblogs/page";
-export default function Faq() {
+
+export default function Faq({ title, body }) {
   const cover = ["land.png", "news.png"];
   const [currentImage, setCurrentImageIndex] = useState(0);
-  const [post, setPost] = useState({ title: '', content: '' });
   const [isOpen, setIsOpen] = useState(false);
+  // const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/api/blog/')
-      .then(response => setPost(response.data))
-      .catch(error => console.error(error));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
+        console.log("API Response:", response.data);
+        setPosts(response.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
+        setPosts(response.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % cover.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % cover.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -29,8 +50,6 @@ export default function Faq() {
 
   return (
     <div className="flex flex-col">
-      {/* <Navbar post={post} /> */}
-
       <div className="flex items-center justify-center">
         <h1 className="px-12 text-2xl font-semibold relative mb-12">Announcements and Blogs</h1>
       </div>
@@ -45,7 +64,7 @@ export default function Faq() {
                     key={index}
                     className={`image-container ${index === currentImage ? 'active' : ''}`}
                   >
-                    <Image
+                    <img
                       src={`/image/${image}`}
                       alt="Image"
                       layout="fill"
@@ -53,19 +72,16 @@ export default function Faq() {
                       className="object-cover"
                     />
                   </div>
-             
                 ))}
-                     <div>
-                      test
-                    
-                    </div>
               </div>
             </div>
           </div>
-          
           <div className="flex flex-col justify-center px-80">
-            <div className="font-bold sm:mt-3 text-xl sm:text-lg">{post.title}</div>
-            <div className="text-md sm:text-sm font-medium">12, AUG, 2023</div>
+            <div className="font-bold sm:mt-3 text-xl sm:text-lg">{title}</div>
+            <div className="text-md sm:text-sm font-medium">
+              {/* <h2>{title}</h2> */}
+              
+            </div>
             <div className="sm:mb-3">
               {!isOpen && (
                 <button
@@ -77,15 +93,21 @@ export default function Faq() {
               )}
             </div>
             {isOpen && (
-              <div className="mt-4">
-                <p>test this now123
-                {post.title}
-                </p>
-                <p>{post.body}</p>
-                {/* Additional content to display when "See More" is clicked */}
-                <p className="mt-4">Additional content here...</p>
-              </div>
-            )}
+  <div>
+    <p>{body}</p>
+    {posts && posts.length > 0 ? (
+      posts.map((post) => (
+        <div key={post.id} className="mt-4">
+          <p>{post.title}</p>
+          <p>{post.body}</p>
+        </div>
+      ))
+    ) : (
+      <p></p>
+    )}
+  </div>
+)}
+
           </div>
         </div>
       </div>

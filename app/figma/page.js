@@ -1,5 +1,5 @@
-import Image from "next/image"
-import news from "public/image/news.png"
+// import Image from "next/image"
+import news from "public/image/news.png";
 export default function figma(){
     return (
 
@@ -20,14 +20,14 @@ export default function figma(){
     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
     <div className="position absolute top-0  right-2/4 ">
-    <Image src={news} 
+    <img src={news} 
     height={500} 
     width={300}/>
 
   </div>
   </div>
   {/* <div className="position absolute top-0 right-0">
-    <Image src={news} 
+    <img src={news} 
     height={300} 
     width={200}/>
 

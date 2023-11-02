@@ -1,57 +1,57 @@
 "use client"
-import Image from "next/image"
-import ifb from "public/image/ifb.png"
-import iedge from "public/image/iedge.png"
-import igmail from "public/image/igmail.png"
-import instagram from "public/image/instagram.png"
-import itwitter from "public/image/itwitter.png"
-import iwechat from "public/image/iwechat.png"
-import ilinkedin from "public/image/ilinkedin.png"
+import ifb from "public/image/ifb.png";
+import itwitter from "public/image/itwitter.png";
+import ilinkedin from "public/image/ilinkedin.png";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Gallery from "../gallery/page"
-import whatsapp from "public/image/whatsapp.png"
-import deskphone from "public/image/deskphone.png"
-import phone from "public/image/phone.png"
-import telegram from "public/image/telegram.png"
-import www from "public/image/www.png"
-import Navbar from "@/components/NavBar"
+import Gallery from "../gallery/page";
+import whatsapp from "public/image/whatsapp.png";
+import deskphone from "public/image/deskphone.png";
+import phone from "public/image/phone.png";
+import telegram from "public/image/telegram.png";
+import www from "public/image/www.png";
+import Navbar from "@/components/NavBar";
 import { useState, useEffect ,useRef} from "react";
-import 'tailwindcss/tailwind.css'
+import 'tailwindcss/tailwind.css';
+import Footer from "@/components/Footer";
+import Endfooter from "@/components/Endfooter";
 
 export default function chainpharmacy(){
    const [typewriterText, setTypewriterText] = useState('');
 
-   useEffect(() =>{
-     const text = 'Droga Chain Pharmacy';
-     let i = 0;
-     let interval = null;
-     let isForward = true;
- 
-     const startTyping = () => {
-       interval = setInterval(() => {
-         if (isForward) {
-           setTypewriterText(prevText => prevText + text[i]);
-           i++;
-         } else {
-           setTypewriterText(prevText => prevText.slice(0, -1));
-           i--;
-         }
- 
-         if (isForward && i === text.length) {
-           isForward = false;
-         } else if (!isForward && i === 0) {
-           isForward = true;
-         }
-       }, 100);
-     };
- 
-     startTyping();
- 
-     return () => {
-       clearInterval(interval);
-     };
-   }, []);
+   useEffect(() => {
+    const text = 'Droga Chainpharmacy';
+    let i = 0;
+    let interval = null;
+  
+    const startTyping = () => {
+      interval = setInterval(() => {
+        setTypewriterText(prevText => {
+          if (i < text.length) {
+            return text.slice(0, i + 1);
+          } else {
+            return prevText.slice(0, -1);
+          }
+        });
+  
+        i++;
+  
+        if (i > text.length * 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            i = 0;
+            startTyping(); // Restart the typewriter effect
+          }, 1000); // Delay before restarting the effect (1 second in this example)
+        }
+      }, 500);
+    };
+  
+    startTyping();
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
    const router = useRouter();
 
    const handleClickG = () => {
@@ -77,8 +77,8 @@ return<>
    <div className="flex items-center">
      <div className=" flex flex-row"> 
       <div>
-       <Image src={www} height={50} width={50}>
-</Image>
+       <img src={www} height={50} width={50}>
+</img>
 <h1 className="">
 Website
 </h1>     
@@ -88,8 +88,8 @@ Website
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={itwitter} height={50} width={50}>
-</Image> 
+       <img src={itwitter} height={50} width={50}>
+</img> 
 <h1 className="">
 Twitter
 </h1>     
@@ -99,8 +99,8 @@ Twitter
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={ifb} height={50} width={50}>
-</Image> 
+       <img src={ifb} height={50} width={50}>
+</img> 
 <h1 className="">
 Facebook
 </h1>     
@@ -112,8 +112,8 @@ Facebook
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={ilinkedin} height={50} width={50}>
-</Image> 
+       <img src={ilinkedin} height={50} width={50}>
+</img> 
 <h1 className="">
 LinkedIn
 </h1>     
@@ -144,8 +144,8 @@ LinkedIn
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={deskphone} height={50} width={50}>
-</Image> 
+       <img src={deskphone} height={50} width={50}>
+</img> 
 <h1 className="">
 DeskPhone
 </h1>     
@@ -156,8 +156,8 @@ DeskPhone
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={telegram} height={50} width={50}>
-</Image> 
+       <img src={telegram} height={50} width={50}>
+</img> 
 <h1 className="">
 Telegram
 </h1>     
@@ -168,8 +168,8 @@ Telegram
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={whatsapp} height={50} width={50}>
-</Image> 
+       <img src={whatsapp} height={50} width={50}>
+</img> 
 <h1 className="">
 Whatsapp
 </h1>     
@@ -180,8 +180,8 @@ Whatsapp
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={phone} height={50} width={50}>
-</Image> 
+       <img src={phone} height={50} width={50}>
+</img> 
 <h1 className="">
 Phone No
 </h1>     
@@ -210,6 +210,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
 

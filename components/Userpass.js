@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import Home from '@/app/home/page';
 import Link from 'next/link';
 
 function Userpass() {
@@ -12,7 +11,7 @@ function Userpass() {
   const handleChange = (e) => {
     if (e.target.name === 'oldPassword') {
       setOldPassword(e.target.value);
-    } else if (e.target.sname === 'newPassword') {
+    } else if (e.target.name === 'newPassword') { // Corrected typo here
       setNewPassword(e.target.value);
     }
   };

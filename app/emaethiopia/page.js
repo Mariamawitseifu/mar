@@ -1,45 +1,61 @@
 "use client"
-import Image from "next/image"
-import ifb from "public/image/ifb.png"
-import iedge from "public/image/iedge.png"
-import igmail from "public/image/igmail.png"
-import instagram from "public/image/instagram.png"
-import itwitter from "public/image/itwitter.png"
-import iwechat from "public/image/iwechat.png"
-import ilinkedin from "public/image/ilinkedin.png"
+// import Image from "next/image"
+import ifb from "public/image/ifb.png";
+import iedge from "public/image/iedge.png";
+import igmail from "public/image/igmail.png";
+import instagram from "public/image/instagram.png";
+import itwitter from "public/image/itwitter.png";
+import iwechat from "public/image/iwechat.png";
+import ilinkedin from "public/image/ilinkedin.png";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Gallery from "../gallery/page"
-import whatsapp from "public/image/whatsapp.png"
-import deskphone from "public/image/deskphone.png"
-import phone from "public/image/phone.png"
-import telegram from "public/image/telegram.png"
-import www from "public/image/www.png"
-import Navbar from "@/components/NavBar"
-import Type from "@/components/Type"
-import 'tailwindcss/tailwind.css'
+import Gallery from "../gallery/page";
+import whatsapp from "public/image/whatsapp.png";
+import deskphone from "public/image/deskphone.png";
+import phone from "public/image/phone.png";
+import telegram from "public/image/telegram.png";
+import www from "public/image/www.png";
+import Navbar from "@/components/NavBar";
+import Type from "@/components/Type";
+import 'tailwindcss/tailwind.css';
 import { useState, useEffect ,useRef} from "react";
+import Footer from "@/components/Footer";
+import Endfooter from "@/components/Endfooter";
 
 
-export default function TrustEthio() {
+export default function Emaethiopia() {
   const [typewriterText, setTypewriterText] = useState("");
   const text = "EMA Ethiopia";
 
   useEffect(() => {
+    const text = 'Ema Ethiopia';
     let i = 0;
-
-    const interval = setInterval(() => {
-      console.log("i:", i);
-      console.log("typewriterText:", typewriterText);
-
-      if (i < text.length) {
-        setTypewriterText(prevText => prevText + text[i]);
+    let interval = null;
+  
+    const startTyping = () => {
+      interval = setInterval(() => {
+        setTypewriterText(prevText => {
+          if (i < text.length) {
+            return text.slice(0, i + 1);
+          } else {
+            return prevText.slice(0, -1);
+          }
+        });
+  
         i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-
+  
+        if (i > text.length * 2) {
+          clearInterval(interval);
+          setTimeout(() => {
+            i = 0;
+            startTyping(); // Restart the typewriter effect
+          }, 1000); // Delay before restarting the effect (1 second in this example)
+        }
+      }, 500);
+    };
+  
+    startTyping();
+  
     return () => {
       clearInterval(interval);
     };
@@ -68,8 +84,8 @@ export default function TrustEthio() {
    <div className="flex items-center">
      <div className=" flex flex-row"> 
       <div>
-       <Image src={www} height={50} width={50}>
-</Image>
+       <img src={www} height={50} width={50}>
+</img>
 <h1 className="">
 Website
 </h1>     
@@ -79,8 +95,8 @@ Website
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={itwitter} height={50} width={50}>
-</Image> 
+       <img src={itwitter} height={50} width={50}>
+</img> 
 <h1 className="">
 Twitter
 </h1>     
@@ -90,8 +106,8 @@ Twitter
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={ifb} height={50} width={50}>
-</Image> 
+       <img src={ifb} height={50} width={50}>
+</img> 
 <h1 className="">
 Facebook
 </h1>     
@@ -103,8 +119,8 @@ Facebook
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={ilinkedin} height={50} width={50}>
-</Image> 
+       <img src={ilinkedin} height={50} width={50}>
+</img> 
 <h1 className="">
 LinkedIn
 </h1>     
@@ -135,8 +151,8 @@ LinkedIn
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={deskphone} height={50} width={50}>
-</Image> 
+       <img src={deskphone} height={50} width={50}>
+</img> 
 <h1 className="">
 DeskPhone
 </h1>     
@@ -147,8 +163,8 @@ DeskPhone
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={telegram} height={50} width={50}>
-</Image> 
+       <img src={telegram} height={50} width={50}>
+</img> 
 <h1 className="">
 Telegram
 </h1>     
@@ -159,8 +175,8 @@ Telegram
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={whatsapp} height={50} width={50}>
-</Image> 
+       <img src={whatsapp} height={50} width={50}>
+</img> 
 <h1 className="">
 Whatsapp
 </h1>     
@@ -171,8 +187,8 @@ Whatsapp
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <Image src={phone} height={50} width={50}>
-</Image> 
+       <img src={phone} height={50} width={50}>
+</img> 
 <h1 className="">
 Phone No
 </h1>     
@@ -201,6 +217,8 @@ Phone No
 <div>
 <button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
 </button>
+<Footer/>
+<Endfooter/>
 </div>
 </>
   )
