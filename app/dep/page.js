@@ -1,43 +1,15 @@
 "use client"
 import Link from "next/link";
 import Droga from "public/image/Droga.jpg";
-// import Image from "next/image";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useClient } from 'react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-
 export default function dep() {
-  const [username, setUsername]= useState('');    
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter()
-
-  // const handleSignIn = async () => {
-  //   try {
-  //     const response = await axios.post('http://127.0.0.1:8000/api/login/' , {
-  //       username,
-  //       password,
-  //     });
-
-  //     console.log(response.data);
-
-  //     if (response.status ===200) {
-
-  //       Cookies.set("user", JSON.stringify(response.data.user))
-
-  //       router.push("/home")
-        
-  //     } else {
-        
-  //     }
-  //     // Handle the response
-  //   } catch (error) {
-  //     // Handle any errors
-  //   }
-  // };
-
+  const router = useRouter();
 
   const handleSignIn = async () => {
     try {
@@ -45,7 +17,7 @@ export default function dep() {
         username,
         password,
       });
-  
+
       if (response.status === 200) {
         const token = response.data.token; // Extract the authentication token from the response
         localStorage.setItem("token", token); // Store the token in local storage
@@ -53,7 +25,7 @@ export default function dep() {
         // You can also store other user-related data if needed
         const user = response.data.user;
         localStorage.setItem("user", JSON.stringify(user));
-  
+
         router.push("/home");
       } else {
         // Handle unsuccessful login
@@ -62,10 +34,11 @@ export default function dep() {
       // Handle any errors
     }
   };
+
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-96 h-4/5 overflow-hidden shadow-xl bg-white">
-        
+
         <div className="flex flex-row items-center justify-center mt-3">
           <img
             src={Droga}
@@ -95,7 +68,7 @@ export default function dep() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="border border-black bg-white text-sm h-8 px-2"
-              placeholder=""  
+              placeholder=""
               style={{ verticalAlign: "middle" }}
             />
           </div>
@@ -106,7 +79,7 @@ export default function dep() {
           </div>
           <div className="px-20">
             <input
-              type="text"
+              type="password" // Change the input type to "password" for password field
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -125,15 +98,15 @@ export default function dep() {
           >
             Sign in
           </button>
-         
+
         </div>
-         <div className="flex justify-center items-center py-7 text-xs">
-            <button className="">
+        <div className="flex justify-center items-center py-7 text-xs">
+          <button className="">
             Forgot Password?
             </button>
-          </div>
-          
+        </div>
+
       </div>
     </div>
   );
-} 
+}

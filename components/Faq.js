@@ -1,47 +1,66 @@
 'use client'
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+// import Button from "./Button";
 
-export default function Faq({ title, body }) {
-  const cover = ["land.png", "news.png"];
-  const [currentImage, setCurrentImageIndex] = useState(0);
+export default function Faq({ title, body, author,image }) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [posts, setPosts] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [blogs1, setBlogs1] = useState([]);
+  const [page1, setPage1] = useState(1);
+  const [blogs2, setBlogs2] = useState([]);
+  const [page2, setPage2] = useState(1);
+
+  const handleLoadMore1 = async () => {
+    setLoading(true);
+    const response = await axios.get(`/blogs1?page=${page1}`);
+    setBlogs1(prev => [...prev, ...response.data]);
+    setPage1(prev => prev + 1);
+    setLoading(false);
+  }
+
+  const handleLoadMore2 = async () => {
+    setLoading(true);
+    const response = await axios.get(`/blogs2?page=${page2}`);
+    setBlogs2(prev => [...prev, ...response.data]);
+    setPage2(prev => prev + 1);
+    setLoading(false);
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (page) => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
-        console.log("API Response:", response.data);
+        const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
+          params: {
+            limit: 3, 
+            offset: page * 3
+          }
+        });
         setPosts(response.data.results);
+        setTotalPosts(response.data.count);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchData();
+    fetchData(0);
   }, []);
 
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (page) => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
+        const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
+          params: {
+            limit: 3, 
+            offset: page * 3
+          }
+        });
         setPosts(response.data.results);
+        setTotalPosts(response.data.count);
       } catch (error) {
         console.error(error);
       }
     };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % cover.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   const handleClick = () => {
@@ -57,30 +76,15 @@ export default function Faq({ title, body }) {
       <div className="ml-10 mr-10 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg">
         <div className="flex lg:flex-row sm:flex-row justify-end">
           <div className="w-full h-72 relative">
-            <div className="relative w-full h-full perspective-3d">
-              <div className="relative w-full h-full transform transition-all duration-500 hover:scale-105 hover:opacity-50">
-                {cover.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`image-container ${index === currentImage ? 'active' : ''}`}
-                  >
-                    <img
-                      src={`/image/${image}`}
-                      alt="Image"
-                      layout="fill"
-                      objectFit="cover"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Display the announcement image here */}
+            {image}
           </div>
+
           <div className="flex flex-col justify-center px-80">
+            {/* <div>{published_date}</div> */}
             <div className="font-bold sm:mt-3 text-xl sm:text-lg">{title}</div>
             <div className="text-md sm:text-sm font-medium">
-              {/* <h2>{title}</h2> */}
-              
+              {/* Display the announcement body here */}
             </div>
             <div className="sm:mb-3">
               {!isOpen && (
@@ -93,24 +97,36 @@ export default function Faq({ title, body }) {
               )}
             </div>
             {isOpen && (
-  <div>
-    <p>{body}</p>
-    {posts && posts.length > 0 ? (
-      posts.map((post) => (
-        <div key={post.id} className="mt-4">
-          <p>{post.title}</p>
-          <p>{post.body}</p>
-        </div>
-      ))
-    ) : (
-      <p></p>
-    )}
-  </div>
-)}
-
+              <div>
+                <p>{body}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
+
+      {posts && posts.length > 0 && (
+        <div>
+          {posts.map((post) => (
+            <div key={post.id} className="ml-10 mr-10 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg mt-4">
+              <div className="flex flex-col justify-center px-80">
+                <div className="font-bold sm:mt-3 text-xl sm:text-lg">{post.title}</div>
+                <div className="text-md sm:text-sm font-medium">
+                  {post.body}
+                  {post.author}
+                </div>
+                {/* <div>{published_date}</div> */}
+              </div>
+            </div>
+          ))}
+          {posts.length < totalPosts && (
+            <div>
+              <Button onClick={handleLoadMore1}>Load More Blogs 1</Button>
+              <Button onClick={handleLoadMore2}>Load More Blogs 2</Button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

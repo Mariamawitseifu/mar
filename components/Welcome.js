@@ -133,7 +133,7 @@ export default function Welcome() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/api/api/records/id')
+      .get('http://localhost:8000/api/api/records/id/')
       .then((response) => {
         setRecords(response.data);
       })
