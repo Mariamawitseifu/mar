@@ -1,33 +1,25 @@
 "use client"
-// import Image from "next/image"
-import ifb from "public/image/ifb.png";
-import iedge from "public/image/iedge.png";
-import igmail from "public/image/igmail.png";
-import instagram from "public/image/instagram.png";
-import itwitter from "public/image/itwitter.png";
-import iwechat from "public/image/iwechat.png";
-import ilinkedin from "public/image/ilinkedin.png";
+import Image from "next/image"
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Gallery from "../gallery/page";
-import whatsapp from "public/image/whatsapp.png";
-import deskphone from "public/image/deskphone.png";
-import phone from "public/image/phone.png";
-import telegram from "public/image/telegram.png";
-import www from "public/image/www.png";
 import Navbar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import Endfooter from "@/components/Endfooter";
 import Type from "@/components/Type";
 import 'tailwindcss/tailwind.css';
 import { useState, useEffect ,useRef} from "react";
-import Footer from "@/components/Footer";
-import Endfooter from "@/components/Endfooter";
+import galleryema from "../galleryema/page";
 
+export default function emaethiopia(){
+   const router = useRouter();
 
-export default function Emaethiopia() {
-  const [typewriterText, setTypewriterText] = useState("");
-  const text = "EMA Ethiopia";
+   const handleClickG = () => {
+     router.push('/galleryema ');
+   };
+   const [typewriterText, setTypewriterText] = useState('');
 
-  useEffect(() => {
+   useEffect(() => {
     const text = 'Ema Ethiopia';
     let i = 0;
     let interval = null;
@@ -49,9 +41,9 @@ export default function Emaethiopia() {
           setTimeout(() => {
             i = 0;
             startTyping(); // Restart the typewriter effect
-          }, 1000); // Delay before restarting the effect (1 second in this example)
+          }, 500); // Delay before restarting the effect (1 second in this example)
         }
-      }, 500);
+      }, 100);
     };
   
     startTyping();
@@ -60,32 +52,30 @@ export default function Emaethiopia() {
       clearInterval(interval);
     };
   }, []);
-  const handleClickG = () => {
-    router.push("/gallery");
-  };
-
-  return (
-    <>
+return<>
+<div>
       <div>
-        <div>
-          <Navbar />
-        </div>
-        <div className="py-12 px-52">
-          <div className="bg-gray-200">
-            <h1 className="text-4xl font-bold">
-              <span className="animate-typewriter">{typewriterText}</span>
-            </h1>
-          </div>
-        </div>
+   <Navbar/>         
       </div>
-<div className=" flex flex-wrap gap-60 px-40">
+      <div className=" py-12 px-52">
+<div className="bg-gray-200">
+      <h1 className="text-4xl font-bold animate-typewriter">
+      <span className=" inset-0 typewriter">{typewriterText}</span>
+      </h1>
+    </div>
+</div>
+</div>
+<div className="inset-0  flex flex-wrap gap-60 px-40">
       <div  className=" flex flex-row gap-3">
       <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
      <div className=" flex flex-row"> 
       <div>
-       <img src={www} height={50} width={50}>
-</img>
+       <img 
+       src= "/image/www.png"
+       height={50} 
+       width={50}
+       alt="website"/>
 <h1 className="">
 Website
 </h1>     
@@ -95,7 +85,7 @@ Website
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={itwitter} height={50} width={50}>
+       <img src="/image/itwitter.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Twitter
@@ -106,7 +96,7 @@ Twitter
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ifb} height={50} width={50}>
+       <img src="/image/ifb.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Facebook
@@ -119,7 +109,7 @@ Facebook
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ilinkedin} height={50} width={50}>
+       <img src="/image/ilinkedin.png" height={50} width={50}>
 </img> 
 <h1 className="">
 LinkedIn
@@ -151,7 +141,7 @@ LinkedIn
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={deskphone} height={50} width={50}>
+       <img src="/image/deskphone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 DeskPhone
@@ -163,7 +153,7 @@ DeskPhone
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={telegram} height={50} width={50}>
+       <img src="/image/telegram.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Telegram
@@ -175,7 +165,7 @@ Telegram
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={whatsapp} height={50} width={50}>
+       <img src="/image/whatsapp.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Whatsapp
@@ -187,7 +177,7 @@ Whatsapp
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={phone} height={50} width={50}>
+       <img src="/image/phone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Phone No
@@ -215,11 +205,11 @@ Phone No
 
    </div>
 <div>
-<button className=" font-semibold text-2xl py-6 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
+<button className="font-semibold text-2xl py-6 px-8 bg-dro_green justify-center items-center "onClick={handleClickG}> Picture Gallery
 </button>
 <Footer/>
 <Endfooter/>
 </div>
 </>
-  )
-};
+
+}

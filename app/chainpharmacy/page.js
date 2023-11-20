@@ -1,20 +1,13 @@
 "use client"
-import ifb from "public/image/ifb.png";
-import itwitter from "public/image/itwitter.png";
-import ilinkedin from "public/image/ilinkedin.png";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Gallery from "../gallery/page";
-import whatsapp from "public/image/whatsapp.png";
-import deskphone from "public/image/deskphone.png";
-import phone from "public/image/phone.png";
-import telegram from "public/image/telegram.png";
-import www from "public/image/www.png";
 import Navbar from "@/components/NavBar";
 import { useState, useEffect ,useRef} from "react";
 import 'tailwindcss/tailwind.css';
 import Footer from "@/components/Footer";
 import Endfooter from "@/components/Endfooter";
+import gallerychain from '../gallerychain/page';
 
 export default function chainpharmacy(){
    const [typewriterText, setTypewriterText] = useState('');
@@ -55,7 +48,7 @@ export default function chainpharmacy(){
    const router = useRouter();
 
    const handleClickG = () => {
-     router.push('/gallery');
+     router.push('/gallerychain');
    };
  
 return<>
@@ -63,22 +56,25 @@ return<>
       <div>
    <Navbar/>         
       </div>
-<div className=" py-12 px-52">
+      <div className=" py-12 px-52">
 <div className="bg-gray-200">
       <h1 className="text-4xl font-bold animate-typewriter">
-      <span className="typewriter">{typewriterText}</span>
+      <span className=" inset-0 typewriter">{typewriterText}</span>
       </h1>
     </div>
 </div>
 </div>
- <div className=" flex flex-wrap gap-60 px-40">
+<div className="inset-0  flex flex-wrap gap-60 px-40">
       <div  className=" flex flex-row gap-3">
       <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
      <div className=" flex flex-row"> 
       <div>
-       <img src={www} height={50} width={50}>
-</img>
+       <img 
+       src= "/image/www.png"
+       height={50} 
+       width={50}
+       alt="website"/>
 <h1 className="">
 Website
 </h1>     
@@ -88,7 +84,7 @@ Website
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={itwitter} height={50} width={50}>
+       <img src="/image/itwitter.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Twitter
@@ -99,7 +95,7 @@ Twitter
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ifb} height={50} width={50}>
+       <img src="/image/ifb.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Facebook
@@ -112,7 +108,7 @@ Facebook
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ilinkedin} height={50} width={50}>
+       <img src="/image/ilinkedin.png" height={50} width={50}>
 </img> 
 <h1 className="">
 LinkedIn
@@ -144,7 +140,7 @@ LinkedIn
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={deskphone} height={50} width={50}>
+       <img src="/image/deskphone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 DeskPhone
@@ -156,7 +152,7 @@ DeskPhone
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={telegram} height={50} width={50}>
+       <img src="/image/telegram.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Telegram
@@ -168,7 +164,7 @@ Telegram
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={whatsapp} height={50} width={50}>
+       <img src="/image/whatsapp.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Whatsapp
@@ -180,7 +176,7 @@ Whatsapp
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={phone} height={50} width={50}>
+       <img src="/image/phone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Phone No

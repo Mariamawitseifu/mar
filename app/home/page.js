@@ -1,43 +1,71 @@
-// import Image from "next/image";
-import land from '/public/image/land.png';
-import Navbar from "/components/NavBar";
-// import Faq from "/components/Faq";
-import Endfooter from "/components/Endfooter";
-import FAQAccordion from '/components/FAQAccordion';
-import Footer from "@/components/Footer";
-import Welcome from "@/components/Welcome";
-import { useClient } from 'react';
-import Test from '../test/page.js';
-import Faq from "@/components/Faq";
-import Cards from "@/components/Cards";
+'use client'
+import React, { useState, useEffect } from 'react';
+import Navbar from '/components/NavBar';
+import Endfooter from '/components/Endfooter';
+import Footer from '/components/Footer';
+import Test from '../test/page';
+import Cards from '/components/Cards';
 
+export default function Home({ title }) {
+  const [visiblePosts, setVisiblePosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numVisiblePosts, setNumVisiblePosts] = useState(5); // Number of visible posts
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api1/posts?page=${currentPage}`);
+        const data = await response.json();
+        setVisiblePosts(prevVisiblePosts => [...prevVisiblePosts, ...data]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-export default function Home ({ title }){ 
-return(<div>
-    <div className="">
-      <Navbar />
-    <div className="flex flex-row absolute top-0 right-0 h-full w-full">
-   
-           </div> 
+    fetchData();
+  }, [currentPage]);
+
+  const handleLoadMoreClick = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  return (
+    <div>
+      <div className="scroll-smooth">
+        <Navbar />
+        <div className="flex flex-row absolute top-0 right-0 h-full w-full"></div>
+      </div>
+
+      <div className="py-52 px-5">
+        <Cards />
+      </div>
+
+      <div className="">
+        <div className="flex items-center justify-center">
+          <h1 className="px-12 text-2xl font-semibold relative mb-12">
+            Announcements and Blogs
+          </h1>
+        </div>
+        <Test visiblePosts={visiblePosts} />
+      </div>
+
+      {/* {visiblePosts.length > 0 && visiblePosts.length % numVisiblePosts === 0 && (
+        <div className="flex justify-center mt-4">
+          <button
+            className="rectangle-button bg-dro_black text-dro_white px-4 py-2"
+            onClick={handleLoadMoreClick}
+          >
+            Load More
+          </button>
+        </div>
+      )} */}
+
+      <div className="mt-4">
+        <Footer />
+      </div>
+      <div>
+        <Endfooter />
+      </div>
     </div>
-
-{/* <div className="relative"><Units/></div> */}
-<div className=" py-52 px-5">
-  <Cards/>
-</div>
-
-<div className="">
-<Test/>
-    
-    {/* {title && <Faq title={title} />}   */}
-</div>
-<div className="mt-4">
-  <Footer/>
-</div>
-<div>
-  <Endfooter/>
-</div>
-</div>
-)
+  );
 }

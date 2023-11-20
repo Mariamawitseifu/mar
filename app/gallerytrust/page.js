@@ -6,7 +6,7 @@ import { useState } from "react";
 
 
 
-export default function Gallery(){
+export default function gallerytrust(){
   const [selectedImage, setSelectedImage] = useState(null);
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -46,7 +46,9 @@ return<>
             </div>    
         </div>
 <div className=" py-8 px-1">
+
 <div>
+
 <div className="flex flex-row space-x-6">
       <button className="relative max-w-sm rounded overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-110">
     <img className="w-full h-full" src="/image/henok.jpg" width={160} height={150} alt="Sunset in the mountains"/>
@@ -106,6 +108,7 @@ return<>
   </div>
         </div>
         </div>
+
 </>
 
 }

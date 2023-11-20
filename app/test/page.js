@@ -1,103 +1,98 @@
 'use client'
-import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
-import Faq from "@/components/Faq.js";
-import Cookies from "js-cookie";
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import Faq from '@/components/Faq.js';
+import Cookies from 'js-cookie';
 
-
-export default function Test(){
-
-
-// const Test = () => {
-  // const router = useRouter();
-  // const [blogs, setBlogs] = useState([]);
+export default function Test({ visiblePosts }) {
   const [isOpen, setIsOpen] = useState(false);
   const titleInputRef = useRef(null);
   const bodyInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  // const authorInputRef= useRef(null);
   const cardRef = useRef(null);
   const popupRef = useRef(null);
   const [isOpenn, setIsOpenn] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [visibleFaqs, setVisibleFaqs] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const numFaqsPerPage = 5;
 
-   const handleOutsideClick = (event) => {
-       if (popupRef.current && !popupRef.current.contains(event.target)) {
-         setIsOpen(false);
-       }
-     };
-
-     useEffect(() => {
-         const handleClickOutside = (event) => {
-           if (cardRef.current && !cardRef.current.contains(event.target)) {
-             setIsOpen(false);
-           }
-         };
-    
-         document.addEventListener('mousedown', handleClickOutside);
-    
-         return () => {
-           document.removeEventListener('mousedown', handleClickOutside);
-         };
-       }, []);
-
-  const [blogs, setBlogs] = useState(JSON.parse(localStorage.getItem('blogs')) || [])
-
-  useEffect(() => {
-    localStorage.setItem('blogs', JSON.stringify(blogs))
-  }, [blogs])
-
-  // rest of state
-
-  const fetchBlogs = async () => {
-    try {
-      const token = localStorage.getItem("token");
-
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      
-      console.log(axios.defaults.headers.common["Authorization"]);
-      const response = await axios.post('http://127.0.0.1:8000/api1/createpost/'); 
-      setBlogs(response.data);
-    } catch (err) {
-      console.error(err);
+  const handleOutsideClick = (event) => {
+    if (popupRef.current && !popupRef.current.contains(event.target)) {
+      setIsOpen(false);
     }
-  }
+  };
+
   useEffect(() => {
-    fetchBlogs()
-  }, [])
-  
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const isBrowser = typeof window !== 'undefined';
+
+  const [blogs, setBlogs] = useState(
+    isBrowser ? JSON.parse(localStorage.getItem('blogs')) || [] : []
+  );
+
   useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api1/posts/');
+        setBlogs(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    if (isBrowser) {
+      localStorage.setItem('blogs', JSON.stringify(blogs));
+    }
   }, [blogs]);
 
   useEffect(() => {
-    const storedBlogs = localStorage.getItem("blogs");
+    const storedBlogs = localStorage.getItem('blogs');
     if (storedBlogs) {
       setBlogs(JSON.parse(storedBlogs));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("blogs", JSON.stringify(blogs));
+    localStorage.setItem('blogs', JSON.stringify(blogs));
   }, [blogs]);
 
   const handlePost = async () => {
+    const data = {
+      title: titleInputRef.current.value,
+      body: bodyInputRef.current.value,
+    };
+    if (!token) return;
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api1/createpost/", {
-        title: titleInputRef.current.value,
-        body: bodyInputRef.current.value,
-        // author:author.current.value,
-      });
-      console.log(response.data);
+      const response = await axios.post(
+        'http://127.0.0.1:8000/api1/createpost/',
+        data,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
-      setBlogs((prevBlogs) => [
-        ...prevBlogs,
-        { title: response.data.title, body: response.data.body, author:response.data.author,image: response.data.image },
-      ]);
+      // Handle response
 
-      titleInputRef.current.value = "";
-      bodyInputRef.current.value = "";
-      // authorInputRef.current.value="";
-
+      handleSubmit();
     } catch (error) {
       console.error(error);
     }
@@ -111,92 +106,151 @@ export default function Test(){
     setIsOpen(!isOpen);
   };
 
-  
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
 
+  const loadMoreFaqs = () => {
+    setVisibleFaqs(visibleFaqs + numFaqsPerPage);
+    setCurrentPage(currentPage + 1);
+  };
+
+  const numTotalFaqs = visiblePosts.length;
+  const remainingFaqs = numTotalFaqs - visibleFaqs;
+  const shouldDisplayLoadMore = remainingFaqs > 0;
+
+  const lastPageNumFaqs = numTotalFaqs % numFaqsPerPage;
+  const faqsToDisplay = currentPage === Math.ceil(numTotalFaqs / numFaqsPerPage)
+    ? visiblePosts.slice(0, currentPage * numFaqsPerPage + lastPageNumFaqs)
+    : visiblePosts.slice(0, currentPage * numFaqsPerPage);
 
   return (
     <>
-      <button onClick={handleClick}>Blog</button>
+      <button className="bg-dro_green text-2xl px-10 py-3" onClick={handleClick}>
+        Add a new Blog
+      </button>
 
       {isOpen && (
-        <Modal 
+        <Modal
           handlePost={handlePost}
           titleInputRef={titleInputRef}
           bodyInputRef={bodyInputRef}
           handleImageUpload={handleImageUpload}
           selectedImage={selectedImage}
-          // authorInputRef={authorInputRef}
-          cardRef={cardRef}  
-          popupRef={popupRef}  
+          cardRef={cardRef}
+          popupRef={popupRef}
           closeModal={closeModal}
-
-        />  
+        />
       )}
 
-    {blogs.map(blog => (
-  <Faq key={blog.id} title={blog.title} body={blog.body} author={blog.author.username}  image={blog.image}/>  
-))}
+      {faqsToDisplay.map((blog) => (
+        <Faq
+          key={blog.id}
+          title={blog.title}
+          body={blog.body}
+          author={blog.author}
+          image={blog.image}
+          publishedDate={blog.publishedDate}
+        />
+      ))}
 
+      {shouldDisplayLoadMore && (
+        <div className="flex justify-center mt-4">
+          <button
+            className="rectangle-button bg-dro_black text-dro_white px-4 py-2"
+            onClick={loadMoreFaqs}
+          >
+            Load More
+          </button>
+        </div>
+      )}
+
+      {!shouldDisplayLoadMore && remainingFaqs > 0 && (
+        <div className="flex justify-center mt-4">
+          <button
+            className="rectangle-button bg-dro_black text-dro_white px-4 py-2"
+            onClick={loadMoreFaqs}
+          >
+            Show {remainingFaqs} More
+          </button>
+        </div>
+      )}
     </>
   );
 }
 
-const Modal = ({handlePost, closeModal, titleInputRef, bodyInputRef, cardRef, popupRef, handleImageUpload,selectedImage}) => {
+
+const Modal = ({
+  handlePost,
+  closeModal,
+  titleInputRef,
+  bodyInputRef,
+  cardRef,
+  popupRef,
+  handleImageUpload,
+  selectedImage,
+}) => {
+  const isBrowser = typeof window !== 'undefined';
+  const token = isBrowser ? localStorage.getItem('token') : null;
+
   const handleSubmit = async () => {
     await handlePost();
     closeModal();
   };
 
   return (
-    <div className="fixed inset-0 grid place-items-center p-16 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-10" ref={popupRef}>
-      <div ref={cardRef} className="md:w-full w-2/3 lg:w-2/3 lg:h-96 bg-dro_yellow shadow-lg flex flex-col justify-between">
-        <div className="flex flex-col md:flex-row justify-between">
-        <h2 className="text-2xl px-10 py-6 font-bold mb-1">
-          Blog Here  
-        </h2>
-        <div className="relative">
-        <div className="card py-6 px-16">
-            <label htmlFor="image-upload" className="upload-button bg-dro_white px-8 py-2 md:px-4 md:py-1">
-              Choose Image
-              <input
-                id="image-upload"
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                className="hidden"
-              />
-            </label>
-            {selectedImage && (
-              <img
-                className="absolute top-2 right-2"
-                src={selectedImage}
-                alt="Selected"
-                style={{ maxWidth: '40px' }}
-              />
-            )}
-         
-        </div>
-        </div>
+    <div
+      className="fixed inset-0 grid place-items-center p-16 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-10"
+      ref={popupRef}
+    >
+      <div
+        ref={cardRef}
+        className="md:w-full w-2/3 lg:w-2/3 lg:h-96 bg-dro_yellow shadow-lg flex flex-col justify-between"
+      >
+        <div className="">
+          <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog here</h2>
+          <div className="relative">
+            <div className="card py-6 px-16">
+              <label
+                htmlFor="image-upload"
+                className="upload-button bg-dro_white px-8 py-2 md:px-4 md:py-1"
+              >
+                Choose Image
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+              </label>
+              {selectedImage && (
+                <img
+                  className="absolute top-2 right-2"
+                  src={selectedImage}
+                  alt="Selected"
+                  style={{ maxWidth: '40px' }}
+                />
+              )}
+            </div>
+          </div>
         </div>
         <div className="px-10 py-3 md:h-96 w-full">
           <div className="px-10 h-11 w-full">
-            <input 
+            <input
               ref={titleInputRef}
               className="h-10 w-full border py-3 border-dro_gray px-4 text-md text-dro_black resize-none"
-              type="text" 
-              placeholder="title"
+              type="text"
+              placeholder="Title"
             />
           </div>
           <div className="px-10 h-52 w-full">
             <input
-              ref={bodyInputRef} 
+              ref={bodyInputRef}
               className="h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
               type="text"
-              placeholder="Write Your Blog Here" 
+              placeholder="Write Your Blog Here"
             />
           </div>
           <div className="grid place-items-center pb-12 sm:flex-col md:flex-row lg:flex-row lg:pb-10">

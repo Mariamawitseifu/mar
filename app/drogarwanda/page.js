@@ -1,30 +1,14 @@
 "use client"
-// import Image from "next/image"
-import ifb from "public/image/ifb.png";
-import iedge from "public/image/iedge.png";
-import igmail from "public/image/igmail.png";
-import instagram from "public/image/instagram.png";
-import itwitter from "public/image/itwitter.png";
-import iwechat from "public/image/iwechat.png";
-import ilinkedin from "public/image/ilinkedin.png";
+import Image from "next/image"
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Gallery from "../gallery/page";
-import whatsapp from "public/image/whatsapp.png";
-import deskphone from "public/image/deskphone.png";
-import phone from "public/image/phone.png";
-import telegram from "public/image/telegram.png";
-import www from "public/image/www.png";
 import Navbar from "@/components/NavBar";
 import Type from "@/components/Type";
 import Footer from "@/components/Footer";
 import Endfooter from "@/components/Endfooter";
-// import 'tailwindcss/tailwinds.css';
-// import Typewriter from 'typewriter-effect';
 import Typewriter from 'typewriter-effect';
-
 import { useState, useEffect ,useRef} from "react";
-// import { useTypewriter,Cursor} from 'react-simple-typewriter';
 
 
 export default function drogarwanda(){
@@ -71,25 +55,25 @@ return<>
       <div>
    <Navbar/>         
       </div>
-      <div className=" py-10 px-1 md:py-12 md:px-52">
-      <div className="">
-<div className="">
-<h1 className="text-4xl font-bold animate-typewriter">
-      <span className="typewriter">{typewriterText}</span>
+      <div className=" py-12 px-52">
+<div className="bg-gray-200">
+      <h1 className="text-4xl font-bold animate-typewriter">
+      <span className=" inset-0 typewriter">{typewriterText}</span>
       </h1>
+    </div>
 </div>
 </div>
-
-</div>
-</div>
-<div className="flex flex-wrap md:gap-60 gap-6 md:px-40 px-4">
-      <div  className=" flex flex-row md:gap-3 py-2 gap-1">
-      <div className="w-1/2 md:py-5 py-10 px-1 md:px-4">
+<div className="inset-0  flex flex-wrap gap-60 px-40">
+      <div  className=" flex flex-row gap-3">
+      <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
      <div className=" flex flex-row"> 
       <div>
-       <img src={www} height={50} width={50}>
-</img>
+       <img 
+       src= "/image/www.png"
+       height={50} 
+       width={50}
+       alt="website"/>
 <h1 className="">
 Website
 </h1>     
@@ -99,7 +83,7 @@ Website
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={itwitter} height={50} width={50}>
+       <img src="/image/itwitter.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Twitter
@@ -110,7 +94,7 @@ Twitter
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ifb} height={50} width={50}>
+       <img src="/image/ifb.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Facebook
@@ -123,7 +107,7 @@ Facebook
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={ilinkedin} height={50} width={50}>
+       <img src="/image/ilinkedin.png" height={50} width={50}>
 </img> 
 <h1 className="">
 LinkedIn
@@ -150,12 +134,12 @@ LinkedIn
    </div>       
       </div>
 
-<div  className=" flex flex-row md:px-5 px-1 md:gap-3 gap-1">
-       <div className="w-1/2 py-10 px-1">
+<div  className=" flex flex-row px-5 gap-3">
+       <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={deskphone} height={50} width={50}>
+       <img src="/image/deskphone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 DeskPhone
@@ -167,7 +151,7 @@ DeskPhone
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={telegram} height={50} width={50}>
+       <img src="/image/telegram.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Telegram
@@ -179,7 +163,7 @@ Telegram
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={whatsapp} height={50} width={50}>
+       <img src="/image/whatsapp.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Whatsapp
@@ -191,7 +175,7 @@ Whatsapp
    <div className="flex items-center">
      <div className=" flex flex-row">
       <div>
-       <img src={phone} height={50} width={50}>
+       <img src="/image/phone.png" height={50} width={50}>
 </img> 
 <h1 className="">
 Phone No

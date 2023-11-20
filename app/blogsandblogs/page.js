@@ -2,184 +2,146 @@
 import { useState, useEffect ,useRef} from "react";
 import Cookies from "js-cookie"
 import axios from 'axios';
+import Circle from "@/components/Circle";
 
 
 export default function blogsandblogs(){
- const [user, setUser] = useState(null)
- const [isOpen, setIsOpen] = useState(false);
- const cardRef = useRef(null);
- const blurRef = useRef(null);
- const [isBlurred, setIsBlurred] = useState(false);
- const handleToggle = () => {
-   setIsOpen((prevState) => !prevState);
- };
+//  const [user, setUser] = useState(null)
+//  const [isOpen, setIsOpen] = useState(false);
+//  const cardRef = useRef(null);
+//  const blurRef = useRef(null);
+//  const [isBlurred, setIsBlurred] = useState(false);
+//  const handleToggle = () => {
+//    setIsOpen((prevState) => !prevState);
+//  };
 
 
  
- const [isSmallScreen, setIsSmallScreen] = useState(false);
+//  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
- useEffect(() => {
-   const handleClickOutside = (event) => {
-     if (cardRef.current && !cardRef.current.contains(event.target)) {
-       setIsOpen(false);
-     }
-   };
+//  useEffect(() => {
+//    const handleClickOutside = (event) => {
+//      if (cardRef.current && !cardRef.current.contains(event.target)) {
+//        setIsOpen(false);
+//      }
+//    };
 
-   document.addEventListener('mousedown', handleClickOutside);
+//    document.addEventListener('mousedown', handleClickOutside);
 
-   return () => {
-     document.removeEventListener('mousedown', handleClickOutside);
-   };
- }, []);
+//    return () => {
+//      document.removeEventListener('mousedown', handleClickOutside);
+//    };
+//  }, []);
 
- useEffect(() => {
-   const handleClickOutside = (event) => {
-     if (blurRef.current && !blurRef.current.contains(event.target)) {
-       setIsOpen(false);
-     }
-   };
+//  useEffect(() => {
+//    const handleClickOutside = (event) => {
+//      if (blurRef.current && !blurRef.current.contains(event.target)) {
+//        setIsOpen(false);
+//      }
+//    };
 
-   document.addEventListener('mousedown', handleClickOutside);
+//    document.addEventListener('mousedown', handleClickOutside);
 
-   return () => {
-     document.removeEventListener('mousedown', handleClickOutside);
-   };
- }, []);
- useEffect(() => {
-   const mediaQuery = window.matchMedia("(max-width: 640px)");
-   setIsSmallScreen(mediaQuery.matches);
+//    return () => {
+//      document.removeEventListener('mousedown', handleClickOutside);
+//    };
+//  }, []);
+//  useEffect(() => {
+//    const mediaQuery = window.matchMedia("(max-width: 640px)");
+//    setIsSmallScreen(mediaQuery.matches);
 
-   const handleResize = () => {
-     setIsSmallScreen(mediaQuery.matches);
-   };
+//    const handleResize = () => {
+//      setIsSmallScreen(mediaQuery.matches);
+//    };
 
-   mediaQuery.addEventListener("change", handleResize);
+//    mediaQuery.addEventListener("change", handleResize);
 
-   return () => {
-     mediaQuery.removeEventListener("change", handleResize);
-   };
- }, []);
+//    return () => {
+//      mediaQuery.removeEventListener("change", handleResize);
+//    };
+//  }, []);
 
- const popupRef = useRef(null);
+//  const popupRef = useRef(null);
 
- useEffect(() => {
+//  useEffect(() => {
 
-   const user = Cookies.get("user");
-if (user !== undefined) {
- setUser(JSON.parse(user));
-}
+//    const user = Cookies.get("user");
+// if (user !== undefined) {
+//  setUser(JSON.parse(user));
+// }
 
 
-   const handleOutsideClick = (event) => {
-     if (popupRef.current && !popupRef.current.contains(event.target)) {
-       setIsOpen(false);
-     }
-   };
+//    const handleOutsideClick = (event) => {
+//      if (popupRef.current && !popupRef.current.contains(event.target)) {
+//        setIsOpen(false);
+//      }
+//    };
 
-   document.addEventListener('mousedown', handleOutsideClick);
-   return () => {
-     document.removeEventListener('mousedown', handleOutsideClick);
-   };
- }, []);
+//    document.addEventListener('mousedown', handleOutsideClick);
+//    return () => {
+//      document.removeEventListener('mousedown', handleOutsideClick);
+//    };
+//  }, []);
 
- function Popupview() {
-   const [isOpen, setIsOpen] = useState(false);
-   const popupRef = useRef(null);
-   const popupRef1 = useRef1(null);
+//  function Popupview() {
+//    const [isOpen, setIsOpen] = useState(false);
+//    const popupRef = useRef(null);
+//    const popupRef1 = useRef1(null);
  
-   useEffect(() => {
-     const handleOutsideClick = (event) => {
-       if (popupRef.current && !popupRef.current.contains(event.target)) {
-         setIsOpen(false);
-       }
-     };
+//    useEffect(() => {
+//      const handleOutsideClick = (event) => {
+//        if (popupRef.current && !popupRef.current.contains(event.target)) {
+//          setIsOpen(false);
+//        }
+//      };
  
-     document.addEventListener('mousedown', handleOutsideClick);
+//      document.addEventListener('mousedown', handleOutsideClick);
  
-     return () => {
-       document.removeEventListener('mousedown', handleOutsideClick);
-     };
-   }, []);
- }
-   const handleClickM = () => {
-     setIsOpen(!isOpen);
-     // setIsBlurred(!isBlurred);
-   };
-   function Buttons({ children }) {
-    return (
-      <button className="hover:bg-dro_yellow border bg-dro_white py-3 md:py-4 lg:py-5 px-4 md:px-8">
-        {children}
-      </button>
-    );
-  }
-  const handleClickOutside = (event) => {
-    if (
-      cardRef.current &&
-      !cardRef.current.contains(event.target) &&
-      !event.target.classList.contains("font-semibold")
-    ) {
-      setIsOpen(false);
-    }
-  };
+//      return () => {
+//        document.removeEventListener('mousedown', handleOutsideClick);
+//      };
+//    }, []);
+//  }
+//    const handleClickM = () => {
+//      setIsOpen(!isOpen);
+//      // setIsBlurred(!isBlurred);
+//    };
+//    function Buttons({ children }) {
+//     return (
+//       <button className="hover:bg-dro_yellow border bg-dro_white py-3 md:py-4 lg:py-5 px-4 md:px-8">
+//         {children}
+//       </button>
+//     );
+//   }
+//   const handleClickOutside = (event) => {
+//     if (
+//       cardRef.current &&
+//       !cardRef.current.contains(event.target) &&
+//       !event.target.classList.contains("font-semibold")
+//     ) {
+//       setIsOpen(false);
+//     }
+//   };
   
-  const handleClick = () => {
-    const title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
+//   const handleClick = () => {
+//     const title = document.getElementById('title').value;
+//     const content = document.getElementById('content').value;
 
-    axios.post('api1/posts/', { title, content })
-      .then(response => {
-        console.log(response.data);
-        // Handle the response data as needed
-      })
-      .catch(error => {
-        console.error(error);
-        // Handle the error as needed
-      });
-  };
+//     axios.post('api1/posts/', { title, content })
+//       .then(response => {
+//         console.log(response.data);
+//         // Handle the response data as needed
+//       })
+//       .catch(error => {
+//         console.error(error);
+//         // Handle the error as needed
+//       });
+//   };
 
 
   return(
 <>
-<div>
-  {/* <Units/> */}
-</div>
-             <div>
-  <button className="font-semibold text-lg" onClick={handleClickM}>
-  Blog
-</button>
-      {isOpen &&
-       (
-        
-        <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter" ref={popupRef}>
-          <div ref={cardRef}  className="h-96 w-1/2 bg-dro_yellow shadow-lg">
-            <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog Here</h2>
-            <div class="w-96">
-        <div class="relative px-10 py-3 h-52 w-full">
-        <input
-            class=" w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
-            type="text"
-            placeholder="title"
-          />
-          <input
-            class="h-full w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
-            type="text"
-            placeholder="Write Your Blog Here"
-          />
-        </div>
-      
-      <div className=" px-28">
-        <button className=" flex justify items-center px-10 w-32 h-10 bg-dro_green text-white " onClick={handleClick}>POST</button>
-      </div>
-          </div>
-        </div>
-      </div>
-      )
-      }
-      {/* {isBlurred && <div className="fixed inset-0 bg-black bg-opacity-50 z-50"></div>} */}
-</div>
-
-
-
+<Circle/>
 </>
 
 
@@ -189,6 +151,43 @@ if (user !== undefined) {
   )
 
 }
+
+// <div>
+// </div>
+//              <div>
+//   <button className="font-semibold text-lg" onClick={handleClickM}>
+//   Blog
+// </button>
+//       {isOpen &&
+//        (
+        
+//         <div className="fixed inset-x-0 flex items-center justify-center top-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background  backdrop-filter" ref={popupRef}>
+//           <div ref={cardRef}  className="h-96 w-1/2 bg-dro_yellow shadow-lg">
+//             <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog Here</h2>
+//             <div class="w-96">
+//         <div class="relative px-10 py-3 h-52 w-full">
+//         <input
+//             class=" w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+//             type="text"
+//             placeholder="title"
+//           />
+//           <input
+//             class="h-full w-full rounded border border-dro_gray px-4 text-md text-dro_black focus:outline-none focus:border-blue-500"
+//             type="text"
+//             placeholder="Write Your Blog Here"
+//           />
+//         </div>
+      
+//       <div className=" px-28">
+//         <button className=" flex justify items-center px-10 w-32 h-10 bg-dro_green text-white " onClick={handleClick}>POST</button>
+//       </div>
+//           </div>
+//         </div>
+//       </div>
+//       )
+//       }
+// </div>
+
 
 
 // 'use client'

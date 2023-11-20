@@ -1,19 +1,20 @@
 'use client';
 import Link from 'next/link';
-import Droga from "/public/image/Droga.jpg";
+import Image from 'next/image';
 import Notification from './notification.js';
-import lock from "/public/image/lock.png";
-import log from "/public/image/log.png";
 import Popup from "reactjs-popup";
 import { useState, useEffect ,useRef} from "react";
 import Cookies from "js-cookie";
 import Welcome from "./Welcome.js";
+import Units from './Units.js';
 import axios from "axios";
 import Filter from "./Filter.js";
-// import Droga from "/public/image/Droga.jpg  ";
+import Circle from './Circle.js';
 
 
 export default function Navbar() {
+
+
 
   const [modalOpen, setModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,29 +43,12 @@ export default function Navbar() {
   // const cardRef = useRef(null);
   // const blurRef = useRef(null);
   const passRef = useRef(null);
-  // const [isBlurred, setIsBlurred] = useState(false);
-
   const handleToggle = () => {
     setIsOpened((prevState) => !prevState);
   };
 
   
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (cardRef.current && !cardRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('mousedown', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
-
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -94,22 +78,6 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (blurRef.current && !blurRef.current.contains(event.target)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('mousedown', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
-
- 
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -177,21 +145,7 @@ if (user !== undefined) {
     console.log(user) 
   }, []);
 
-  const uu = "berttt alemmu"
-  const uuw = uu.split(" ")
-  const a = uuw[0][0].toUpperCase()
-  const ab = uuw[0]
- const ac =  ab.slice(1)
- const ad = a+ac
 
- const uuu="Hello World";
- const al= uuu.split(" ");
- const t=al[1][0];
-
-    const handleClickP = () => {
-      setIsOpeen(!isOpeen);
-    };
-    
   
   function Buttons({ children }) {
     return (
@@ -233,9 +187,15 @@ const handlePost = () => {
   <header className="text-dro_black body-font relative z-20">
     <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
       <div className="flex flex-row px-4 md:px-8 py-1">
-        <Link href="/home">
-          <img className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20" src= "/public/image/Droga.jpg" alt="droga logo" />
-        </Link> 
+      <Link href="/home">
+      <img
+        className="w-16 h-14 md:w-20 md:h-16 lg:w-24 lg:h-20"
+        src="/image/Droga.jpg"
+        alt="droga logo"
+        width={16}
+        height={14}
+      />
+      </Link>
         <h1 className="px-3 font-medium text-2xl md:text-3xl lg:text-4xl">
           Droga Group <span className="font-semibold animate-pulse">Portal</span>
         </h1>
@@ -243,11 +203,10 @@ const handlePost = () => {
       <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
         <nav className="md:mx-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
           <div>
-            <Welcome/>
+            <Units/>
           </div>
           <>
           <div>
-          {/* <Test onSubmit={handlePost} /> */}
     </div>
           </>
           
@@ -261,44 +220,9 @@ const handlePost = () => {
             </li>
           </ul>
           <Filter/>
-      <div>
-      <Popup
-        trigger={user ? (
-        <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].toUpperCase()}</button>
-   ): null}
-        position="bottom right"
-      >
-    <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
-          <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
-            <span className="text-center">{user && user.username.toUpperCase()}</span>
-          </div>
-          <h3 className="text-lg mt-3 font-bold"> 
-            {user && user.username.toUpperCase()}
-            </h3>
-          <h3 className="text-xs mb-3">{user && user.email}</h3>
-          
-                      <div className="flex flex-col">
-                      
-                      <div className="flex flex-row items-center justify-center">
-  
-          <img src={lock} height={20} width={20}/>
-           <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleClickP}>
-           <Link legacyBehavior href="/Passwordchange">
-  <a> Change Password</a>
-</Link>
-          </button> 
-          </div>
-<div className="flex flex-row mr-24 ml-3 items-center justify-center">
-  <img src={log} height={20} width={20} />
-  <button className="hover:bg-dro_gray font-medium py-2 px-4" onClick={handleLogout}>
-    Log Out
-  </button>
-  {/* </Popup> */}
-            </div>
-               </div>
-                 </div>
-                  </Popup>
-                </div>
+          <>
+          <Circle/>
+          </>
               </nav>
              </div>
            </div>

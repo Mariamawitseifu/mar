@@ -16,7 +16,6 @@ return<>
 </h1>
 </div>
 <div className=" py-20 grid grid-cols-3 bg-dro_green">
-
 <div className=" px-3 grid grid-cols-6 grid-rows-2 gap-1">
 <img src={itwitter} width={50}height={50}>
 </img>
@@ -26,16 +25,10 @@ return<>
 </img>
 <img src={instagram} height={50} width={50}>
 </img>
-{/* <img src={itelegram} height={50} width={50}>
-</Image> */}
-{/* <img src={iwechat} height={50} width={50}>
-</Image>  */}
 <img src={ilinkedin} height={50} width={50}>
 </img> 
 </div>
 </div>
-
-
 </>
 
 }

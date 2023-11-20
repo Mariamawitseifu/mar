@@ -1,39 +1,139 @@
 "use client"
 import Link from "next/link";
 import Droga from "public/image/Droga.jpg";
+// import Loader from './Loader'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
+export function Loader() {
+  return (
+    <div className="loader">
+      Loading...
+    </div>
+  )
+}
 export default function dep() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  // const token = localStorage.getItem("token");
+  // const [loading,setLoading]=useState(false);
 
-  const handleSignIn = async () => {
-    try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login/', {
-        username,
-        password,
-      });
-
-      if (response.status === 200) {
-        const token = response.data.token; // Extract the authentication token from the response
-        localStorage.setItem("token", token); // Store the token in local storage
-        console.log("Authentication token:", token);
-        // You can also store other user-related data if needed
-        const user = response.data.user;
-        localStorage.setItem("user", JSON.stringify(user));
-
-        router.push("/home");
-      } else {
-        // Handle unsuccessful login
+  let token;
+  if (typeof localStorage !== 'undefined') {
+    token = localStorage.getItem('token');
+  } else {
+    // Handle the case when localStorage is not available
+    token = null; // or any other default value
+  }
+  
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;axios.interceptors.response.use(
+    response => response,
+  
+    error => {
+  
+      if(error.response.status === 401) {
+  
+        // refresh token 
+  
+        return refreshToken()
+          .then(token => {
+            localStorage.setItem("token", token);  
+            return axios(error.config);
+          });
+  
       }
-    } catch (error) {
-      // Handle any errors
+  
+      return Promise.reject(error);
+  
     }
-  };
+  );
+  
+  const logger = console;
+
+axios.interceptors.response.use(
+  res => res, 
+  err => {
+    logger.log(err);
+    if(err.response.status === 401) {
+      // refresh token
+    }
+    return Promise.reject(err);
+  }
+);
+  axios.interceptors.response.use(
+    res => res,
+    err => {
+      console.log(err);
+      if(err.response.status === 401) {
+        // refresh token
+      }
+      return Promise.reject(err); 
+    }
+  )
+// Add state variables
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState('');
+
+const handleSignIn = async () => {
+
+  try {
+
+    setLoading(true);
+
+    const response = await axios.post('http://127.0.0.1:8000/api/login/', {
+      username, 
+      password
+    });
+
+    setLoading(false);
+
+    if(response.status === 200) {
+
+      // save token, user
+
+      router.push('/home');
+
+    } else {
+      throw new Error('Login failed');
+    }
+
+  } catch (err) {
+
+    setLoading(false);
+    let errorMessage;
+    if(err.response){
+    if(err.response.status === 400) {
+      setError('Invalid credentials'); 
+    } else {
+      setError('Something went wrong');
+    }
+
+  } else{errorMessage='Network error';
+}
+setError(errorMessage);
+}
+
+
+};
+
+// Add interceptor for token refresh
+axios.interceptors.response.use(
+  res => res,
+  err => {
+    if(err.response.status === 401) {
+      // refresh token
+    }
+    return Promise.reject(err);
+  }
+);
+
+
+// Display loading and errors
+{loading && <Loader/>} 
+{error && <p>{error}</p>}
 
   return (
     <div className="flex h-screen items-center justify-center">
@@ -41,7 +141,7 @@ export default function dep() {
 
         <div className="flex flex-row items-center justify-center mt-3">
           <img
-            src={Droga}
+            src="/image/Droga.jpg"
             width={110}
             height={110}
             alt=""
@@ -91,6 +191,7 @@ export default function dep() {
         </div>
         <div className="flex justify-center pt-8">
           <button
+            disabled={loading}
             id="signin"
             name="signin"
             className="bg-dro_yellow hover:bg-secondary text-black font-bold py-1 px-20"
