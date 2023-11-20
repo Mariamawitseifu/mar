@@ -65,23 +65,23 @@ function Cards() {
 
 
     return (
-      <div className=" px-20 slider-container">
+      <div className="slider-container">
         <Slider {...settings}>
         <div>
           <button className="button" onClick={handleClick}>
-            <img className=" rounded-md image" src="/image/henok.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className=" rounded-md image" src="/image/henok.jpg" width={400} height={350} alt="Sunset in the mountains" />
             <p className="caption">Group CEO</p>
           </button>
         </div>
         <div>
           <button className=" rounded-md button" onClick={handleClick2}>
-            <img className="image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="image" src="/image/i1.jpg" width={400} height={350} alt="Sunset in the mountains" />
             <p className="caption">Droga Pharma</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick3}>
-            <img className="rounded-md  image" src="/image/ema.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md  image" src="/image/i2.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Ema Ethiopia</p>
           </button>
         </div>
@@ -93,25 +93,25 @@ function Cards() {
         </div>
         <div>
           <button className="button" onClick={handleClick5}>
-            <img className="rounded-md image" src="/image/physio.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/i3.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga pyshiotherapy</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick1}>
-            <img className="rounded-md image" src="/image/chainpharma.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/i4.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Chain Pharmacy</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick6}>
-            <img className="rounded-md image" src="/image/somaliland.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/i5.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Somaliland</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick7}>
-            <img className="rounded-md image" src="/image/Droga.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md image" src="/image/i6.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Droga Rwanda</p>
           </button>
         </div>

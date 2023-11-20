@@ -127,9 +127,9 @@ export default function Test({ visiblePosts }) {
 
   return (
     <>
-      <button className="bg-dro_green text-2xl px-10 py-3" onClick={handleClick}>
+      {/* <button className="bg-dro_green text-2xl px-10 py-3" onClick={handleClick}>
         Add a new Blog
-      </button>
+      </button> */}
 
       {isOpen && (
         <Modal

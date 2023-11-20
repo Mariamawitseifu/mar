@@ -1,7 +1,8 @@
 .button {
   position: relative;
-  max-width: 275px;
+  max-width: 350px;
   height: 275px;
+  margin: 0 auto;
   transition: transform 0.3s ease; /* Add a smooth transition effect */
   /* Other styles */
 }
@@ -12,7 +13,7 @@
 
 .image-container {
   width: 100%;
-  height: calc(100% - 20px); /* Adjust the height to leave space for the caption */
+  height:100%; /* Adjust the height to leave space for the caption */
   overflow: hidden;
 }
 

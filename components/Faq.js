@@ -25,22 +25,16 @@ export default function Faq({ title, body, author, image, publishedDate, visible
   useEffect(() => {
     if (publishedDate) {
       try {
-        const date = moment(publishedDate); // Parse the date using moment
-        if (date.isValid()) {
-          const formattedDate = date.format('LL'); // Format the date as desired (e.g., 'LL' for month day, year)
-          setFormattedDate(formattedDate);
-        } else {
-          setFormattedDate('Invalid Date');
-        }
+        const date = moment(publishedDate).format('LL');   
+        setFormattedDate(date);
       } catch (error) {
-        console.error('Invalid date format:', publishedDate);
         setFormattedDate('Invalid Date');
       }
     } else {
       setFormattedDate('Invalid Date');
     }
   }, [publishedDate]);
-
+  
   const lastCardRef = useRef();
   const observer = useRef();
 
@@ -67,23 +61,23 @@ export default function Faq({ title, body, author, image, publishedDate, visible
     setLoadMoreFaqs(prev => !prev); // Toggle the loadMoreFaqs state
   };
 
-  useEffect(() => {
-    const fetchData = async (page) => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
-          params: {
-            limit: 3,
-            offset: page * 3
-          }
-        });
-        setPosts(response.data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async (page) => {
+  //     try {
+  //       const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
+  //         params: {
+  //           limit: 3,
+  //           offset: page * 3
+  //         }
+  //       });
+  //       setPosts(response.data.results);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    fetchData(0);
-  }, [visibleFaqs, loadMoreFaqs]);
+  //   fetchData(0);
+  // }, [visibleFaqs, loadMoreFaqs]);
 
   useEffect(() => {
     fetchData();
@@ -109,6 +103,8 @@ export default function Faq({ title, body, author, image, publishedDate, visible
     }
   };
 
+console.log(`The image  ${image}`);
+
   return (
     <div
       data-aos="fade-up"
@@ -118,13 +114,12 @@ export default function Faq({ title, body, author, image, publishedDate, visible
       className="animate-slide-right_1s_ease-in-out"
     >
       <div className="flex flex-col ">
-        <div className="ml-10 px-12 mb-12 mr-10 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg">
+        <div className="mb-12 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg">
           <div className="flex lg:flex-row sm:flex-row justify-end">
-            <div className="w-full h-72 relative">
-              <Image src={image} height={90} width={90} />
-            </div>
-
-            <div className="flex flex-col justify-center w-full">
+          <div className="w-full h-80 relative">
+          <img src={`http://127.0.0.1:8000/${image}`} style={{objectFit: 'cover', objectPosition: 'center', height: '100%', width: '100%'}} />
+</div>
+            <div className="flex flex-col justify-center ml-24 w-full">
               <div className="font-bold sm:mt-3 text-xl sm:text-lg">{title}</div>
               <div className="text-md sm:text-sm font-medium"></div>
               <div className="sm:mb-3">
@@ -155,7 +150,7 @@ export default function Faq({ title, body, author, image, publishedDate, visible
             {filteredPosts.map((post, index) => (
               <div
                 key={post.id}
-                className="ml-10 mr-10 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg mt-4"
+                // className=" sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg mt-4"
                 data-blog-id={post.id}
                 ref={index === filteredPosts.length - 1 ? lastCardRef : null}
               >
