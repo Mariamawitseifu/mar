@@ -89,7 +89,10 @@ const handleSignIn = async () => {
     });
 
     setLoading(false);
+    const token = response.data.token;
 
+    // Store the token in localStorage
+    localStorage.setItem('token', token);
     if(response.status === 200) {
 
       // save token, user

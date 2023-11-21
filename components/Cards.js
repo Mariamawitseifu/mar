@@ -81,13 +81,13 @@ function Cards() {
         </div>
         <div>
           <button className="button" onClick={handleClick3}>
-            <img className="rounded-md  image" src="/image/i2.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md  image" src="/image/i155.png" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Ema Ethiopia</p>
           </button>
         </div>
         <div>
           <button className="button" onClick={handleClick4}>
-            <img className="rounded-md  image" src="/image/trust.jpg" width={300} height={275} alt="Sunset in the mountains" />
+            <img className="rounded-md  image" src="/image/i2.jpg" width={300} height={275} alt="Sunset in the mountains" />
             <p className="caption">Trust Ethiopharma</p>
           </button>
         </div>

@@ -12,9 +12,12 @@ export default function Test({ visiblePosts }) {
   const cardRef = useRef(null);
   const popupRef = useRef(null);
   const [isOpenn, setIsOpenn] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  // const [token, setToken] = useState(localStorage.getItem('token'));
   const [visibleFaqs, setVisibleFaqs] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [postData, setPostData] = useState(null);
+  const [blogs, setBlogs] = useState(null);
+
   const numFaqsPerPage = 5;
 
   const handleOutsideClick = (event) => {
@@ -39,17 +42,27 @@ export default function Test({ visiblePosts }) {
 
   const isBrowser = typeof window !== 'undefined';
 
-  const [blogs, setBlogs] = useState(
-    isBrowser ? JSON.parse(localStorage.getItem('blogs')) || [] : []
-  );
+  // ...
+  
+  const [token, setToken] = useState(isBrowser ? localStorage.getItem('token') : null);
+  
+  // ...
+  
+  useEffect(() => {
+    if (isBrowser) {
+      localStorage.setItem('blogs', JSON.stringify(blogs));
+    }
+  }, [blogs]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api1/posts/');
-        setBlogs(response.data);
-      } catch (err) {
-        console.error(err);
+        const response = await fetch('http://127.0.0.1:8000/api1/posts/');
+        const data = await response.json();
+        setBlogs(data);
+        localStorage.setItem('blogs', JSON.stringify(data));
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
       }
     };
 
@@ -74,11 +87,14 @@ export default function Test({ visiblePosts }) {
   }, [blogs]);
 
   const handlePost = async () => {
+     
     const data = {
       title: titleInputRef.current.value,
       body: bodyInputRef.current.value,
     };
+    
     if (!token) return;
+
     try {
       const response = await axios.post(
         'http://127.0.0.1:8000/api1/createpost/',
@@ -90,6 +106,8 @@ export default function Test({ visiblePosts }) {
         }
       );
 
+      setPostData(response.data);
+      
       // Handle response
 
       handleSubmit();
@@ -127,9 +145,9 @@ export default function Test({ visiblePosts }) {
 
   return (
     <>
-      {/* <button className="bg-dro_green text-2xl px-10 py-3" onClick={handleClick}>
+      <button className="bg-dro_green rounded-md mb-3 ml-3 text-2xl px-10 py-3" onClick={handleClick}>
         Add a new Blog
-      </button> */}
+      </button>
 
       {isOpen && (
         <Modal
@@ -194,6 +212,7 @@ const Modal = ({
   const isBrowser = typeof window !== 'undefined';
   const token = isBrowser ? localStorage.getItem('token') : null;
 
+  
   const handleSubmit = async () => {
     await handlePost();
     closeModal();

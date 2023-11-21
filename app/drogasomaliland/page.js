@@ -61,7 +61,7 @@ return<>
       <div className="w-screen"> 
       <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
     <img
-     src="/image/i5.jpg"
+     src="/image/i6.jpg"
       height={500}
       width={1000}
       layout="fill"
@@ -69,7 +69,7 @@ return<>
       sizes="100vw"
       style={{
         width: '99%',
-        height: '500px',
+        height: '300px',
       }}
       alt="Droga Somaliland" />
     <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
@@ -80,7 +80,7 @@ return<>
 </div>  
 </div>
 
-<div className="flex flex-wrap  gap-60 px-40" style={{position: 'relative', top: '-300px'}}>
+<div className="flex flex-wrap  gap-60 px-80" style={{position: 'relative', top: '-400px'}}>
       <div  className=" flex flex-row gap-3">
       <div className="w-1/2 py-10 px-4">
    <div className="flex items-center">

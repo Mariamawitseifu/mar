@@ -61,23 +61,19 @@ export default function Faq({ title, body, author, image, publishedDate, visible
     setLoadMoreFaqs(prev => !prev); // Toggle the loadMoreFaqs state
   };
 
-  // useEffect(() => {
-  //   const fetchData = async (page) => {
-  //     try {
-  //       const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
-  //         params: {
-  //           limit: 3,
-  //           offset: page * 3
-  //         }
-  //       });
-  //       setPosts(response.data.results);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async (page) => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
+        });
+        setPosts(response.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  //   fetchData(0);
-  // }, [visibleFaqs, loadMoreFaqs]);
+    fetchData(0);
+  },);
 
   useEffect(() => {
     fetchData();
