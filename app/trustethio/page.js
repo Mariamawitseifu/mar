@@ -61,7 +61,7 @@ export default function trustethio(){
         <div className="w-screen"> 
         <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
       <img
-       src="/image/i111.png"
+       src="/image/drogat.jpg"
         height={500}
         width={1000}
         layout="fill"
@@ -71,7 +71,7 @@ export default function trustethio(){
           width: '99%',
           height: '300px',
         }}
-        alt="Droga Somaliland" />
+        alt="Droga trust" />
       <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
         <span className="typewriter">{typewriterText}</span>
       </h1>

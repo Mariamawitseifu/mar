@@ -59,7 +59,7 @@ export default function chainpharmacy(){
          <div className="w-screen"> 
          <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
        <img
-        src="/image/i7.jpg"
+        src="/image/drogac.jpg"
          height={500}
          width={1000}
          layout="fill"

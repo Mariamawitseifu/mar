@@ -4,9 +4,10 @@ import axios from 'axios';
 import Button from "../components/Button";
 import "../components/animation.css";
 import Image from 'next/image';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import Aos from "aos";
 import "aos/dist/aos.css";
+
 
 export default function Faq({ title, body, author, image, publishedDate, visibleFaqs }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,24 +17,15 @@ export default function Faq({ title, body, author, image, publishedDate, visible
   const [entry, setEntry] = useState();
   const [loadMoreFaqs, setLoadMoreFaqs] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [formattedDate, setFormattedDate] = useState('Invalid Date');
+  const { DateTime } = require('luxon');
+  const isoDateString = "2023-11-20T13:37:39.918371Z";
+  const dateObject = new Date(isoDateString);
+  const formattedDate = dateObject.toLocaleDateString();
+  
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
-
-  useEffect(() => {
-    if (publishedDate) {
-      try {
-        const date = moment(publishedDate).format('LL');   
-        setFormattedDate(date);
-      } catch (error) {
-        setFormattedDate('Invalid Date');
-      }
-    } else {
-      setFormattedDate('Invalid Date');
-    }
-  }, [publishedDate]);
   
   const lastCardRef = useRef();
   const observer = useRef();
@@ -54,35 +46,43 @@ export default function Faq({ title, body, author, image, publishedDate, visible
   }, []);
 
   const handleLoadMore = async () => {
-    setFilteredPosts(prev => [
-      ...prev,
-      ...posts.slice(prev.length, prev.length + 5)
-    ]);
+    const nextPage = Math.ceil(filteredPosts.length / 5) + 1;
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api1/posts/?page=${nextPage}`);
+      setFilteredPosts(prev => [...prev, ...response.data.results]);
+    } catch (error) {
+      console.error(error);
+    }
     setLoadMoreFaqs(prev => !prev); // Toggle the loadMoreFaqs state
   };
+  // useEffect(() => {
+  //   const fetchData = async (page) => {
+  //     try {
+  //       const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
+  //       });
+  //       setPosts(response.data.results);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchData = async (page) => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
-        });
-        setPosts(response.data.results);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  //   fetchData(0);
+  // },);
 
-    fetchData(0);
-  },);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // const fetchData = async () => {
+  //   const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
+  //   setPosts(response.data.results);
+  // }
 
-  const fetchData = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
-    setPosts(response.data.results);
-  }
+  const sortedFilteredPosts = filteredPosts.sort((a, b) => {
+    const dateA = DateTime.fromFormat(a.frontmatter.date, 'm-d-yyyy');
+    const dateB = DateTime.fromFormat(b.frontmatter.date, 'm-d-yyyy');
+    return dateB - dateA;
+   });   
 
   const handleClick = () => {
     setIsOpen(true);
@@ -98,9 +98,8 @@ export default function Faq({ title, body, author, image, publishedDate, visible
       await handleLoadMore();
     }
   };
-
-console.log(`The image  ${image}`);
-
+  console.log('publishedDate:', publishedDate);
+  console.log('post:', post);
   return (
     <div
       data-aos="fade-up"
@@ -112,7 +111,7 @@ console.log(`The image  ${image}`);
       <div className="flex flex-col ">
         <div className="mb-12 sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg">
           <div className="flex lg:flex-row sm:flex-row justify-end">
-          <div className="w-full h-80 relative">
+          <div className="w-full h-80 relative overflow-auto">
           <img src={`http://127.0.0.1:8000/${image}`} style={{objectFit: 'cover', objectPosition: 'center', height: '100%', width: '100%'}} />
 </div>
             <div className="flex flex-col justify-center ml-24 w-full">
@@ -129,11 +128,11 @@ console.log(`The image  ${image}`);
                 )}
               </div>
               {isOpen && (
-                <div>
+                <div style={{overflow: 'auto', maxHeight: '200px'}}>
                   <p>{body}</p>
                 </div>
               )}
-              <div>{formattedDate}</div>
+               <p>{formattedDate}</p>  
               <div className=' font-bold text-lg'>
                 {author.username}
               </div>
@@ -143,21 +142,20 @@ console.log(`The image  ${image}`);
 
         {posts && posts.length > 0 && (
           <div>
-            {filteredPosts.map((post, index) => (
-              <div
-                key={post.id}
-                // className=" sm:ml-8 lg:ml-3 sm:mr-4 lg:mr-3 bg-dro_yellow rounded shadow-lg mt-4"
-                data-blog-id={post.id}
-                ref={index === filteredPosts.length - 1 ? lastCardRef : null}
-              >
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-                <p>
-                  Author: {post.author.username}
-                </p>
-                <p>Published Date: {post.publishedDate}</p>
-              </div>
-            ))}
+{sortedFilteredPosts && sortedFilteredPosts.map((post, index) => (
+ <div
+ key={post.id}
+ data-blog-id={post.id}
+ ref={index === filteredPosts.length - 1 ? lastCardRef : null}
+>
+ <h2>{post.title}</h2>
+ <p>{post.body}</p>
+ <p>Author: {post.author.username}</p>
+ <p>{new Date(publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</p>
+
+</div>
+))
+}
           </div>
         )}
       </div>

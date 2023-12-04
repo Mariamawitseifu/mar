@@ -3,8 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from 'next/navigation';
 
-export default function Units() {
+export default function Quicklinks() {
   const [userr, setUserr] = useState(null);
   const [qLinks, setQLinks] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +14,17 @@ export default function Units() {
   const blurRef = useRef(null);
   const addButtonRef = useRef(null);
   const [user, setUser] = useState([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [editedIndex, setEditedIndex] = useState(null);
+ 
+  useEffect(() => {
+  const openPopup = searchParams.get('openPopup');
+  if (openPopup === 'true') {
+  setIsOpen(true);
+  }
+  }, []);
+ 
 
   const [newRecord, setNewRecord] = useState({
     
@@ -118,7 +130,7 @@ export default function Units() {
     const confirmDelete = window.confirm("Are you sure you want to delete this record?");
     if (confirmDelete) {
       axios
-        .delete(`http://localhost:8000/api/api/records/delete/${pk}`)
+        .delete(`http://localhost:8000/api/api/records/delete/${pk}/`)
         .then(() => {
           // Update the records state after successful deletion
           setQLinks((prevQLinks) => prevQLinks.filter((rec) => rec.id !== pk));
@@ -148,21 +160,21 @@ export default function Units() {
   const isBrowser = typeof window !== 'undefined';
   const [records, setRecords] = useState([]);
 
-  const [recordId, setRecordId] = useState(null);
+const [recordId, setRecordId] = useState(null);
 
-  useEffect(() => {
-   if (recordId) {
-     axios
-       .get(`http://localhost:8000/api/api/records/${recordId}/`)
-       .then((response) => {
-         setRecords(response.data);
-       })
-       .catch((error) => {
-         console.error('Error fetching records:', error);
-       });
-   }
-  }, [recordId]);
-  
+useEffect(() => {
+ if (recordId) {
+   axios
+     .get(`http://localhost:8000/api/api/records/${recordId}/`)
+     .then((response) => {
+       setRecords(response.data);
+     })
+     .catch((error) => {
+       console.error('Error fetching records:', error);
+     });
+ }
+}, [recordId]);
+
   useEffect(() => {
     const addButton = addButtonRef.current;
     const token = localStorage.getItem('token'); // Fetch the token from local storage
@@ -245,9 +257,9 @@ export default function Units() {
   
   return (
     <div>
-      <button className="font-semibold text-lg" onClick={handleClickM}>
+      {/* <button className="font-semibold text-lg" onClick={handleClickM}>
         Quick Links
-      </button>
+      </button> */}
       {isOpen && (
         <div
           className="fixed flex top-0 h-full w-full justify-center left-0 bg-dro_white bg-opacity-75 border-dro_gray blur-background backdrop-filter z-20"
@@ -393,3 +405,176 @@ export default function Units() {
     </div>
   );
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

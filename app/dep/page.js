@@ -1,147 +1,76 @@
 "use client"
 import Link from "next/link";
 import Droga from "public/image/Droga.jpg";
-// import Loader from './Loader'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-
+import Circle from "@/components/Circle";
+// import { Loader } from './Loader';
 export function Loader() {
-  return (
-    <div className="loader">
-      Loading...
-    </div>
-  )
+ return (
+   <div className="loader">
+     Loading...
+   </div>
+ )
 }
+
+function ChildComponent(props) {
+ return <h1>Hello, {props.name}</h1>;
+}
+
 export default function dep() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const router = useRouter();
-  // const token = localStorage.getItem("token");
-  // const [loading,setLoading]=useState(false);
+ const [username, setUsername] = useState('');
+ const [password, setPassword] = useState('');
+ 
+ const router = useRouter();
+ 
+ const [loading, setLoading] = useState(false);
+ const [error, setError] = useState('');
 
-  let token;
-  if (typeof localStorage !== 'undefined') {
-    token = localStorage.getItem('token');
-  } else {
-    // Handle the case when localStorage is not available
-    token = null; // or any other default value
-  }
-  
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;axios.interceptors.response.use(
-    response => response,
-  
-    error => {
-  
-      if(error.response.status === 401) {
-  
-        // refresh token 
-  
-        return refreshToken()
-          .then(token => {
-            localStorage.setItem("token", token);  
-            return axios(error.config);
-          });
-  
-      }
-  
-      return Promise.reject(error);
-  
-    }
-  );
-  
-  const logger = console;
-
-axios.interceptors.response.use(
-  res => res, 
-  err => {
-    logger.log(err);
-    if(err.response.status === 401) {
-      // refresh token
-    }
-    return Promise.reject(err);
-  }
-);
-  axios.interceptors.response.use(
-    res => res,
-    err => {
-      console.log(err);
-      if(err.response.status === 401) {
-        // refresh token
-      }
-      return Promise.reject(err); 
-    }
-  )
-// Add state variables
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState('');
-
-const handleSignIn = async () => {
-
+ const handleSignIn = async () => {
   try {
-
     setLoading(true);
-
     const response = await axios.post('http://127.0.0.1:8000/api/login/', {
-      username, 
+      username,
       password
     });
-
     setLoading(false);
-    const token = response.data.token;
-
-    // Store the token in localStorage
-    localStorage.setItem('token', token);
     if(response.status === 200) {
-
-      // save token, user
-
+      localStorage.setItem('token', response.data.token);
+      axios.defaults.headers.common['Authorization'] = `Token ${response.data.token}`;
+      localStorage.setItem('username', response.data.user.username);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('role', response.data.user.role); 
+      if (response.data.user.username) {
+        setUsername(response.data.user.username);
+      } else {
+        console.error('Username is undefineded');
+        // handle the error
+      }
       router.push('/home');
-
     } else {
       throw new Error('Login failed');
     }
-
   } catch (err) {
-
     setLoading(false);
-    let errorMessage;
-    if(err.response){
-    if(err.response.status === 400) {
-      setError('Invalid credentials'); 
+    if (err.response && err.response.status === 401) {
+      setError('Username or password is incorrect');
     } else {
-      setError('Something went wrong');
+      console.error('Error logging in', err);
+      setError('An error occurred during login');
     }
-
-  } else{errorMessage='Network error';
-}
-setError(errorMessage);
-}
-
-
-};
-
-// Add interceptor for token refresh
-axios.interceptors.response.use(
-  res => res,
-  err => {
-    if(err.response.status === 401) {
-      // refresh token
-    }
-    return Promise.reject(err);
   }
-);
+};
+ 
 
-
-// Display loading and errors
-{loading && <Loader/>} 
-{error && <p>{error}</p>}
-
-  return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="w-96 h-4/5 overflow-hidden shadow-xl bg-white">
-
+ {loading && <Loader/>} 
+ {error && <p>{error}</p>}
+ 
+ return (
+   <div className="flex h-1/2 mt-44 items-center justify-center">
+     <div className="w-96 h-4/5 overflow-hidden shadow-xl bg-white">
+       <ChildComponent name={username} />
         <div className="flex flex-row items-center justify-center mt-3">
           <img
             src="/image/Droga.jpg"
@@ -157,6 +86,7 @@ axios.interceptors.response.use(
           <div className="font- text-[30px] mb-1 flex justify-center text-black">
             Login
           </div>
+
         </div>
         <div className="">
           <div className="px-16 py-3">
@@ -192,6 +122,7 @@ axios.interceptors.response.use(
             />
           </div>
         </div>
+      
         <div className="flex justify-center pt-8">
           <button
             disabled={loading}
@@ -202,14 +133,16 @@ axios.interceptors.response.use(
           >
             Sign in
           </button>
-
-        </div>
-        <div className="flex justify-center items-center py-7 text-xs">
+           </div>
+           
+  {error && <p className="flex justify-center items-center py-3 text-dro_red ">{error}</p>}
+       
+        <div className="flex justify-center items-center py-6 text-xs">
           <button className="">
             Forgot Password?
             </button>
         </div>
-
+        {/* <Circle username={username} /> */}
       </div>
     </div>
   );

@@ -43,7 +43,7 @@ export default function drogapharma(){
             startTyping(); // Restart the typewriter effect
           }, 1000); // Delay before restarting the effect (1 second in this example)
         }
-      }, 500);
+      }, 600);
     };
   
     startTyping();
@@ -57,16 +57,13 @@ export default function drogapharma(){
         <div>
      <Navbar/>         
         </div>
-        <div className="min-h-screen"> 
-        <div className="w-screen"> 
-        <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
+        <div className=" "> 
       <img
-       src="/image/i8.jpg"
-        height={500}
-        width={1000}
+       src="/image/droga1.jpg"
+        height={50}
+        width={100}
         layout="fill"
         objectFit="cover"
-        sizes="100vw"
         style={{
           width: '99%',
           height: '300px',
@@ -75,12 +72,10 @@ export default function drogapharma(){
       <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
         <span className="typewriter">{typewriterText}</span>
       </h1>
-    </div>
-  </div>
-  </div>  
-  </div>
-  
-  <div className="flex flex-wrap  gap-60 px-80" style={{position: 'relative', top: '-500px'}}>
+
+
+        </div> 
+  <div className="flex flex-wrap py-28 gap-60 px-80">
         <div  className=" flex flex-row gap-3">
         <div className="w-1/2 py-10 px-4">
      <div className="flex items-center">
@@ -220,11 +215,11 @@ export default function drogapharma(){
   
      </div>
   <div>
-  <button className=" font-semibold text-2xl px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
+  <button className=" font-semibold text-2xl py-10 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
   </button>
   <Footer/>
   <Endfooter/>
   </div>
+   </div>
   </>
-
 }

@@ -5,36 +5,31 @@ import Notification from './notification.js';
 import Popup from "reactjs-popup";
 import { useState, useEffect ,useRef} from "react";
 import Cookies from "js-cookie";
-import Welcome from "./Welcome.js";
-import Units from './Units.js';
 import axios from "axios";
 import Filter from "./Filter.js";
-import Circle from './Circle.js';
-
+import Circle from '@/app/Circle/page.js';
+import Quicklinks from '@/app/quicklinks/page.js';
+import Units from './Units.js';
 
 export default function Navbar() {
 
 
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [blogPostResults, setBlogPostResults] = useState([]);
-  const [recordResults, setRecordResults] = useState([]);
+ const [searchQuery, setSearchQuery] = useState('');
+ const [results, setResults] = useState([]);
 
-  const handleSearch = async () => {
-    try {
-      const response1 = await axios.get('/api/blogpost/search', {
-        params: { query: searchQuery },
-      });
-      setBlogPostResults(response1.data.results);
+ const handleSearch = async () => {
+   try {
+     const response = await axios.get('http://127.0.0.1:8000/api1/search/', {
+       params: { query: searchQuery },
+     });
+     setResults(response.data.posts);
+   } catch (error) {
+     console.error('Error searching:', error);
+   }
+ };
 
-      const response2 = await axios.get('/api/record/search', {
-        params: { query: searchQuery },
-      });
-      setRecordResults(response2.data.results);
-    } catch (error) {
-      console.error('Error searching:', error);
-    }}
   const [user, setUser] = useState(null)
   // const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
@@ -182,7 +177,6 @@ const handlePost = () => {
 
   return (
     <>
-    
 <div className="relative bg-dro_yellow px-2 py-2 md:px-1">
   <header className="text-dro_black body-font relative z-20">
     <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">

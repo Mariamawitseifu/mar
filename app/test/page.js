@@ -4,6 +4,7 @@ import axios from 'axios';
 import Faq from '@/components/Faq.js';
 import Cookies from 'js-cookie';
 
+
 export default function Test({ visiblePosts }) {
   const [isOpen, setIsOpen] = useState(false);
   const titleInputRef = useRef(null);
@@ -17,8 +18,9 @@ export default function Test({ visiblePosts }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [postData, setPostData] = useState(null);
   const [blogs, setBlogs] = useState(null);
-
+  const selectedImageInputRef = useRef(null);
   const numFaqsPerPage = 5;
+
 
   const handleOutsideClick = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -40,6 +42,22 @@ export default function Test({ visiblePosts }) {
     };
   }, []);
 
+  const [role, setRole] = useState('');
+
+  useEffect(() => {
+   if (typeof window !== 'undefined') {
+     const storedRole = window.localStorage.getItem('role');
+     if (storedRole) {
+       setRole(storedRole);
+     }
+   }
+  }, []);
+  
+  useEffect(() => {
+   // Perform action here after role state updates
+  }, [role]);
+  
+ console.log(role);
   const isBrowser = typeof window !== 'undefined';
 
   // ...
@@ -54,21 +72,27 @@ export default function Test({ visiblePosts }) {
     }
   }, [blogs]);
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:8000/api1/posts/');
-        const data = await response.json();
-        setBlogs(data);
-        localStorage.setItem('blogs', JSON.stringify(data));
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      }
-    };
-
-    fetchBlogs();
-  }, []);
-
+  // useEffect(() => {
+  //   const fetchBlogs = async () => {
+  //     try {
+  //       const response = await fetch('http://127.0.0.1:8000/api1/posts/', {
+  //         headers: {
+  //           'Authorization': `Token ${token}`,
+  //           'Content-Type': 'application/x-www-form-urlencoded'
+  //         },
+  //       });
+  //       const data = await response.json();
+  //       const sortedBlogs = sortBlogsByDate(data); // Sort the blogs by date
+  //       setBlogs(sortedBlogs);
+  //       localStorage.setItem('blogs', JSON.stringify(sortedBlogs));
+  //     } catch (error) {
+  //       console.error('Error fetching blogs:', error);
+  //     }
+  //   };
+  
+  //   fetchBlogs();
+  // }, []);
+   
   useEffect(() => {
     if (isBrowser) {
       localStorage.setItem('blogs', JSON.stringify(blogs));
@@ -82,17 +106,16 @@ export default function Test({ visiblePosts }) {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('blogs', JSON.stringify(blogs));
-  }, [blogs]);
+  // useEffect(() => {
+  //   localStorage.setItem('blogs', JSON.stringify(blogs));
+  // }, [blogs]);
 
   const handlePost = async () => {
      
-    const data = {
-      title: titleInputRef.current.value,
-      body: bodyInputRef.current.value,
-    };
-    
+    const data = new FormData();
+    data.append('title', titleInputRef.current.value);
+    data.append('body', bodyInputRef.current.value);
+    data.append('image', selectedImage);
     if (!token) return;
 
     try {
@@ -101,8 +124,9 @@ export default function Test({ visiblePosts }) {
         data,
         {
           headers: {
-            Authorization: token,
-          },
+            'Authorization': `Token ${token}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+           },
         }
       );
 
@@ -126,8 +150,8 @@ export default function Test({ visiblePosts }) {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    setSelectedImage(URL.createObjectURL(file));
-  };
+    setSelectedImage(file);
+   };   
 
   const loadMoreFaqs = () => {
     setVisibleFaqs(visibleFaqs + numFaqsPerPage);
@@ -145,9 +169,11 @@ export default function Test({ visiblePosts }) {
 
   return (
     <>
-      <button className="bg-dro_green rounded-md mb-3 ml-3 text-2xl px-10 py-3" onClick={handleClick}>
-        Add a new Blog
-      </button>
+{role === "manager" || role === 'superadmin' ? (
+  <button className="bg-dro_green rounded-md mb-3 ml-3 text-2xl px-10 py-3" onClick={handleClick}>
+    Add a new Blog
+  </button>
+) : null}
 
       {isOpen && (
         <Modal
@@ -156,6 +182,7 @@ export default function Test({ visiblePosts }) {
           bodyInputRef={bodyInputRef}
           handleImageUpload={handleImageUpload}
           selectedImage={selectedImage}
+          selectedImageInputRef={selectedImageInputRef}
           cardRef={cardRef}
           popupRef={popupRef}
           closeModal={closeModal}
@@ -208,6 +235,7 @@ const Modal = ({
   popupRef,
   handleImageUpload,
   selectedImage,
+  selectedImageInputRef,
 }) => {
   const isBrowser = typeof window !== 'undefined';
   const token = isBrowser ? localStorage.getItem('token') : null;
@@ -228,7 +256,7 @@ const Modal = ({
         className="md:w-full w-2/3 lg:w-2/3 lg:h-96 bg-dro_yellow shadow-lg flex flex-col justify-between"
       >
         <div className="">
-          <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog here</h2>
+          {/* <h2 className="text-2xl px-10 py-6 font-bold mb-1">Blog here</h2> */}
           <div className="relative">
             <div className="card py-6 px-16">
               <label
@@ -237,12 +265,14 @@ const Modal = ({
               >
                 Choose Image
                 <input
-                  id="image-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+                ref={selectedImageInputRef}
                 />
+
               </label>
               {selectedImage && (
                 <img
@@ -255,7 +285,7 @@ const Modal = ({
             </div>
           </div>
         </div>
-        <div className="px-10 py-3 md:h-96 w-full">
+        <div className="px-10 py-2 sm:h-80 w-full">
           <div className="px-10 h-11 w-full">
             <input
               ref={titleInputRef}
@@ -264,8 +294,8 @@ const Modal = ({
               placeholder="Title"
             />
           </div>
-          <div className="px-10 h-52 w-full">
-            <input
+          <div className="px-10 h-52">
+            <textarea
               ref={bodyInputRef}
               className="h-full w-full border border-dro_gray px-4 text-md text-dro_black resize-none"
               type="text"

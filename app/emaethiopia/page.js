@@ -41,7 +41,7 @@ export default function emaethiopia(){
           setTimeout(() => {
             i = 0;
             startTyping(); // Restart the typewriter effect
-          }, 500); // Delay before restarting the effect (1 second in this example)
+          }, 600); // Delay before restarting the effect (1 second in this example)
         }
       }, 100);
     };
@@ -59,9 +59,9 @@ export default function emaethiopia(){
         </div>
         <div className="min-h-screen"> 
         <div className="w-screen"> 
-        <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
+        {/* <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto"> */}
       <img
-       src="/image/i155.png"
+       src="/image/drogae.jpg"
         height={500}
         width={1000}
         layout="fill"
@@ -75,7 +75,7 @@ export default function emaethiopia(){
       <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
         <span className="typewriter">{typewriterText}</span>
       </h1>
-    </div>
+    {/* </div> */}
   </div>
   </div>  
   </div>

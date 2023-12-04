@@ -1,0 +1,6 @@
+.wide-popup {
+    width: 100%; /* This will make the popup wide */
+    height: 200px; /* This will make the popup a square */
+    background-color: #f8f9fa; /* This will set the background color of the popup */
+   }
+   

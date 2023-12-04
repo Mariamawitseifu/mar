@@ -5,7 +5,7 @@ import {useState, useEffect ,useRef} from "react";
 import axios from "axios";
 
 
-export default function Circle ({username}) {
+export default function Circle () {
   const [user, setUser] = useState(null)
   const [isOpeen,setIsOpeen]=useState(null)
 
@@ -31,13 +31,24 @@ export default function Circle ({username}) {
       console.error("Logout error:", error);
     }
   };
-
+    const [username, setUsername] = useState(null);
+    useEffect(() => {
+        const storedUsername = localStorage.getItem('username'); // Fetch the username from local storage
+        const storedEmail = localStorage.getItem('email');
+        if (storedUsername) {
+          setUser({ username: storedUsername, email: storedEmail }); // Set the user state with the fetched username
+        } else {
+          console.error('Username is not found in local storage');
+          // handle the error
+        }
+       }, []);
+       
   const handleClickP = () => {
     setIsOpeen(!isOpeen);
   };
   
 
-  console.log(`The username is ${username}`);
+//   console.log(`The username is ${username}`);
 return( 
   <>
   <div>
@@ -48,13 +59,13 @@ return(
     position="bottom right"
   >
 <div className="w-64 h-50 bg-dro_white shadow-lg flex flex-col items-center py-3">
-      <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
+      {/* <div className="rounded-full border-dro_black bg-dro_gray h-10 w-10 flex items-center justify-center ">
       <span className="text-center">{user && user.username[0].toUpperCase()}</span>
-      </div>
+      </div> */}
       <h3 className="text-lg mt-3 font-bold"> 
       {user && user.username}
       </h3>
-      <h3 className="text-xs mb-3">{}</h3>
+      <h3 className="text-xs mb-3">{user && user.email}</h3>
       <div className="flex flex-col">
       <div className="flex flex-row items-center justify-center">
       <img
