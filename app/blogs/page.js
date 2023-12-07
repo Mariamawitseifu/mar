@@ -4,8 +4,8 @@ import Search from "@/components/search";
 export default function Blogs () {
 
 return <>
-{/* <Socalmedia/> */}
-<Search/>
+<Socalmedia/>
+{/* <Search/> */}
 {/* <Faq/> */}
 
 </>  

@@ -35,3 +35,13 @@
   .slide-in.is-visible {
     transform: translateX(0); 
   } */
+  .new-notification-indicator {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+   }
+   

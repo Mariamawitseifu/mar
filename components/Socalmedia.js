@@ -9,7 +9,8 @@ import 'tailwindcss/tailwind.css';
 import { useState, useEffect ,useRef} from "react";
 import Footer from "./Footer";
 import Endfooter from "./Endfooter";
-
+import Drogaceo from "@/app/Drogaceo/page";
+import 'app/drogaceo/drogaceo.css'
 export default function Socalmedia(){
    const router = useRouter();
 
@@ -57,30 +58,20 @@ export default function Socalmedia(){
         <div>
      <Navbar/>         
         </div>
-        <div className="min-h-screen"> 
-        <div className="w-screen"> 
-        <div className="bg-gray-200 relative h-[30vh] w-[100vw] mx-auto">
-      <img
-       src="/image/i99.png"
-        height={500}
-        width={100}
-        layout="fill"
-        objectFit="cover"
-        sizes="90vw"
-        style={{
-          width: '99%',
-          height: '300px',
-        }}
-        alt="Groupceo" />
-      <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
-        <span className="typewriter">{typewriterText}</span>
-      </h1>
-    </div>
-  </div>
-  </div>  
+        <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
+ <img
+ src="/image/i9.jpg"
+ className="absolute inset-0 w-full h-full object-cover"
+ alt="Groupceo"
+ />
+ <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
+ <span className="typewriter">{typewriterText}</span>
+ </h1>
+</div>
+
   </div>
   
-  <div className="flex flex-wrap  gap-60 px-80" style={{position: 'relative', top: '-500px'}}>
+  {/* <div className="flex flex-wrap py-28 gap-60 px-80">
         <div  className=" flex flex-row gap-3">
         <div className="w-1/2 py-10 px-4">
      <div className="flex items-center">
@@ -137,10 +128,10 @@ export default function Socalmedia(){
      </div>
      <div className="px-">
      <div className="  py-14">
-   <a className="underline"> www.desk</a>  
+   <a className="underline"> https://drogapharmacy.com/</a>  
   </div>
      <div className="">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a className="underline"> https://twitter.com/DrogaPharm63360</a>  
   </div>
      <div className=" py-12">
    <a className="underline"> www.trustethiopharma.com</a>  
@@ -180,7 +171,7 @@ export default function Socalmedia(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/whatsapp.png" height={50} width={50}>
+         <img src="/image/whatsappd.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Whatsapp
@@ -218,13 +209,17 @@ export default function Socalmedia(){
      </div>  
   </div>
   
-     </div>
+     </div> */}
+ <div className=" px-40 py-10 center-component">
+  <Drogaceo/>
+ </div>
   <div>
-  <button className=" font-semibold text-2xl px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
+  <button className=" font-semibold text-2xl py-10 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
   </button>
+  </div>
   <Footer/>
   <Endfooter/>
-  </div>
+  
   </>
 
 }

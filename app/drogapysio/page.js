@@ -41,9 +41,9 @@ export default function drogapysio(){
           setTimeout(() => {
             i = 0;
             startTyping(); // Restart the typewriter effect
-          }, 1000); // Delay before restarting the effect (1 second in this example)
+          }, 600); // Delay before restarting the effect (1 second in this example)
         }
-      }, 500);
+      }, 100);
     };
   
     startTyping();
@@ -57,30 +57,18 @@ export default function drogapysio(){
         <div>
      <Navbar/>         
         </div>
-        <div className="min-h-screen"> 
-        <div className="w-screen"> 
-        <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
-      <img
-       src="/image/i100.png"
-        height={500}
-        width={1000}
-        layout="fill"
-        objectFit="cover"
-        sizes="100vw"
-        style={{
-          width: '99%',
-          height: '300px',
-        }}
-        alt="Droga pysio" />
-      <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
-        <span className="typewriter">{typewriterText}</span>
-      </h1>
-    </div>
+        <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
+ <img
+ src="/image/i100.png"
+ className="absolute inset-0 w-full h-full object-cover"
+ alt="droga physio"
+ />
+ <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
+ <span className="typewriter">{typewriterText}</span>
+ </h1>
+</div>
   </div>
-  </div>  
-  </div>
-  
-  <div className="flex flex-wrap  gap-60 px-80" style={{position: 'relative', top: '-500px'}}>
+  <div className="flex flex-wrap py-28 gap-60 px-80">
         <div  className=" flex flex-row gap-3">
         <div className="w-1/2 py-10 px-4">
      <div className="flex items-center">
@@ -137,16 +125,16 @@ export default function drogapysio(){
      </div>
      <div className="px-">
      <div className="  py-14">
-   <a className="underline"> www.desk</a>  
+   <a href='https://drogaphysiotherapy.com/' className="underline"> https://drogaphysiotherapy.com/</a>  
   </div>
      <div className="">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a className="underline"> https://twitter.com/DrogaPharm63360</a>  
   </div>
      <div className=" py-12">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a href='https://www.facebook.com/drogaphysiotherapy/' className="underline">https://www.facebook.com/drogaphysiotherapy/</a>  
   </div>
      <div className=" py-4">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a href='https://www.linkedin.com/in/droga-physiotherapy-clinic-314b31186/?trk=people_directory&originalSubdomain=et' className="underline">https://www.linkedin.com/in/droga-physiotherapy-clinic-314b31186/?trk=people_directory&originalSubdomain=et</a>  
   </div>
      </div>       
         </div>
@@ -180,7 +168,7 @@ export default function drogapysio(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/whatsapp.png" height={50} width={50}>
+         <img src="/image/whatsappblue.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Whatsapp
@@ -192,7 +180,7 @@ export default function drogapysio(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/phone.png" height={50} width={50}>
+         <img src="/image/phoneblue.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Phone No
@@ -204,7 +192,7 @@ export default function drogapysio(){
      </div>
      <div className="px-">
      <div className=" py-14">
-   <a className="underline"> www.lo.com</a>  
+   <a className="underline">(+251)116687006</a>  
   </div>
   <div className=" py-2">
    <a className="underline">https:\\telegram\Ethiopharma</a>  
@@ -213,14 +201,14 @@ export default function drogapysio(){
    <a className="underline">https:whatsapp\trustethiopharma</a>  
   </div>
   <div className=" py-">
-   <a className="underline"> +25196969654</a>  
+   <a className="underline"> (+251)974959595</a>  
   </div>
      </div>  
   </div>
   
      </div>
   <div>
-  <button className=" font-semibold text-2xl px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
+  <button className=" font-semibold text-2xl py-10 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
   </button>
   <Footer/>
   <Endfooter/>

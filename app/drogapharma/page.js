@@ -41,9 +41,9 @@ export default function drogapharma(){
           setTimeout(() => {
             i = 0;
             startTyping(); // Restart the typewriter effect
-          }, 1000); // Delay before restarting the effect (1 second in this example)
+          }, 600); // Delay before restarting the effect (1 second in this example)
         }
-      }, 600);
+      }, 100);
     };
   
     startTyping();
@@ -57,32 +57,24 @@ export default function drogapharma(){
         <div>
      <Navbar/>         
         </div>
-        <div className=" "> 
-      <img
-       src="/image/droga1.jpg"
-        height={50}
-        width={100}
-        layout="fill"
-        objectFit="cover"
-        style={{
-          width: '99%',
-          height: '300px',
-        }}
-        alt="Droga Somaliland" />
-      <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
-        <span className="typewriter">{typewriterText}</span>
-      </h1>
-
-
-        </div> 
-  <div className="flex flex-wrap py-28 gap-60 px-80">
-        <div  className=" flex flex-row gap-3">
-        <div className="w-1/2 py-10 px-4">
-     <div className="flex items-center">
+        <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
+ <img
+ src="/image/i18.jpg"
+ className="absolute inset-0 w-full h-full object-cover"
+ alt="Groupceo"
+ />
+ <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
+ <span className="typewriter">{typewriterText}</span>
+ </h1>
+</div>
+  <div className="flex flex-wrap py-28 gap-6 px-72">
+        <div  className=" flex flex-row gap-4">
+        <div className="py-10 px-4">
+     <div className="flex items-">
        <div className=" flex flex-row"> 
         <div>
          <img 
-         src= "/image/www.png"
+         src= "/image/internetd.png"
          height={50} 
          width={50}
          alt="website"/>
@@ -92,10 +84,10 @@ export default function drogapharma(){
         </div>
   </div> 
      </div>
-     <div className="flex items-center">
+     <div className="flex items-">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/itwitter.png" height={50} width={50}>
+         <img src="/image/twitterd.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Twitter
@@ -106,7 +98,7 @@ export default function drogapharma(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/ifb.png" height={50} width={50}>
+         <img src="/image/facebookd.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Facebook
@@ -119,7 +111,7 @@ export default function drogapharma(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/ilinkedin.png" height={50} width={50}>
+         <img src="/image/linkedind.png" height={50} width={50}>
   </img> 
   <h1 className="">
   LinkedIn
@@ -132,26 +124,26 @@ export default function drogapharma(){
      </div>
      <div className="px-">
      <div className="  py-14">
-   <a className="underline"> www.desk</a>  
+   <a className="underline"> https://drogapharmacy.com/</a>  
   </div>
      <div className="">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a href='https://mobile.twitter.com/butajir' className="underline"> https://mobile.twitter.com/butajir</a>  
   </div>
      <div className=" py-12">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a href='https://www.facebook.com/drogapharmaplc' className="underline"> https://www.facebook.com/drogapharmaplc</a>  
   </div>
      <div className=" py-4">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a href='https://www.linkedin.com/company/droga-pharma-pvt-ltd-co/mycompany/' className="underline">https://www.linkedin.com/company/droga-pharma-pvt-ltd-co/mycompany/</a>  
   </div>
      </div>       
-        </div>
+        
   
   <div  className=" flex flex-row px-5 gap-3">
          <div className="w-1/2 py-10 px-4">
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/deskphone.png" height={50} width={50}>
+         <img src="/image/telephoned.png" height={50} width={50}>
   </img> 
   <h1 className="">
   DeskPhone
@@ -163,7 +155,7 @@ export default function drogapharma(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/telegram.png" height={50} width={50}>
+         <img src="/image/telegramd.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Telegram
@@ -175,7 +167,7 @@ export default function drogapharma(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/whatsapp.png" height={50} width={50}>
+         <img src="/image/whatsappd.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Whatsapp
@@ -187,7 +179,7 @@ export default function drogapharma(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/phone.png" height={50} width={50}>
+         <img src="/image/telephoned.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Phone No
@@ -199,20 +191,20 @@ export default function drogapharma(){
      </div>
      <div className="px-">
      <div className=" py-14">
-   <a className="underline"> www.lo.com</a>  
+   <a className="underline"> +252634958444</a>  
   </div>
   <div className=" py-2">
    <a className="underline">https:\\telegram\Ethiopharma</a>  
   </div>
   <div className=" py-12">
-   <a className="underline">https:whatsapp\trustethiopharma</a>  
+   <a className="underline">https:whatsapp\</a>  
   </div>
   <div className=" py-">
    <a className="underline"> +25196969654</a>  
   </div>
      </div>  
   </div>
-  
+  </div>
      </div>
   <div>
   <button className=" font-semibold text-2xl py-10 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery

@@ -12,12 +12,9 @@ import Quicklinks from '@/app/quicklinks/page.js';
 import Units from './Units.js';
 
 export default function Navbar() {
-
-
-
-  const [modalOpen, setModalOpen] = useState(false);
- const [searchQuery, setSearchQuery] = useState('');
- const [results, setResults] = useState([]);
+const [modalOpen, setModalOpen] = useState(false);
+const [searchQuery, setSearchQuery] = useState('');
+const [results, setResults] = useState([]);
 
  const handleSearch = async () => {
    try {
@@ -31,12 +28,8 @@ export default function Navbar() {
  };
 
   const [user, setUser] = useState(null)
-  // const [isOpen, setIsOpen] = useState(false);
   const [isOpeen, setIsOpeen] = useState(false);
   const [isOpened, setIsOpened]=useState(false);
-  // const [isOpen1, setIsOpen1] = useState(false);
-  // const cardRef = useRef(null);
-  // const blurRef = useRef(null);
   const passRef = useRef(null);
   const handleToggle = () => {
     setIsOpened((prevState) => !prevState);
@@ -177,9 +170,9 @@ const handlePost = () => {
 
   return (
     <>
-<div className="relative bg-dro_yellow px-2 py-2 md:px-1">
+<div className="relative bg-dro_yellow py-2">
   <header className="text-dro_black body-font relative z-20">
-    <div className="mx-auto flex flex-wrap md:flex-nowrap flex-col md:flex-row items-center">
+    <div className="flex flex-wrap md:flex-nowrap gap-72 flex-col md:flex-row items-center">
       <div className="flex flex-row px-4 md:px-8 py-1">
       <Link href="/home">
       <img
@@ -195,14 +188,10 @@ const handlePost = () => {
         </h1>
       </div>
       <div className="flex title-font font-medium items-center mx-auto my-4 md:my-0">
-        <nav className="md:mx-auto flex flex-row space-x-8 flex-wrap w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base justify-center">
+        <nav className="flex flex-row space-x-16 w-full bg-dro_yellow py-8 md:py-16 px-4 md:px-10 items-center text-base">
           <div>
             <Units/>
           </div>
-          <>
-          <div>
-    </div>
-          </>
           
           <Link legacyBehavior href="/userguide">
             <a className="font-semibold text-lg">Portal User Guide</a>

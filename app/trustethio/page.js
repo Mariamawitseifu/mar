@@ -57,30 +57,19 @@ export default function trustethio(){
         <div>
      <Navbar/>         
         </div>
-        <div className="min-h-screen"> 
-        <div className="w-screen"> 
-        <div className="bg-gray-200 relative h-[40vh] w-[100vw] mx-auto">
-      <img
-       src="/image/drogat.jpg"
-        height={500}
-        width={1000}
-        layout="fill"
-        objectFit="cover"
-        sizes="100vw"
-        style={{
-          width: '99%',
-          height: '300px',
-        }}
-        alt="Droga trust" />
-      <h1 className="text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
-        <span className="typewriter">{typewriterText}</span>
-      </h1>
-    </div>
-  </div>
-  </div>  
+        <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
+ <img
+ src="/image/drogat.jpg"
+ className="absolute inset-0 w-full h-full object-cover"
+ alt="droga trust"
+ />
+ <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-typewriter">
+ <span className="typewriter">{typewriterText}</span>
+ </h1>
+</div>
   </div>
   
-  <div className="flex flex-wrap  gap-60 px-80" style={{position: 'relative', top: '-500px'}}>
+  <div className="flex flex-wrap py-28 gap-60 px-80">
         <div  className=" flex flex-row gap-3">
         <div className="w-1/2 py-10 px-4">
      <div className="flex items-center">
@@ -137,10 +126,10 @@ export default function trustethio(){
      </div>
      <div className="px-">
      <div className="  py-14">
-   <a className="underline"> www.desk</a>  
+   <a href='https://trustethiopharma.com/' className="underline"> https://trustethiopharma.com/</a>  
   </div>
      <div className="">
-   <a className="underline"> www.trustethiopharma.com</a>  
+   <a className="underline"> https://twitter.com/</a>  
   </div>
      <div className=" py-12">
    <a className="underline"> www.trustethiopharma.com</a>  
@@ -180,7 +169,7 @@ export default function trustethio(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/whatsapp.png" height={50} width={50}>
+         <img src="/image/whatsappblue.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Whatsapp
@@ -192,7 +181,7 @@ export default function trustethio(){
      <div className="flex items-center">
        <div className=" flex flex-row">
         <div>
-         <img src="/image/phone.png" height={50} width={50}>
+         <img src="/image/phoneblue.png" height={50} width={50}>
   </img> 
   <h1 className="">
   Phone No
@@ -204,7 +193,7 @@ export default function trustethio(){
      </div>
      <div className="px-">
      <div className=" py-14">
-   <a className="underline"> www.lo.com</a>  
+   <a className="underline"> (+251)111-71-82-54</a>  
   </div>
   <div className=" py-2">
    <a className="underline">https:\\telegram\Ethiopharma</a>  
@@ -213,14 +202,14 @@ export default function trustethio(){
    <a className="underline">https:whatsapp\trustethiopharma</a>  
   </div>
   <div className=" py-">
-   <a className="underline"> +25196969654</a>  
+   <a className="underline">(+251) 913-66-75-37</a>  
   </div>
      </div>  
   </div>
   
      </div>
   <div>
-  <button className=" font-semibold text-2xl px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
+  <button className=" font-semibold text-2xl py-10 px-8 animate-bounce"onClick={handleClickG}> Picture Gallery
   </button>
   <Footer/>
   <Endfooter/>
