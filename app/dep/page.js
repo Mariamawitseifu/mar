@@ -147,54 +147,54 @@
 //     </div>
 //   );
 // }
-'use client'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+// 'use client'
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
 
-export default function Dep() {
- const [notifications, setNotifications] = useState([]);
- const [loading, setLoading] = useState(true);
+// export default function Dep() {
+//  const [notifications, setNotifications] = useState([]);
+//  const [loading, setLoading] = useState(true);
 
- useEffect(() => {
- fetchNotifications();
- }, []);
+//  useEffect(() => {
+//  fetchNotifications();
+//  }, []);
 
- useEffect(() => {
- console.log('Notifications:', notifications);
- }, [notifications]);
+//  useEffect(() => {
+//  console.log('Notifications:', notifications);
+//  }, [notifications]);
 
- const fetchNotifications = async () => {
- try {
-  const response = await axios.get(' http://127.0.0.1:8000/api1/notifications/');
-  setNotifications(response.data);
-  setLoading(false);
- } catch (error) {
-  console.error('Failed to fetch notifications', error);
-  setLoading(false);
- }
- };
+//  const fetchNotifications = async () => {
+//  try {
+//   const response = await axios.get(' http://127.0.0.1:8000/api1/notifications/');
+//   setNotifications(response.data);
+//   setLoading(false);
+//  } catch (error) {
+//   console.error('Failed to fetch notifications', error);
+//   setLoading(false);
+//  }
+//  };
 
- if (loading) {
- return <div>Loading...</div>;
- }
+//  if (loading) {
+//  return <div>Loading...</div>;
+//  }
 
- return (
-  <div className="hover:bg-dro_gray text-xl border-dro_black px-4 w-50 h-18 bg-dro_white py-4">
-  {notifications.length > 0 ? (
-    notifications
-      .reverse()
-      .map((notification) => (
-        <div key={notification.id}>
-          <h2>{notification.text}</h2>
-          {/* <p>{notification.post}</p> */}
-        </div>
-      ))
-  ) : (
-    <p>You don't have any notifications</p>
-  )}
-</div>
- );
-}
+//  return (
+//   <div className="hover:bg-dro_gray text-xl border-dro_black px-4 w-50 h-18 bg-dro_white py-4">
+//   {notifications.length > 0 ? (
+//     notifications
+//       .reverse()
+//       .map((notification) => (
+//         <div key={notification.id}>
+//           <h2>{notification.text}</h2>
+//           {/* <p>{notification.post}</p> */}
+//         </div>
+//       ))
+//   ) : (
+//     <p>You don't have any notifications</p>
+//   )}
+// </div>
+//  );
+// }
 
 // import { useState, useEffect } from 'react';
 // import axios from 'axios';
@@ -234,3 +234,53 @@ export default function Dep() {
 //     </div>
 //   );
 // }
+
+
+'use client'
+import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+
+export default function Blog() {
+  const router = useRouter();
+  const [id, setId] = useState(null);
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api1/posts/${id}/`);
+        const data = await response.json();
+        setPost(data);
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+
+    if (id) {
+      fetchPost();
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (router.isReady) {
+      const blogID = router.query.id;
+      setId(blogID);
+      localStorage.setItem('blogID', blogID);
+    }
+  }, [router.isReady]);
+
+  if (!post) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+      <p>Published at: {post.published_date}</p>
+      <p>Author: {post.author.username} ({post.author.role})</p>
+      {post.image && <img src={post.image} alt={post.title} />}
+    </div>
+  );
+}

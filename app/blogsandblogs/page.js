@@ -4,12 +4,24 @@ import Highlighter from 'react-highlight-words';
 import Popup from 'reactjs-popup';
 import Link from 'next/link';
 import Detail from '@/app/detail/[id].js';
+import blog from '../blog/page';
+import { useRouter } from 'next/navigation';
 
 const blogsandblogs = () => {
  const [query, setQuery] = useState('');
  const [results, setResults] = useState({post_results: [], record_results: []});
+ const router = useRouter();
  useEffect(() => {
-  console.log('Query:', query);
+  if (router.isReady) {
+  if (router.query) {
+   const blogID = router.query.id;
+   localStorage.setItem('blogID', blogID);
+  }
+  }
+ }, [router.isReady]);
+ 
+ useEffect(() => {
+  // console.log('Query:', query);
  if (query.trim() !== '') {
   // Fetch search results from the API
   fetch(`http://127.0.0.1:8000/api1/search/?query=${query}`)
@@ -20,7 +32,7 @@ const blogsandblogs = () => {
       return response.json();
     })
     .then((data) => {
-      console.log(data); // Log the data to inspect its structure
+      // console.log(data); // Log the data to inspect its structure
       if (data && data.post_results && data.record_results) {
         setResults({post_results: data.post_results, record_results: data.record_results});
       } else {
@@ -59,7 +71,7 @@ const blogsandblogs = () => {
       return response.json();
     })
     .then((data) => {
-      console.log(data); // Log the data to inspect its structure
+      // console.log(data); // Log the data to inspect its structure
       if (data && data.post_results && data.record_results) {
         setResults({post_results: data.post_results, record_results: data.record_results});
       } else {
@@ -96,7 +108,7 @@ const blogsandblogs = () => {
         {results.post_results && results.post_results.map((result) => (
           <li key={result.id}>
             {/* Display the relevant data from the search results */}
-            <Link href={`/detail/${result.id}`}>
+            <Link href="/blog" as={`/blog`} onClick={() => localStorage.setItem('blogID', result.id)}>
               <Highlighter
                 highlightClassName="Highlight"
                 searchWords={[query]}
