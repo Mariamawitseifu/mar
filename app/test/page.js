@@ -57,7 +57,7 @@ export default function Test({ visiblePosts }) {
    // Perform action here after role state updates
   }, [role]);
   
- console.log(role);
+//  console.log(role);
   const isBrowser = typeof window !== 'undefined';
 
   // ...
@@ -71,27 +71,6 @@ export default function Test({ visiblePosts }) {
       localStorage.setItem('blogs', JSON.stringify(blogs));
     }
   }, [blogs]);
-
-  // useEffect(() => {
-  //   const fetchBlogs = async () => {
-  //     try {
-  //       const response = await fetch('http://127.0.0.1:8000/api1/posts/', {
-  //         headers: {
-  //           'Authorization': `Token ${token}`,
-  //           'Content-Type': 'application/x-www-form-urlencoded'
-  //         },
-  //       });
-  //       const data = await response.json();
-  //       const sortedBlogs = sortBlogsByDate(data); // Sort the blogs by date
-  //       setBlogs(sortedBlogs);
-  //       localStorage.setItem('blogs', JSON.stringify(sortedBlogs));
-  //     } catch (error) {
-  //       console.error('Error fetching blogs:', error);
-  //     }
-  //   };
-  
-  //   fetchBlogs();
-  // }, []);
    
   useEffect(() => {
     if (isBrowser) {
@@ -192,11 +171,13 @@ export default function Test({ visiblePosts }) {
       {faqsToDisplay.map((blog) => (
         <Faq
           key={blog.id}
+          postId={blog.id}
           title={blog.title}
           body={blog.body}
           author={blog.author}
           image={blog.image}
-          publishedDate={blog.publishedDate}
+          published_date={blog.published_date}
+
         />
       ))}
 

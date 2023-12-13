@@ -95,32 +95,47 @@ export default function galleryrwanda() {
       console.error('Error:', error);
     });
 }, []);
+const [role, setRole] = useState('');
+
+useEffect(() => {
+ if (typeof window !== 'undefined') {
+   const storedRole = window.localStorage.getItem('role');
+   if (storedRole) {
+     setRole(storedRole);
+   }
+ }
+}, []);
  return (
    <>
-     <div className="relative">
-       <div className="card py-6 px-16">
-       <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
+   <div className="card py-6 px-16">
+    <div className="relative">
+    {role === "graphicsdesigner" || role === 'superadmin' ? (
+      <div className="card py-6 px-16">
+      <input
+         type="text"
+         value={title}
+         onChange={(e) => setTitle(e.target.value)}
+         placeholder="Enter title"
+         />
+        <label
+          htmlFor="image-upload"
+          className="upload-button bg-dro_white px-8 py-2 md:px-4 md:py-1"
+        >
+          Choose Image
+          <input
+            id="image-upload"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="hidden"
           />
-         <label
-           htmlFor="image-upload"
-           className="upload-button bg-dro_white px-8 py-2 md:px-4 md:py-1"
-         >
-           Choose Image
-           <input
-             id="image-upload"
-             type="file"
-             accept="image/*"
-             onChange={handleImageUpload}
-             className="hidden"
-           />
-         </label>
+        </label>
 
 
-       </div>
+      </div>
+      
+) : null}
+    </div>
      </div>
 <div className="grid grid-cols-4 gap-4">
   {images.map((image, index) => (

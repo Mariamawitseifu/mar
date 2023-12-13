@@ -369,4 +369,48 @@
 
 
 
+'use client'
+import { useState, useEffect } from 'react';
 
+const SearchPage = () => {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (query.trim() !== '') {
+      // Fetch search results from the API
+      fetch(`/api/search?query=${query}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setResults(data.results);
+        })
+        .catch((error) => {
+          console.error('Error fetching search results:', error);
+        });
+    } else {
+      setResults([]);
+    }
+  }, [query]);
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  return (
+    <div>
+      <h1>Search Page</h1>
+      <input type="text" value={query} onChange={handleInputChange} placeholder="Search..." />
+      <ul>
+        {results.map((result) => (
+          <li key={result.id}>
+            {/* Display the relevant data from the search results */}
+            <p>{result.title}</p>
+            <p>{result.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default SearchPage;

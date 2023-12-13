@@ -22,7 +22,7 @@ export default function Units() {
   });
 
   const handleAddRecord = () => {
-    console.log(`before the add request ${newRecord.internalLinks}`);
+    // console.log(`before the add request ${newRecord.internalLinks}`);
     const token = localStorage.getItem('token');
     fetch("http://localhost:8000/api/api/records/create/", {
       method: "POST",
@@ -39,7 +39,7 @@ export default function Units() {
       .then((response) => response.json())
       .then((data) => {
         // Handle the response from the backend
-        console.log(`This is the data ${data}`);
+        // console.log(`This is the data ${data}`);
         // Reset the new record inputs
         setNewRecord({
           number: '',
@@ -96,7 +96,7 @@ export default function Units() {
   
   const handleSave = async (index, updatedRecord) => {
     const token = localStorage.getItem('token');
-    console.log(updatedRecord);
+    // console.log(updatedRecord);
     try {
       const response = await axios.put(`http://127.0.0.1:8000/api/records/${updatedRecord.id}/`, updatedRecord);
       if (response.status === 200) {
@@ -144,7 +144,7 @@ export default function Units() {
    // Perform action here after role state updates
   }, [role]);
   
- console.log(role);
+//  console.log(role);
   const isBrowser = typeof window !== 'undefined';
   const [records, setRecords] = useState([]);
 
@@ -167,7 +167,7 @@ export default function Units() {
     const addButton = addButtonRef.current;
     const token = localStorage.getItem('token'); // Fetch the token from local storage
    
-    fetch("http://localhost:8000/api/api/records/")
+    fetch("http://127.0.0.1:8000/api/api/records/")
       .then(response => response.json())
       .then(data => {
         console.log(`The returned list ${data}`);
@@ -177,7 +177,7 @@ export default function Units() {
     if (addButton) {
       addButton.addEventListener("click", function() {
         // Make an HTTP POST request to the backend API endpoint
-        fetch("http://localhost:8000/api/api/records/create/", {
+        fetch("http://127.0.0.1:8000/api/api/records/create/", {
           method: "POST",
           headers: {
             'Authorization': `Token ${token}`, // Use the fetched token here
@@ -193,7 +193,7 @@ export default function Units() {
           .then(response => response.json())
           .then(data => {
             // Handle the response from the backend
-            console.log(data);
+            // console.log(data);
           })
           .catch(error => {
             // Handle any errors that occur during the request
@@ -241,7 +241,7 @@ export default function Units() {
     };
   }, []);
 
-  console.log(`The fetched list here ${qLinks}`);
+  // console.log(`The fetched list here ${qLinks}`);
   
   return (
     <div>
@@ -320,7 +320,7 @@ export default function Units() {
                 <button className=" bg-dro_green rounded-md py-1 px-1 text-dro_white" onClick={() => handleSave(index, { ...record, isEditing: false })}>
                   Save
                 </button>
-                <button className=" bg-dro_red rounded-md py-1 px-1 text-dro_white" onClick={() => setEditedIndex(null)}>Cancel</button>
+                <button className=" bg-dro_red rounded-md py-1 px-1 text-dro_white" onClick={() => handleCancelEdit(null)}>Cancel</button>
               </div>
             ) : (
               <div className="flex space-x-2 p-2">

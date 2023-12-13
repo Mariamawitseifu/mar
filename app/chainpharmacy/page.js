@@ -57,7 +57,7 @@ export default function chainpharmacy(){
          </div>
          <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
  <img
- src="/image/drogac.jpg"
+ src="/image/test3.jpg"
  className="absolute inset-0 w-full h-full object-cover"
  alt="Groupceo"
  />

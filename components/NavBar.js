@@ -170,7 +170,7 @@ const handlePost = () => {
 
   return (
     <>
-<div className="relative bg-dro_yellow py-2">
+<div className="relative bg-dro_yellow md:py-8 sm:py-1">
   <header className="text-dro_black body-font relative z-20">
     <div className="flex flex-wrap md:flex-nowrap gap-72 flex-col md:flex-row items-center">
       <div className="flex flex-row px-4 md:px-8 py-1">

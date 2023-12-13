@@ -7,6 +7,7 @@ export default function gallerydroga() {
  const [uploadedImage, setUploadedImage] = useState(null);
  const [selectedImages, setSelectedImages] = useState([]);
  const [title, setTitle] = useState('');
+ const [isDeleteClicked, setIsDeleteClicked] = useState(false);
 
 
  let token;
@@ -95,9 +96,52 @@ export default function gallerydroga() {
       console.error('Error:', error);
     });
 }, []);
+const [role, setRole] = useState('');
+
+useEffect(() => {
+ if (typeof window !== 'undefined') {
+   const storedRole = window.localStorage.getItem('role');
+   if (storedRole) {
+     setRole(storedRole);
+   }
+ }
+}, []);
+
+useEffect(() => {
+ // Perform action here after role state updates
+}, [role]);
+
+const deletePost = async () => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this record?");
+
+  setIsDeleteClicked(true);
+  if(confirmDelete){
+  try {
+   const response = await axios.delete(`http://127.0.0.1:8000/pictures/deleted/${postId}`);
+   if (response.status === 204) {
+     // If the server returns a 204 status, the post was deleted successfully
+     // You can then update your state to remove the post from the list
+     setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+   }
+   window.location.reload();
+  } catch (error) {
+   console.error('Error:', error);
+  } finally {
+   setIsDeleteClicked(false);
+  }
+ };
+}
+ useEffect(() => {
+  if(isDeleteClicked) {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+    setIsDeleteClicked(false);
+  }
+}, [isDeleteClicked]); 
+
 return (
   <>
     <div className="relative">
+    {role === "graphicsdesigner" || role === 'superadmin' ? (
       <div className="card py-6 px-16">
       <input
          type="text"
@@ -121,6 +165,8 @@ return (
 
 
       </div>
+      
+) : null}
     </div>
 <div className="grid grid-cols-4 gap-4">
  {images.map((image, index) => (
@@ -140,6 +186,10 @@ return (
          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
        </p> */}
      </div>
+     <FiTrash2
+    className="text-red-500 w-6 h-6"
+    onClick={deletePost} 
+  />
    </div>
  ))}
 </div>

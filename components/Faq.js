@@ -4,12 +4,13 @@ import axios from 'axios';
 import Button from "../components/Button";
 import "../components/animation.css";
 import Image from 'next/image';
-import { DateTime } from 'luxon';
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { FiTrash2 } from 'react-icons/fi';
+import format from 'date-fns/format';
 
 
-export default function Faq({ title, body, author, image, publishedDate, visibleFaqs }) {
+export default function Faq({ title, body, author, image, published_date, visibleFaqs, postId }) {
   const [isOpen, setIsOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [isOppen, setIsOpenn] = useState([]);
@@ -17,11 +18,27 @@ export default function Faq({ title, body, author, image, publishedDate, visible
   const [entry, setEntry] = useState();
   const [loadMoreFaqs, setLoadMoreFaqs] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const { DateTime } = require('luxon');
-  const isoDateString = "2023-11-20T13:37:39.918371Z";
-  const dateObject = new Date(isoDateString);
-  const formattedDate = dateObject.toLocaleDateString();
-  
+  const [isDeleteClicked, setIsDeleteClicked] = useState(false);
+// in faq.js
+// faq.js
+
+function formatPublished_date(dateString) {
+  const date = new Date(dateString)
+  return format(date, 'dd MMM yyyy') 
+}
+
+// Usage
+
+const formattedDate = published_date.slice(0,10);
+
+// usage
+<p>{formattedDate}</p>
+function formatDate(date) {
+  return date.slice(0, 10);
+}
+
+// usage
+
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -55,35 +72,6 @@ export default function Faq({ title, body, author, image, publishedDate, visible
     }
     setLoadMoreFaqs(prev => !prev); // Toggle the loadMoreFaqs state
   };
-  // useEffect(() => {
-  //   const fetchData = async (page) => {
-  //     try {
-  //       const response = await axios.get("http://127.0.0.1:8000/api1/posts/", {
-  //       });
-  //       setPosts(response.data.results);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchData(0);
-  // },);
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // const fetchData = async () => {
-  //   const response = await axios.get("http://127.0.0.1:8000/api1/posts/");
-  //   setPosts(response.data.results);
-  // }
-
-  const sortedFilteredPosts = filteredPosts.sort((a, b) => {
-    const dateA = DateTime.fromFormat(a.frontmatter.date, 'm-d-yyyy');
-    const dateB = DateTime.fromFormat(b.frontmatter.date, 'm-d-yyyy');
-    return dateB - dateA;
-   });   
-
   const handleClick = () => {
     setIsOpen(true);
   };
@@ -98,8 +86,32 @@ export default function Faq({ title, body, author, image, publishedDate, visible
       await handleLoadMore();
     }
   };
-  console.log('publishedDate:', publishedDate);
-  console.log('post:', post);
+  const deletePost = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this record?");
+
+    setIsDeleteClicked(true);
+    if(confirmDelete){
+    try {
+     const response = await axios.delete(`http://127.0.0.1:8000/api1/deleteposts/${postId}`);
+     if (response.status === 204) {
+       // If the server returns a 204 status, the post was deleted successfully
+       // You can then update your state to remove the post from the list
+       setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+     }
+     window.location.reload();
+    } catch (error) {
+     console.error('Error:', error);
+    } finally {
+     setIsDeleteClicked(false);
+    }
+   };
+  }
+   useEffect(() => {
+    if(isDeleteClicked) {
+      setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+      setIsDeleteClicked(false);
+    }
+  }, [isDeleteClicked]); 
   return (
     <div
       data-aos="fade-up"
@@ -132,11 +144,21 @@ export default function Faq({ title, body, author, image, publishedDate, visible
                   <p>{body}</p>
                 </div>
               )}
-               <p>{formattedDate}</p>  
+               {/* <p>{published_date}</p> 
+                 */}
+                 {/* <p>{formatDate(published_date)}</p> */}
+                 <p>{formatPublished_date(published_date)}</p>
               <div className=' font-bold text-lg'>
                 {author.username}
               </div>
-            </div>
+              <div className="flex px-10 justify-end">
+  <div className="flex-1"></div>
+
+  <FiTrash2
+    className="text-red-500 w-6 h-6"
+    onClick={deletePost} 
+  />
+</div>   </div>
           </div>
         </div>
 
@@ -151,8 +173,7 @@ export default function Faq({ title, body, author, image, publishedDate, visible
  <h2>{post.title}</h2>
  <p>{post.body}</p>
  <p>Author: {post.author.username}</p>
- <p>{new Date(publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}</p>
-
+ <p>Published at: {post.published_date}</p>
 </div>
 ))
 }

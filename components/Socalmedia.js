@@ -60,7 +60,7 @@ export default function Socalmedia(){
         </div>
         <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
  <img
- src="/image/i9.jpg"
+ src="/image/drogaceo.jpg"
  className="absolute inset-0 w-full h-full object-cover"
  alt="Groupceo"
  />

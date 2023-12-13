@@ -49,7 +49,7 @@ const Drogaceo = () => {
         link: "www.trustethiopharma.com"
       },
       {
-        src: "/image/whatsappd.png",
+        src: "/image/whatsappblue.png",
         name: "Whatsapp",
         link: "https:whatsapp\trustethiopharma"
        },
