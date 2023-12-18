@@ -122,16 +122,16 @@ export default function chainpharmacy(){
      </div>
      <div className="px-">
      <div className="  py-14">
-   <a className="underline"> https://drogapharmacy.com/</a>  
+   <a href='https://drogapharmacy.com/' className="underline"> https://drogapharmacy.com/</a>  
   </div>
      <div className="">
    <a href='https://twitter.com/DrogaPharm63360' className="underline">https://twitter.com/DrogaPharm63360</a>  
   </div>
      <div className=" py-12">
-   <a href='https://www.facebook.com/profile.php?id=100093153377821' className="underline">https://www.facebook.com/profile.php?id=100093153377821</a>  
+   <a href='https://www.facebook.com/profile.php?id=100093153377821' className="underline">https://www.facebook.com/profile</a>  
   </div>
      <div className=" py-4">
-   <a href='https://www.linkedin.com/company/droga-pharmacies' className="underline">https://www.linkedin.com/company/droga-pharmacies</a>  
+   <a href='https://www.linkedin.com/company/droga-pharmacies' className="underline">https://www.linkedin.com/company</a>  
   </div>
      </div>       
         </div>

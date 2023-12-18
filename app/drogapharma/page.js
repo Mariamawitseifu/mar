@@ -59,7 +59,7 @@ export default function drogapharma(){
         </div>
         <div className="relative h-[200px] md:h-[250px] lg:h-[300px] xl:h-[350px] 2xl:h-[400px]">
  <img
- src="/image/i18.jpg"
+ src="/image/test4.jpg"
  className="absolute inset-0 w-full h-full object-cover"
  alt="Groupceo"
  />

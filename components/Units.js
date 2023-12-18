@@ -13,7 +13,7 @@ export default function Units() {
   const addButtonRef = useRef(null);
   const [user, setUser] = useState([]);
   const [editedIndex, setEditedIndex] = useState(null);
-
+  const [errorMessage,setErrorMessage] = useState('');
   const [newRecord, setNewRecord] = useState({
     
     name: '',
@@ -21,38 +21,45 @@ export default function Units() {
     externalLinks: ''
   });
 
-  const handleAddRecord = () => {
+const handleAddRecord = () => {
+  if (newRecord.name.trim() === '') {
+    setErrorMessage('Please add a name');
+    return;
+  }
     // console.log(`before the add request ${newRecord.internalLinks}`);
-    const token = localStorage.getItem('token');
-    fetch("http://localhost:8000/api/api/records/create/", {
-      method: "POST",
-      headers: {
-        'Authorization': `Token ${token}`,
-        'Content-Type': 'application/json' // Set the 'Content-Type' header to 'application/json'
-      },
-      body: JSON.stringify({
-        name: newRecord.name,
-        internal_links: newRecord.internalLinks,
-        external_links: newRecord.externalLinks
-      })
+  const token = localStorage.getItem('token');
+  fetch("http://localhost:8000/api/api/records/create/", {
+    method: "POST",
+    headers: {
+      'Authorization': `Token ${token}`,
+      'Content-Type': 'application/json' // Set the 'Content-Type' header to 'application/json'
+    },
+    body: JSON.stringify({
+      name: newRecord.name,
+      internal_links: newRecord.internalLinks,
+      external_links: newRecord.externalLinks
     })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response from the backend
-        // console.log(`This is the data ${data}`);
-        // Reset the new record inputs
-        setNewRecord({
-          number: '',
-          name: '',
-          internalLinks: '',
-          externalLinks: ''
-        });
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the request
-        console.error(error);
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the response from the backend
+      // console.log(`This is the data ${data}`);
+      // Reset the new record inputs
+      setNewRecord({
+        number: '',
+        name: '',
+        internalLinks: '',
+        externalLinks: ''
       });
-  };
+      setQLinks((prevQLinks) => [...prevQLinks, data]); // Add the new record received from the backend to the qLinks array
+      setErrorMessage(''); // Clear the error message
+    })
+    .catch((error) => {
+      // Handle any errors that occur during the request
+      console.error(error);
+
+    });
+};
   const handleEdit = (index) => {
     setEditedIndex(index);
     setQLinks((prevQLinks) => {
@@ -245,7 +252,7 @@ export default function Units() {
   
   return (
     <div>
-      <button className="font-semibold text-lg" onClick={handleClickM}>
+      <button className="font-semibold text-xl" onClick={handleClickM}>
         Quick Links
       </button>
       {isOpen && (
@@ -277,7 +284,7 @@ export default function Units() {
     {qLinks &&
       qLinks.map((record, index) => (
         <tr key={record.id}>
-          <td className="border-2 border-black w-1/12">{index}</td>
+          <td className="border-2 border-black w-1/12">{index+1}</td>
           <td className="border-2 border-black w-3/12">
             {record.isEditing ? (
               <input
@@ -347,7 +354,7 @@ export default function Units() {
                     {isOpeen && (
                       <>
                         <input
-                          className="border px-2"
+                          className="border w-4/12 px-2"
                           type="text"
                           value={newRecord.name}
                           onChange={(e) =>
@@ -358,7 +365,7 @@ export default function Units() {
                           }
                         />
                         <input
-                          className="border px-2"
+                          className="border px-2 w-4/12"
                           type="text"
                           value={newRecord.internalLinks}
                           onChange={(e) =>
@@ -369,7 +376,7 @@ export default function Units() {
                           }
                         />
                         <input
-                          className="border px-2"
+                          className="border w-3/12 px-2"
                           type="text"
                           value={newRecord.externalLinks}
                           onChange={(e) =>
@@ -379,7 +386,9 @@ export default function Units() {
                             }))
                           }
                         />
-                        <button onClick={handleAddRecord}>Add</button>
+                                    {/* {errorMessage && <p className="text-dro_red">{errorMessage}</p>} */}
+                        <button className="bg-dro_green px-2 py-1 mr-1 rounded-md" style={{position: 'absolute', right: '27px'}} onClick={handleAddRecord}>Add</button>
+                        {errorMessage && <p className="text-dro_red">{errorMessage}</p>}
                       </>
                     )}
                    

@@ -241,16 +241,16 @@ useEffect(() => {
       }
     }
 
-    const handleOutsideClick = event => {
-      if (blurRef.current && event.target === blurRef.current) {
-        setIsOpen(false);
-      }
-    };
+    // const handleOutsideClick = event => {
+    //   if (blurRef.current && event.target === blurRef.current) {
+    //     setIsOpen(false);
+    //   }
+    // };
 
-    document.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
+    // document.addEventListener("click", handleOutsideClick);
+    // return () => {
+    //   document.removeEventListener("click", handleOutsideClick);
+    // };
   }, []);
 
   console.log(`The fetched list here ${qLinks}`);

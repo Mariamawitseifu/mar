@@ -134,7 +134,7 @@ export default function drogapysio(){
    <a href='https://www.facebook.com/drogaphysiotherapy/' className="underline">https://www.facebook.com/drogaphysiotherapy/</a>  
   </div>
      <div className=" py-4">
-   <a href='https://www.linkedin.com/in/droga-physiotherapy-clinic-314b31186/?trk=people_directory&originalSubdomain=et' className="underline">https://www.linkedin.com/in/droga-physiotherapy-clinic-314b31186/?trk=people_directory&originalSubdomain=et</a>  
+   <a href='https://www.linkedin.com/in/droga-physiotherapy-clinic-314b31186/?trk=people_directory&originalSubdomain=et' className="underline">https://www.linkedin.com/in/droga-physiotherapy-clinic</a>  
   </div>
      </div>       
         </div>

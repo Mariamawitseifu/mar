@@ -6,3 +6,19 @@
   .result-item {
     /* Add margin or padding styles for the result items if needed */
   }
+
+
+  .add-record-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-record-container input {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .add-record-container p {
+    margin-top: 5px;
+  }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Popup from "reactjs-popup";
 import {useState, useEffect ,useRef} from "react";
 import axios from "axios";
-
+import Homepage from '../page';
 
 export default function Circle () {
   const [user, setUser] = useState(null)
@@ -26,7 +26,7 @@ export default function Circle () {
       localStorage.removeItem("user");
       console.log("User removed from local storage");
   
-      window.location.href = "/dep";
+      window.location.href = "/homepage";
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -54,7 +54,7 @@ return(
   <div>
   <Popup
     trigger={
-    <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black">{user && user.username[0].toUpperCase()}</button>
+    <button className="flex h-10 w-10 ml-6 items-center justify-center rounded-full bg-dro_white border-dro_black font-semibold text-xl">{user && user.username[0].toUpperCase()}</button>
   }
     position="bottom right"
   >

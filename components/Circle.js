@@ -8,16 +8,17 @@ import axios from "axios";
 export default function Circle ({username}) {
   const [user, setUser] = useState(null)
   const [isOpeen,setIsOpeen]=useState(null)
+  const token = localStorage.getItem('token');
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token");
       console.log("Token:", token);
   
     await axios.post("http://127.0.0.1:8000/api/logout/", null, {
       headers: {
-        Authorization: `Token ${token}`,
-      },
+        'Authorization': `Token ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     });
 
       localStorage.removeItem("token");
@@ -26,7 +27,7 @@ export default function Circle ({username}) {
       localStorage.removeItem("user");
       console.log("User removed from local storage");
   
-      window.location.href = "/dep";
+      window.location.href = "http://localhost:3000";
     } catch (error) {
       console.error("Logout error:", error);
     }

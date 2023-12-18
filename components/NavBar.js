@@ -82,8 +82,7 @@ const [results, setResults] = useState([]);
   
       localStorage.removeItem("user");
       console.log("User removed from local storage");
-  
-      window.location.href = "/dep";
+      window.location.href = "http://localhost:3000";
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -194,7 +193,7 @@ const handlePost = () => {
           </div>
           
           <Link legacyBehavior href="/userguide">
-            <a className="font-semibold text-lg">Portal User Guide</a>
+            <a className="font-semibold text-xl">Portal User Guide</a>
           </Link>
 
           <ul>
