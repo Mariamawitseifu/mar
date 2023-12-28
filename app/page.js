@@ -48,7 +48,11 @@ export default function Home() {
         console.error('Username is undefineded');
         // handle the error
       }
-      router.push('/home');
+      if (response.data.user.role === 'admin') {
+        router.push('/registration');
+       } else {
+        router.push('/home');
+       }       
     } else {
       throw new Error('Login failed');
     }

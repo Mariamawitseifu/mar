@@ -1,5 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react";
+import { FiTrash2 } from 'react-icons/fi';
+import axios from 'axios';
 
 export default function gallerydroga() {
  const [selectedImage, setSelectedImage] = useState(null);
@@ -8,7 +10,46 @@ export default function gallerydroga() {
  const [selectedImages, setSelectedImages] = useState([]);
  const [title, setTitle] = useState('');
  const [isDeleteClicked, setIsDeleteClicked] = useState(false);
-
+ 
+ const deletePost = async (id) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this picture?");
+ 
+  setIsDeleteClicked(true);
+  if (confirmDelete) {
+    try {
+      const response = await axios.delete(`http://127.0.0.1:8000/pictures/deleted/${id}`, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+ 
+      if (response.status === 204) {
+        // Fetch the updated list of images from the server
+        const updatedImagesResponse = await axios.get('http://127.0.0.1:8000/pictures/imagesd/', {
+          headers: {
+            'Authorization': `Token ${token}`,
+          },
+        });
+        setImages(updatedImagesResponse.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsDeleteClicked(false);
+    }
+  }
+ }
+ 
+ 
+ 
+ useEffect(() => {
+  if (typeof window !== 'undefined') {
+    const storedRole = window.localStorage.getItem('role');
+    if (storedRole) {
+      setRole(storedRole);
+    }
+  }
+ }, []);
 
  let token;
  if (typeof localStorage !== 'undefined') {
@@ -111,32 +152,6 @@ useEffect(() => {
  // Perform action here after role state updates
 }, [role]);
 
-const deletePost = async () => {
-  const confirmDelete = window.confirm("Are you sure you want to delete this record?");
-
-  setIsDeleteClicked(true);
-  if(confirmDelete){
-  try {
-   const response = await axios.delete(`http://127.0.0.1:8000/pictures/deleted/${postId}`);
-   if (response.status === 204) {
-     // If the server returns a 204 status, the post was deleted successfully
-     // You can then update your state to remove the post from the list
-     setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
-   }
-   window.location.reload();
-  } catch (error) {
-   console.error('Error:', error);
-  } finally {
-   setIsDeleteClicked(false);
-  }
- };
-}
- useEffect(() => {
-  if(isDeleteClicked) {
-    setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
-    setIsDeleteClicked(false);
-  }
-}, [isDeleteClicked]); 
 
 return (
   <>
@@ -186,10 +201,12 @@ return (
          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
        </p> */}
      </div>
-     <FiTrash2
-    className="text-red-500 w-6 h-6"
-    onClick={deletePost} 
-  />
+     <div className=" px-6 py-4" style={{ float: 'right'}}>
+ {role === "graphicsdesigner" && <FiTrash2
+   className="text-dro_red w-6 h-6"
+   onClick={() => deletePost(image.id)} 
+ />}
+</div>
    </div>
  ))}
 </div>

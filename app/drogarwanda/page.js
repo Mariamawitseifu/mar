@@ -15,7 +15,7 @@ export default function drogarwanda(){
    const router = useRouter();
    const [typewriterText, setTypewriterText] = useState('');
    const handleClickG = () => {
-     router.push('/gallery');
+     router.push('/galleryrwanda');
    };
    useEffect(() => {
       const text = 'Droga Rwanda';

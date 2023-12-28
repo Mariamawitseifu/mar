@@ -1,5 +1,7 @@
 'use client'
 import React, { useState, useEffect } from "react";
+import { FiTrash2 } from 'react-icons/fi';
+import axios from "axios";
 
 export default function gallerypysio() {
  const [selectedImage, setSelectedImage] = useState(null);
@@ -7,17 +9,40 @@ export default function gallerypysio() {
  const [uploadedImage, setUploadedImage] = useState(null);
  const [selectedImages, setSelectedImages] = useState([]);
  const [title, setTitle] = useState('');
+ const [postId, setPostId] = useState(null);
 
- const [role, setRole] = useState('');
+ const [isDeleteClicked, setIsDeleteClicked] = useState(false);
 
- useEffect(() => {
-  if (typeof window !== 'undefined') {
-    const storedRole = window.localStorage.getItem('role');
-    if (storedRole) {
-      setRole(storedRole);
+ const deletePost = async (id) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this picture?");
+ 
+  setIsDeleteClicked(true);
+  if (confirmDelete) {
+    try {
+      const response = await axios.delete(`http://127.0.0.1:8000/pictures/deletep/${id}`, {
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      });
+ 
+      if (response.status === 204) {
+        // Fetch the updated list of images from the server
+        const updatedImagesResponse = await axios.get('http://127.0.0.1:8000/pictures/imagesp/', {
+          headers: {
+            'Authorization': `Token ${token}`,
+          },
+        });
+        setImages(updatedImagesResponse.data);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsDeleteClicked(false);
     }
   }
- }, []);
+ }
+ 
+
  let token;
  if (typeof localStorage !== 'undefined') {
   token = localStorage.getItem('token');
@@ -104,8 +129,19 @@ export default function gallerypysio() {
       console.error('Error:', error);
     });
 }, []);
+const [role, setRole] = useState('');
+
+useEffect(() => {
+ if (typeof window !== 'undefined') {
+   const storedRole = window.localStorage.getItem('role');
+   if (storedRole) {
+     setRole(storedRole);
+   }
+ }
+}, []);
  return (
-   <>
+   <> 
+   <div className="card py-6 px-16">
     <div className="relative">
     {role === "graphicsdesigner" || role === 'superadmin' ? (
       <div className="card py-6 px-16">
@@ -134,6 +170,7 @@ export default function gallerypysio() {
       
 ) : null}
     </div>
+     </div>
 <div className="grid grid-cols-4 gap-4">
   {images.map((image, index) => (
     <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -152,6 +189,14 @@ export default function gallerypysio() {
           Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
         </p> */}
       </div>
+      <div className=" px-6 py-4" style={{ float: 'right'}}>
+ {role === "graphicsdesigner" && <FiTrash2
+   className="text-dro_red w-6 h-6"
+   onClick={() => deletePost(image.id)} 
+ />}
+</div>
+
+
     </div>
   ))}
 </div>

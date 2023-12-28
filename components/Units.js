@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import Popup from "reactjs-popup";
 import Cookies from "js-cookie";
+// import 'components/quick.css'
 
 export default function Units() {
   const [userr, setUserr] = useState(null);
@@ -252,7 +253,7 @@ const handleAddRecord = () => {
   
   return (
     <div>
-      <button className="font-semibold text-xl" onClick={handleClickM}>
+      <button className="font-semibold text-lg" onClick={handleClickM}>
         Quick Links
       </button>
       {isOpen && (
@@ -267,8 +268,8 @@ const handleAddRecord = () => {
           <div className="fixed max-w-xs md:max-w-5xl md:w-full">
             <div className="bg-dro_white shadow-lg rounded-lg h-screen w-">
               <div className="p-8 h-full">
-                <div className="h-full overflow-x-auto overflow-y-auto">
-                <table className="w-full">
+                <div className="tableContainer h-full overflow-x-auto overflow-y-auto">
+                <table className="tableFixHead w-full">
   <thead>
     <tr>
       <th className="border-2 border-black w-1/12">No.</th>
@@ -387,7 +388,7 @@ const handleAddRecord = () => {
                           }
                         />
                                     {/* {errorMessage && <p className="text-dro_red">{errorMessage}</p>} */}
-                        <button className="bg-dro_green px-2 py-1 mr-1 rounded-md" style={{position: 'absolute', right: '27px'}} onClick={handleAddRecord}>Add</button>
+                        <button className="bg-dro_green px-2 py-1 mr-1 rounded-md" style={{position: 'absolute', right: '49px', bottom:'39px'}} onClick={handleAddRecord}>Add</button>
                         {errorMessage && <p className="text-dro_red">{errorMessage}</p>}
                       </>
                     )}

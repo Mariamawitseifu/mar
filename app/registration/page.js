@@ -11,7 +11,45 @@ export default function Registration() {
  const [role, setRole] = useState('');
  const [error, setError] = useState('');
  const [users, setUsers] = useState([]);
+ const [successMessage, setSuccessMessage] = useState('');
+ const [errorMessage, setErrorMessage] = useState('');
+ 
+const deleteUser = async (username) => {
+ try {
+  console.log(`Attempting to delete user with username: ${username}`);
+  await fetch(`http://127.0.0.1:8000/api/users/?username=${username}`, {
+    method: 'DELETE',
+  });
+  console.log(`User with username: ${username} has been deleted successfully.`);
+  // Remove the deleted user from the users state
+  setUsers(users.filter((user) => user.username !== username));
+ } catch (error) {
+  console.error('Error:', error);
+  // Handle the error, e.g., display an error message to the user
+ }
+};
 
+
+
+useEffect(() => {
+  fetch('http://127.0.0.1:8000/api/users/')
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Error fetching users');
+      }
+    })
+    .then((data) => {
+      if (Array.isArray(data)) {
+        setUsers(data);
+      } else {
+        console.error('Data is not an array:', data);
+      }
+    })
+    .catch((error) => console.error('Error:', error));
+}, []);
+ 
  const handleSubmit = async (e) => {
   e.preventDefault();
  
@@ -24,40 +62,45 @@ export default function Registration() {
  
   console.log('User object:', user);
  
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  
   try {
-   const response = await fetch('http://127.0.0.1:8000/api/register/', {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-     },
-     body: JSON.stringify(user),
-   });
+    const response = await fetch('http://127.0.0.1:8000/api/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(user)
+    });
  
-   console.log('Response status:', response.status);
-   console.log('Response headers:', response.headers);
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
  
-   if (response.ok) {
-     const data = await response.json();
-     console.log('Response data:', data);
-     // Handle success, e.g., redirect to a success page or perform other actions
-   } else {
-     const errorData = await response.json();
-     console.log('Error data:', errorData);
-     setError(errorData.error);
-   }
-  } catch (error) {
-   console.error('Error:', error);
-   if (error.response) {
-     console.log('Response data:', error.response.data);
-     console.log('Response status:', error.response.status);
-     console.log('Response headers:', error.response.headers);
-   } else if (error.request) {
-     console.log('Request:', error.request);
-   } else {
-     console.log('Error message:', error.message);
-   }
-   console.log('Error config:', error.config);
+    if (response.ok) {
+      const data = await response.json(); 
+      console.log('Response data:', data);
+      setSuccessMessage('Registration successful');
+    } else {
+      const error = await response.json(); 
+      throw error;
+    }
+ 
   }
+  catch (error) {
+    console.error('Error:', error);
+   
+    setErrorMessage(error?.message || 'An error occurred during registration');
+   
+    if (error?.response) {
+      console.log('Response data:', error.response.data);
+      console.log('Response status:', error.response.status); 
+      console.log('Response headers:', error.response.headers);
+    } else {
+      console.log('Error message:', error?.message || 'No error details available');
+    }
+   }
+   
  };
 
  useEffect(() => {
@@ -79,30 +122,9 @@ export default function Registration() {
  };
   return (
     <>
-      <div>
-        <table className="mt-4">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Password</th> {/* Note: Displaying the password like this is not recommended in a real application */}
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>{user.password}</td> {/* Note: Displaying the password like this is not recommended in a real application */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col">
+
+<form onSubmit={handleSubmit}>
+        <div className="flex text-lg gap-3 p-8 flex-col">
           <label>
             Username:
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -115,7 +137,7 @@ export default function Registration() {
             Email:
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
-        </div>
+       
 
         <div className="flex">
           <h1 className="mr-2">Role:</h1>
@@ -130,7 +152,7 @@ export default function Registration() {
                 aria-expanded={isDropdownOpen}
                 onClick={toggleDropdown}
               >
-                Manager
+               {role ? role : 'Select'}
                 <svg
                   className="-mr-1 ml-2 h-5 w-3"
                   xmlns="http://www.w3.org/2000/svg"
@@ -195,14 +217,39 @@ export default function Registration() {
    </div>
  </div>
 )}
-
-          </div>
-        </div>
-
-        <button type="submit" className="mt-4 bg-dro_green p-2 rounded">
+        <button type="submit" className=" bg-dro_green p-1 mt-4 rounded">
           Register
         </button>
+        </div></div></div>
       </form>
+      {successMessage && <p>{successMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
+      <div>
+        <table className=" m-7 text-lg">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              {/* <th>Password</th> */}
+              <th></th> {/* Note: Displaying the password like this is not recommended in a real application */}
+            </tr>
+          </thead>
+          <tbody style={{margin:'20px'}}>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                {/* <td>{user.password}</td> */}
+                <button onClick={() => deleteUser(user.username)}>Delete</button>
+                 {/* Note: Displaying the password like this is not recommended in a real application */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
     </>
   );
 }

@@ -1,22 +1,22 @@
-// withAuth.js
-import { useRouter } from "next/navigation";
-import { useEffect } from 'react';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-function withAuth(WrappedComponent) {
-  return function WithAuthComponent(props) {
-    const router = useRouter();
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const token = localStorage.getItem('token');
+  const isAuthenticated = !!token; // Check if the token exists
 
-    // Check for authentication token in storage
-    const isAuthenticated = // Retrieve the token from storage and validate it
-
-    useEffect(() => {
-      if (!isAuthenticated) {
-        router.push('/dep'); // Redirect to login page if not authenticated
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" /> // Redirect to the login page if not authenticated
+        )
       }
-    }, []);
+    />
+  );
+};
 
-    return isAuthenticated ? <WrappedComponent {...props} /> : null;
-  };
-}
-
-export default withAuth;
+export default PrivateRoute;

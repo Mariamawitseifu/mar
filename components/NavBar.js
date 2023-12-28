@@ -193,7 +193,7 @@ const handlePost = () => {
           </div>
           
           <Link legacyBehavior href="/userguide">
-            <a className="font-semibold text-xl">Portal User Guide</a>
+            <a className="font-semibold text-lg">Portal User Guide</a>
           </Link>
 
           <ul>
